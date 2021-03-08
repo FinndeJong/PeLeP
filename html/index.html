@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en">
-        <meta http-equiv="content-language" content="en">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="PeLeP, OPEN-ICT, Personal learning, assassment">
-        <meta name="author" content="Arezou Sattari, Casper Weijtmans, Finn de Jong, Lieke Crum, Pjotr Kuiper">
-        <meta name="publisher" content="PeLeP">
-        <meta name="copyright" content="PeLeP">
-        <meta name="description" content="Dit is de website om je personal learning te noteren. Dit is handing bij het maken van je assassment.">
-        <meta name="audience" content="OPEN-ICT">
-        <meta name="robots" content="noindex, nofollow">
-  
-        <title>Pearsonal Learning Pulse</title>
-        <link rel="stylesheet" href="../css/default.css">
-    </head>
-    <body>
-        <script type="text/javascript" src="../js/checkpoint.js"></script>
-    </body>
+
+<head lang="en">
+    <meta http-equiv="content-language" content="en">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="PeLeP, OPEN-ICT, Personal learning, assassment">
+    <meta name="author" content="Arezou Sattari, Casper Weijtmans, Finn de Jong, Lieke Crum, Pjotr Kuiper">
+    <meta name="publisher" content="PeLeP">
+    <meta name="copyright" content="PeLeP">
+    <meta name="description"
+        content="Dit is de website om je personal learning te noteren. Dit is handing bij het maken van je assassment.">
+    <meta name="audience" content="OPEN-ICT">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pearsonal Learning Pulse</title>
+    <link rel="stylesheet" href="../css/default.css">
+</head>
+
+<body>
+    <!-- Checkpoint maken -->
+    <div id="popup" class="popup-container">
+        <div class="popup-wrapper">
+            <div class="popup-screen">
+                <div class="popup-competenties">
+                    <h2 style="margin-top: 0; margin-bottom: 5px; padding: 5px;">insert competenties hier</h2>
+                    <br><br><br><br>
+                </div>
+                <div class="popup-title">
+                    <input type="text" placeholder="Voer hier de titel in" class="popup-input">
+                </div>
+                <div class="popup-smiley">
+                    <h2>insert smileys hier</h2>
+                </div>
+                <div class="popup-pulse">
+                    <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context"></textarea>
+                </div>
+                <div class="popup-close">
+                    <button class="popup-cancel popup-button" id="popup-cancel-button">Annuleren</button>
+                    <button class="popup-create popup-button">Maak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TIJDELIJK VOOR US001 -->
+    <button id="maak-checkpoint-btn" style="width: 100px; height: 80px; margin: 10px;" onclick="display()">Maak Checkpoint</button>
+    <!-- GUI -->
+    <!-- volgende sprint-->
+    <!-- Scripts! -->
+    <script type="text/javascript" src="../js/checkpoint.js"></script>
+</body>
+
 </html>
