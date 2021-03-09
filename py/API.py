@@ -20,7 +20,7 @@ def create_node():
     req_data = request.get_json()
     titel = req_data['titel']
     tekst = req_data['tekst']
-    
+    print(titel)
     q1="""
     create (n:checkpoint {titel:$titel,tekst:$tekst})
     """
