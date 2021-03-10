@@ -1,0 +1,21 @@
+#Hierin alle files zooi die je niet wil. Je wil alleen Code  
+db.sqlite3
+# database
+
+.vscode
+# Javascript code met de settings
+
+.env
+# files gerelateerd aan API keys
+
+.DS_store
+# mac troep
+
+.dist
+# Gegenereerde files waar ik geen ene moer mee te maken heb
+
+#virtual environment
+venv/
+
+manage.py
+# de running file hiermee wordt alles gerund
