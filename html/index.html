@@ -25,8 +25,24 @@
         <div class="popup-wrapper">
             <div class="popup-screen">
                 <div class="popup-competenties">
-                    <h2 style="margin-top: 0; margin-bottom: 5px; padding: 5px;">insert competenties hier</h2>
-                    <br><br><br><br>
+                    <div class="competenties" id="samenwerken" onclick="sam()">
+                        <a class="competentie" id="sam">Samenwerken</a>
+                    </div>
+                    <div class="competenties" id="Reflecteren" onclick="ref()">
+                        <a class="competentie" id="ref">Reflecteren</a>
+                    </div>
+                    <div class="competenties" id="plannen" onclick="pla()">
+                        <a class="competentie" id="plan">Plannen</a>
+                    </div>
+                    <div class="competenties" id="Boodschap" onclick="boo()">
+                        <a class="competentie" id="boo">Boodschap overbrengen</a>
+                    </div>
+                    <div class="competenties" id="Pro-actief" onclick="pro()">
+                        <a class="competentie" id="pro">Pro-actief werken</a>
+                    </div>
+                    <div class="competenties" id="Aanpassingsvermogen" onclick="aan()">
+                        <a class="competentie" id="aan">Aanpassingsvermogen</a>
+                    </div>
                 </div>
                 <div class="popup-title">
                     <input type="text" placeholder="Voer hier de titel in" class="popup-input" id="popup-title-input">
@@ -34,12 +50,32 @@
                 <div class="popup-smiley">
                     <h2>insert smileys hier</h2>
                 </div>
+                <div id="competenties-gekozen">
+                    <div id="Samenwerken-kies">
+                        <a class="competentie"></a>
+                    </div>
+                    <div id="Reflecteren-kies">
+                        <a class="competentie"></a>
+                    </div>
+                    <div id="Plannen-kies">
+                        <a class="competentie"></a>
+                    </div>
+                    <div id="Boodschap-kies">
+                        <a class="competentie"></a>
+                    </div>
+                    <div id="Pro-actief-kies">
+                        <a class="competentie"></a>
+                    </div>
+                    <div id="Aanpassingsvermogen-kies">
+                        <a class="competentie"></a>
+                    </div>
+                </div>
                 <div class="popup-pulse">
                     <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context" id="popup-pulse-context"></textarea>
                 </div>
                 <div class="popup-close">
                     <button class="popup-cancel popup-button" id="popup-cancel-button">Annuleren</button>
-                    <button class="popup-create popup-button" id="popup-create-button">Plaatsen</button>
+                    <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
                 </div>
             </div>
         </div>
