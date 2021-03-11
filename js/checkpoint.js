@@ -40,33 +40,142 @@ var raw = JSON.stringify({"titel":titel,"tekst":tekst});
 function sam(){
     var e = document.getElementById("Samenwerken-kies")
     if (e.style.display = 'none') {
-        e.style.display = 'inline-block'
+        e.style.display = 'inline-block';
         console.log(1)
-    } else {
-        e.style.display = 'none';
-        console.log(2)
+    }else{
+        e.style.display = 'none'
+        console.log(2)    
+    }
+}
+function sam1(){
+    var e = document.getElementById("Samenwerken-kies")
+    if(e.style.display ===  'inline-block'){
+        e.style.display = "none";
     }
 }
 function ref(){
-    document.getElementById("Reflecteren-kies").style.display = 'inline-block';
-    console.log(sam)
+    var e = document.getElementById("Reflecteren-kies")
+    if (e.style.display = 'none') {
+        e.style.display = 'inline-block';
+    }
 }
-function boo(){
-    document.getElementById("Boodschap-kies").style.display = 'inline-block';
-    console.log(sam)
-}
-function pro(){
-    document.getElementById("Pro-actief-kies").style.display = 'inline-block';
-    console.log(sam)
+function ref1(){
+    var e = document.getElementById("Reflecteren-kies")
+    if(e.style.display ===  'inline-block'){
+        e.style.display = "none";
+    }
 }
 function aan(){
-    document.getElementById("Aanpassingsvermogen-kies").style.display = 'inline-block';
-    console.log(sam)
+    var e = document.getElementById("Aanpassingsvermogen-kies")
+    if (e.style.display = 'none') {
+        e.style.display = 'inline-block';
+    }
+}
+function aan1(){
+    var e = document.getElementById("Aanpassingsvermogen-kies")
+    if(e.style.display ===  'inline-block'){
+        e.style.display = "none";
+    }
+}
+function boo(){
+    var e = document.getElementById("Boodschap-kies")
+    if (e.style.display = 'none') {
+        e.style.display = 'inline-block';
+    }
+}
+function boo1(){
+    var e = document.getElementById("Boodschap-kies")
+    if(e.style.display ===  'inline-block'){
+        e.style.display = "none";
+    }
 }
 function pla(){
-    document.getElementById("Plannen-kies").style.display = 'inline-block';
-    console.log(sam)
+    var e = document.getElementById("Plannen-kies")
+    if (e.style.display = 'none') {
+        e.style.display = 'inline-block';
+    }
 }
+function pla1(){
+    var e = document.getElementById("Plannen-kies")
+    if(e.style.display ===  'inline-block'){
+        e.style.display = "none";
+    }
+}
+function pro(){
+    var e = document.getElementById("Pro-actief-kies")
+    if (e.style.display = 'none') {
+        e.style.display = 'inline-block';
+    }
+}
+function pro1(){
+    var e = document.getElementById("Pro-actief-kies")
+    if(e.style.display ===  'inline-block'){
+        e.style.display = "none";
+    }
+}
+// function sam(){
+//     var e = document.getElementById("Samenwerken-kies")
+//     var a = "ja"
+//     if (a=="ja") {
+//         e.style.display = 'inline-block'
+//         a = "nee"
+//         console.log(a)
+//     } else if (a=="nee") {
+//         e.style.display = 'none';
+//         a = "ja"
+//         console.log(a)
+//     }
+// }
+// function ref(){
+//     var e = document.getElementById("Reflecteren-kies")
+//     if (e.style.display == 'none') {
+//         e.style.display == 'inline-block'
+//         console.log(1)
+//     } else {
+//         e.style.display = 'none';
+//         console.log(2)
+//     }
+// }
+// function boo(){
+//     var e = document.getElementById("Boodschap-kies")
+//     if (e.style.display == 'none') {
+//         e.style.display = 'inline-block'
+//         console.log(1)
+//     } else {
+//         e.style.display = 'none';
+//         console.log(2)
+//     }
+// }
+// function pro(){
+//     var e = document.getElementById("Pro-actief-kies")
+//     if (e.style.display == 'none') {
+//         e.style.display = 'inline-block'
+//         console.log(1)
+//     } else {
+//         e.style.display = 'none';
+//         console.log(2)
+//     }
+// }
+// function aan(){
+//     var e = document.getElementById("Aanpassingsvermogen-kies")
+//     if (e.style.display == 'none') {
+//         e.style.display = 'inline-block'
+//         console.log(1)
+//     } else {
+//         e.style.display = 'none';
+//         console.log(2)
+//     }
+// }
+// function pla(){
+//     var e = document.getElementById("Plannen-kies")
+//     if (e.style.display == 'none') {
+//         e.style.display = 'inline-block'
+//         console.log(1)
+//     } else {
+//         e.style.display = 'none';
+//         console.log(2)
+//     }
+// }
 
 // function competentie(){
 //     var comp1 = document.getElementById().value;
