@@ -40,19 +40,23 @@ html,body{
   border-bottom: var(--app-color) solid;
 }
 
-/* div voor titel*/
+/* div voor titel */
 .popup-title{
   background-color: white;
-  margin-right: 30px;
-  padding-left: 40px;
   display: inline-block;
+  margin-right: 30px;
+  margin-left: 40px;
   margin-top: 20px;
+  padding: 0;
 }
 .popup-input{
   font-size: 24px;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* div voor smiley*/
+/* div voor smiley */
 .popup-smiley{
   text-align: center;
   background-color: white;
@@ -60,7 +64,7 @@ html,body{
   margin-right: 15px;
 }
 
-/* div voor Pulse input*/
+/* div voor Pulse input */
 .popup-pulse{
   padding-left: 40px;
   padding-right: 40px;
@@ -70,7 +74,6 @@ html,body{
   resize: none;
   overflow: auto;
   box-sizing: border-box;
-
 }
 
 /* buttons*/
@@ -118,7 +121,7 @@ html,body{
     width: 100%;
   }
   .popup-title{
-    width: 40%;
+    width: 50%;
   }
   .popup-smiley{
     width: 30%;
@@ -129,13 +132,6 @@ html,body{
   }
 }
 
-@media screen and (min-width:401px) and (max-width: 768px){
- /* Telefoon zoals iphone 5 (kleinste scherm 320 px breed)*/
- .popup-screen{
-   width: 80%;
- }
-}
-
 @media screen and (max-width: 1024px){
   /* Tussen telefoon en computer in dus tablet */
   .popup-screen{
@@ -143,11 +139,9 @@ html,body{
   }
   .popup-title{
     display: block;
+    margin: 0 auto;
     padding-right: 40px;
-    margin-right: 0;
-  }
-  .popup-input{
-    width: 99%;
+    padding-left: 40px;
   }
   .popup-smiley{
     float: none;
@@ -159,6 +153,43 @@ html,body{
   }
 }
 
-@media screen and (max-width: 400px){
+@media screen and (min-width: 428px) and (max-width: 768px){
+ /* middelgrootte telefoons */
+ .popup-screen{
+   width: 80%;
+ }
+}
 
+
+@media screen and (max-width: 427px){
+  .popup-screen{
+    width: 90%;
+  }
+  .popup-button{
+    display: block;
+  }
+  .popup-create{
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 92%;
+  }
+  .popup-cancel{
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 92%;
+  }
+  .popup-pulse{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .popup-title{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
