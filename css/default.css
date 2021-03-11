@@ -11,6 +11,7 @@ html,body{
   --aanpassingsvermogen: #deccff;
   --popup-achtergrond: rgba(54, 54, 54, 0.527);
   --app-color: #cfdafc;
+  --shadow-color: rgb(148, 148, 148);
 }
 
 
@@ -22,7 +23,7 @@ html,body{
 
   background-color: var(--popup-achtergrond);
     
-  display: none;                                                                                    /* Default is NONE!*/
+  display: block;/* Default is NONE!*/
 }
 
 /* general popup div*/
@@ -99,6 +100,7 @@ html,body{
 	padding:8px 22px;
 	text-decoration:none;
 	text-shadow:0px 0px 0px black;
+  box-shadow: 2px 4px var(--shadow-color);
 }
 .popup-button:hover {
 	background-color: var(--app-color);
@@ -161,4 +163,60 @@ html,body{
 
 @media screen and (max-width: 400px){
 
+}
+
+/*competenties */
+.competenties{
+  display: inline-block;
+  text-align: center;
+  height: 20px;
+  border: 0.1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 2px 4px var(--shadow-color);
+}
+
+
+#samenwerken, #Samenwerken-kies{
+  background-color: var(--samenwerken);
+}
+#Pro-actief, #Pro-actief-kies{
+  background-color: var(--pro-actief);
+}
+#Boodschap, #Boodschap-kies{
+  background-color: var(--boodschap-overbrengen);
+}
+#Reflecteren, #Reflecteren-kies{
+  background-color: var(--reflecteren);
+}
+#Aanpassingsvermogen, #Aanpassingsvermogen-kies{
+  background-color: var(--aanpassingsvermogen);
+}
+#plannen, #Plannen-kies{
+  background-color: var(--plannen);
+}
+
+.competentie{
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+#competenties-gekozen{
+  margin-left: 40px;
+}
+
+#Samenwerken-kies, #Reflecteren-kies, #Boodschap-kies, #Pro-actief-kies, #Plannen-kies, #Aanpassingsvermogen-kies{
+  display: none;
+  text-align: center;
+  height: 20px;
+  border: 0.1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 2px 4px var(--shadow-color);
+  height: 10px; 
+  width: 40px;
 }
