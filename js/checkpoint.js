@@ -14,8 +14,8 @@ close_popup.addEventListener("click", function(){
 });
 
 function nieuw(){
-var titel = document.getElementById("titel").value;
-var tekst = document.getElementById("tekst").value;
+var titel = document.getElementById("popup-title-input").value;
+var tekst = document.getElementById("popup-pulse-context").value;
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
