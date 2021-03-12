@@ -14,13 +14,13 @@ close_popup.addEventListener("click", function(){
 });
 
 function nieuw(){
-var titel = document.getElementById("popup-title-input").value;
-var tekst = document.getElementById("popup-pulse-context").value;
+    var titel = document.getElementById("popup-title-input").value;
+    var tekst = document.getElementById("popup-pulse-context").value;
 
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-var raw = JSON.stringify({"titel":titel,"tekst":tekst});
+    var raw = JSON.stringify({"titel":titel,"tekst":tekst});
     //Hier staan de fetch option
     var requestOptions = {
     method: 'POST',
