@@ -13,7 +13,6 @@ close_popup.addEventListener("click", function(){
     };
 });
 
-
 function sam(){
     var e = document.getElementById("Samenwerken-kies")
     if (e.style.display = 'none') {
