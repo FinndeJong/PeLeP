@@ -1,5 +1,8 @@
 html,body{
   margin: 0;
+  font-family: 'Monserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif; */
 }
 
 :root{
@@ -12,6 +15,12 @@ html,body{
   --popup-achtergrond: rgba(54, 54, 54, 0.527);
   --app-color: #cfdafc;
   --shadow-color: rgb(148, 148, 148);
+  --samenwerken-hover: #E00B00;
+  --reflecteren-hover: #CC7700;
+  --plannen-hover: #CC9200;
+  --boodschap-overbrengen-hover: #4B9555;
+  --pro-actief-hover: #1478A3;
+  --aanpassingsvermogen-hover: #7A33FF;
 }
 
 
@@ -238,6 +247,7 @@ html,body{
 
 #competenties-gekozen{
   margin-left: 40px;
+  border-radius: 25px;
 }
 #Samenwerken-kies:hover{
   background-color: #E00B00;
