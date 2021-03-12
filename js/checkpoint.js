@@ -214,49 +214,46 @@ function nieuw(){
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    var raw = ""
     if (comp1 == "") {
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst});
     }
     if ((comp1 != "") && (comp2 == "")) {
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1});
     }
     if ((comp2 != "") && (comp3 == "")) {
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2});
     }
     if ((comp3 != "") && (comp4 == "")) {
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3});
     }
     if ((comp4 != "") && (comp5 == "")) {
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4});
     }
     if ((comp5 != "") && (comp6 == "")) {
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5});
     }
     if (comp6 != ""){
-        var raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6});
-        console.log(raw)
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6});
     }
-        //Hier staan de fetch option
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-        };
+    
+     
+    console.log(raw)
+    //Hier staan de fetch option
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
 
-        //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
-        fetch("http://127.0.0.1:5050/create", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-        
-        
+    //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
+    fetch("http://127.0.0.1:5050/create", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+    
+    
     }
 
 // var comp1 = "";
