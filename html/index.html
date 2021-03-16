@@ -1,110 +1,177 @@
 <!DOCTYPE html>
 <html>
 
-<head lang="en">
-    <meta http-equiv="content-language" content="en">
-    <meta charset="UTF-8">
-    <meta name="keywords" content="PeLeP, OPEN-ICT, Personal learning, assassment">
-    <meta name="author" content="Arezou Sattari, Casper Weijtmans, Finn de Jong, Lieke Crum, Pjotr Kuiper">
-    <meta name="publisher" content="PeLeP">
-    <meta name="copyright" content="PeLeP">
-    <meta name="description"
-        content="Dit is de website om je personal learning te noteren. Dit is handing bij het maken van je assassment.">
-    <meta name="audience" content="OPEN-ICT">
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head lang="en">
+        <meta http-equiv="content-language" content="en">
+        <meta charset="UTF-8">
+        <meta name="keywords" content="PeLeP, OPEN-ICT, Personal learning, assassment">
+        <meta name="author" content="Arezou Sattari, Casper Weijtmans, Finn de Jong, Lieke Crum, Pjotr Kuiper">
+        <meta name="publisher" content="PeLeP">
+        <meta name="copyright" content="PeLeP">
+        <meta name="description"
+            content="Dit is de website om je personal learning te noteren. Dit is handing bij het maken van je assassment.">
+        <meta name="audience" content="OPEN-ICT">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Personal Learning Pulse</title>
-    <link rel="stylesheet" href="../css/default.css">
-</head>
+        <title>Personal Learning Pulse</title>
+        <link rel="stylesheet" href="../css/default.css">
+    </head>
 
-<body>
-    <!-- Checkpoint maken -->
-    <div id="popup" class="popup-container">
-        <div class="popup-wrapper">
-            <div class="popup-screen">
-                <div class="popup-competenties">
-                    <div class="competenties" id="samenwerken" onclick="sam()">
-                        <a class="competentie" id="sam">Samenwerken</a>
+    <body>
+        <!-- Checkpoint maken -->
+        <div id="popup" class="popup-container">
+            <div class="popup-wrapper">
+                <div class="popup-screen">
+                    <div class="popup-competenties">
+                        <div class="competenties" id="samenwerken" onclick="sam()">
+                            <a class="competentie" id="sam">Samenwerken</a>
+                        </div>
+                        <div class="competenties" id="Reflecteren" onclick="ref()">
+                            <a class="competentie" id="ref">Reflecteren</a>
+                        </div>
+                        <div class="competenties" id="plannen" onclick="pla()">
+                            <a class="competentie" id="plan">Plannen</a>
+                        </div>
+                        <div class="competenties" id="Boodschap" onclick="boo()">
+                            <a class="competentie" id="boo">Boodschap overbrengen</a>
+                        </div>
+                        <div class="competenties" id="Pro-actief" onclick="pro()">
+                            <a class="competentie" id="pro">Pro-actief werken</a>
+                        </div>
+                        <div class="competenties" id="Aanpassingsvermogen" onclick="aan()">
+                            <a class="competentie" id="aan">Aanpassingsvermogen</a>
+                        </div>
                     </div>
-                    <div class="competenties" id="Reflecteren" onclick="ref()">
-                        <a class="competentie" id="ref">Reflecteren</a>
+                    <div class="popup-title">
+                        <input type="text" placeholder="Voer hier de titel in" class="popup-input" id="popup-title-input">
                     </div>
-                    <div class="competenties" id="plannen" onclick="pla()">
-                        <a class="competentie" id="plan">Plannen</a>
+                    <div class="popup-smiley">
+                        <h2>insert smileys hier</h2>
                     </div>
-                    <div class="competenties" id="Boodschap" onclick="boo()">
-                        <a class="competentie" id="boo">Boodschap overbrengen</a>
+                    <div id="competenties-gekozen">
+                        <div id="Samenwerken-kies" onclick="sam1()">
+                            <a class="competentie1"></a>
+                        </div>
+                        <div id="Reflecteren-kies" onclick="ref1()">
+                            <a class="competentie1"></a>
+                        </div>
+                        <div id="Plannen-kies" onclick="pla1()">
+                            <a class="competentie1"></a>
+                        </div>
+                        <div id="Boodschap-kies" onclick="boo1()">
+                            <a class="competentie1"></a>
+                        </div>
+                        <div id="Pro-actief-kies" onclick="pro1()">
+                            <a class="competentie1"></a>
+                        </div>
+                        <div id="Aanpassingsvermogen-kies" onclick="aan1()">
+                            <a class="competentie1"></a>
+                        </div>
                     </div>
-                    <div class="competenties" id="Pro-actief" onclick="pro()">
-                        <a class="competentie" id="pro">Pro-actief werken</a>
+                    <div class="popup-pulse">
+                        <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context" id="popup-pulse-context"></textarea>
                     </div>
-                    <div class="competenties" id="Aanpassingsvermogen" onclick="aan()">
-                        <a class="competentie" id="aan">Aanpassingsvermogen</a>
+                    <div class="popup-close">
+                        <button class="popup-cancel popup-button" id="popup-cancel-button">Annuleren</button>
+                        <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
                     </div>
-                </div>
-                <div class="popup-title">
-                    <input type="text" placeholder="Voer hier de titel in" class="popup-input" id="popup-title-input">
-                </div>
-                <div class="popup-smiley">
-                    <h2>insert smileys hier</h2>
-                </div>
-                <div id="competenties-gekozen">
-                    <div id="Samenwerken-kies" onclick="sam1()">
-                        <a class="competentie1"></a>
-                    </div>
-                    <div id="Reflecteren-kies" onclick="ref1()">
-                        <a class="competentie1"></a>
-                    </div>
-                    <div id="Plannen-kies" onclick="pla1()">
-                        <a class="competentie1"></a>
-                    </div>
-                    <div id="Boodschap-kies" onclick="boo1()">
-                        <a class="competentie1"></a>
-                    </div>
-                    <div id="Pro-actief-kies" onclick="pro1()">
-                        <a class="competentie1"></a>
-                    </div>
-                    <div id="Aanpassingsvermogen-kies" onclick="aan1()">
-                        <a class="competentie1"></a>
-                    </div>
-                </div>
-                <div class="popup-pulse">
-                    <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context" id="popup-pulse-context"></textarea>
-                </div>
-                <div class="popup-close">
-                    <button class="popup-cancel popup-button" id="popup-cancel-button">Anuleren</button>
-                    <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- GUI -->
-    <div class="main-page-container">
-        <div class="icon-container">
-            <div>
-                <img src="../img/notifications.png" class="icon-right">
-                <img src="../img/settings.png" class="icon-right">
+        
+        
+        <!-- GUI -->
+        <div class="main-page-container">
+            <div class="icon-container">
+                <div>
+                    <img src="../img/notifications.png" class="icon-right">
+                    <img src="../img/settings.png" class="icon-right">
+                </div>
+            </div>
+            <div class="profile-container">
+                <div class="profile-wrapper">
+                    <div class="profile-name">
+                        
+                    </div>
+                    <div class="profile-image">
+                        <div class="profile-picture-circle"></div>
+                    </div>
+                    <div class="profile-graph">
+
+                    </div>
+                    <div class="profile-legenda">
+                        <div class="legenda-title">
+                            <h3>legenda</h3>
+                        </div>
+                        <div class="legenda-list">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div style="background-color: green; width: 20px; height: 20px;"></div>
+                                    </td>
+                                    <td>Samenwerken</td>  
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="background-color: blue; width: 20px; height: 20px;"></div>
+                                    </td>
+                                    <td>Reflecteren</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="background-color: red; width: 20px; height: 20px;"></div>
+                                    </td>
+                                    <td>Plannen</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="background-color: orange; width: 20px; height: 20px;"></div>
+                                    </td>
+                                    <td>Boodschap overbrengen</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="background-color: purple; width: 20px; height: 20px;"></div>
+                                    </td>
+                                    <td>Pro-actief</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="background-color: cyan; width: 20px; height: 20px;"></div>
+                                    </td>
+                                    <td>Aanpassingsvermogen</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selcheck-container">
+                <div class="selcheck-wrapper">
+                    <button class="popup-button create-checkpoint-button" onclick="display()">Maak checkpoint</button>        <!-- remove onclick en maak een eventlistener -->
+                    <select class="popup-button filter-button">
+                        <option value="Filter">Geen filter</option>
+                        <option value="Samenwerken">Samenwerken</option>
+                        <option value="Reflecteren">Reflecteren</option>
+                        <option value="Plannen">Plannen</option>
+                        <option value="Boodschap-overbrengen">Boodschap overbrengen</option>
+                        <option value="Pro-actief">Pro-actief</option>
+                        <option value="Aanpassingsvermogen">Aanpassingsvermogen</option>
+                    </select>
+                </div>
+            </div>
+            <div class="timeline-container">
+
             </div>
         </div>
-        <div class="profile-container">
-
-        </div>
-        <div class="selcheck-container">
-            <div class="selcheck-wrapper">
-                <button class="popup-button create-checkpoint-button" onclick="display()">Maak checkpoint</button>        <!-- remove onclick en maak een eventlistener -->
-                <button class="popup-button filter-button">Filter op</button>
-            </div>
-        </div>
-        <div class="timeline-container">
-
-        </div>
-    </div>
-    <!-- volgende sprint-->
-    <!-- Scripts! -->
-    <script type="text/javascript" src="../js/checkpoint.js"></script>
-</body>
+        
+        
+        <!-- volgende sprint-->
+        <!-- Scripts! -->
+        <script type="text/javascript" src="../js/checkpoint.js"></script>
+    </body>
 
 </html>
