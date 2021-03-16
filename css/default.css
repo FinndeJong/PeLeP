@@ -126,7 +126,6 @@ font-family: 'Roboto', sans-serif; */
       /* GUI website styling*/
 /* icon container */
 .main-page-container{
-  position: fixed;
   width: 100%;
 }
 .icon-container{
