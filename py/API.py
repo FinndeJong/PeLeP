@@ -1,19 +1,18 @@
 from flask import Flask,request,jsonify,redirect,render_template,request, jsonify
 from neo4j import GraphDatabase
 import csv
-import datetime
-from datetime import date
+
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
+with open(r'/Users/arzu/Documents/GitHub/PeLeP/txt/neo4j.text') as f1:
     data=csv.reader(f1,delimiter=",")
     for row in data:
         username=row[0]
         pwd=row[1]
         uri=row[2]
-print(username,pwd,uri)
-driver=GraphDatabase.driver(uri=uri,auth=(username,pwd))
-session=driver.session()
-api=Flask(__name__)
+print(username, pwd, uri)
+driver = GraphDatabase.driver(uri=uri,auth=(username,pwd))
+session = driver.session()
+api = Flask(__name__)
 
 @api.route("/create",methods=["GET","POST"])
 def create_node():
@@ -46,3 +45,17 @@ if __name__=="__main__":
     api.run(port=5050)
 
 print("hallo")
+
+@api.route("/create",methods=["GET","POST"])
+def create_node():
+    req_data = request.get_json()
+    emoji = req_data['emoji']
+    q1="""
+    create (n:checkpoint {emoji:$emoji})
+    """
+    map={"emoji":emoji}
+    try:
+        session.run(q1,map)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
