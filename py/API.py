@@ -3,7 +3,7 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
+with open(r'/Users/arzu/Documents/GitHub/PeLeP/txt/neo4j.text') as f1:
     data=csv.reader(f1,delimiter=",")
     for row in data:
         username=row[0]
@@ -64,7 +64,9 @@ if __name__=="__main__":
 print("hallo")
 
 @api.route("/create",methods=["GET","POST"])
+<<<<<<< HEAD
 def create_node3():
+
     req_data = request.get_json()
     emoji = req_data['emoji']
     q1="""
