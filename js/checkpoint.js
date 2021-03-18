@@ -118,28 +118,29 @@ function pro1(){
     }
 }
 let emoji = ""
-let emoji_sad = document.getElementById("sad");
-emoji_sad.addEventListener("click", function(){
-    if(emoji == ""){
-        emoji = "sad";
+let emoji_onder = document.getElementById("onder");
+emoji_onder.addEventListener("click", function(){
+    if(emoji != "onder_niveau"){
+        emoji = "onder_niveau";
     } else{
         emoji = ""
     };
     console.log(emoji)
 });
-let emoji_normal = document.getElementById("normal");
-emoji_sad.addEventListener("click", function(){
-    if(emoji == ""){
-        emoji = "sad";
+let emoji_op = document.getElementById("op");
+emoji_op.addEventListener("click", function(){
+    if(emoji != "op_niveau"){
+        emoji = "op_niveau";
+        emoji_op.style.border = "thin blue solid"
     } else{
         emoji = ""
     };
     console.log(emoji)
 });
-let emoji_sad = document.getElementById("sad");
-emoji_sad.addEventListener("click", function(){
-    if(emoji == ""){
-        emoji = "sad";
+let emoji_boven = document.getElementById("boven");
+emoji_boven.addEventListener("click", function(){
+    if(emoji != "boven_niveau"){
+        emoji = "boven_niveau";
     } else{
         emoji = ""
     };
@@ -147,7 +148,9 @@ emoji_sad.addEventListener("click", function(){
 });
 
 function nieuw(){
+    if (emoji == ""){
 
+    }
     var comp1 = "";
     var comp2 = "";
     var comp3 = "";

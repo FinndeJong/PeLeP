@@ -229,7 +229,9 @@ font-family: 'Roboto', sans-serif; */
   height: 10px; 
   width: 40px;
 }
-/* De smileys staan naast elkaar */
+
+
+/* De smileys */
 .smiley{
   display: inline-block;
   cursor: pointer;
