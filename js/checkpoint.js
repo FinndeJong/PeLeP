@@ -118,30 +118,42 @@ function pro1(){
     }
 }
 let emoji = ""
+let emoji_op = document.getElementById("op");
 let emoji_onder = document.getElementById("onder");
+let emoji_boven = document.getElementById("boven");
 emoji_onder.addEventListener("click", function(){
     if(emoji != "onder_niveau"){
         emoji = "onder_niveau";
+        document.getElementById("onder").style.backgroundColor = "#cfdafc"
+        document.getElementById("onder").style.border = "thin black solid"
+        emoji_op.style.border = "none"
+        emoji_boven.style.border = "none"
     } else{
+        emoji_onder.style.border = "none"
         emoji = ""
     };
     console.log(emoji)
 });
-let emoji_op = document.getElementById("op");
 emoji_op.addEventListener("click", function(){
     if(emoji != "op_niveau"){
         emoji = "op_niveau";
         emoji_op.style.border = "thin blue solid"
+        emoji_onder.style.border = "none"
+        emoji_boven.style.border = "none"
     } else{
+        emoji_op.style.border = "none"
         emoji = ""
     };
     console.log(emoji)
 });
-let emoji_boven = document.getElementById("boven");
 emoji_boven.addEventListener("click", function(){
     if(emoji != "boven_niveau"){
         emoji = "boven_niveau";
+        emoji_boven.style.border = "thin blue solid"
+        emoji_onder.style.border = "none"
+        emoji_op.style.border = "none"
     } else{
+        emoji_boven.style.border = "none"
         emoji = ""
     };
     console.log(emoji)

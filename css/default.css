@@ -236,6 +236,19 @@ font-family: 'Roboto', sans-serif; */
   display: inline-block;
   cursor: pointer;
 }
+/* #onder{
+  border-radius: 50%;
+  margin-top: 0.5px;
+  margin-bottom: auto;
+  border: solid black;
+} */
+/* #onder_border{
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 34px;
+} */
 
 /* Media Query's */
 
