@@ -250,6 +250,15 @@ font-family: 'Roboto', sans-serif; */
   height: 34px;
 } */
 
+.foutmelding{
+  color: red;
+  margin-left: 40px;
+}
+
+p{
+  display: inline-block;
+}
+
 /* Media Query's */
 
 @media screen and (min-width:1025px){
