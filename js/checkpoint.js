@@ -32,15 +32,6 @@ show_sam.addEventListener("click", function(){
  
     }
 })
-// function sam(){
-//     var e = document.getElementById("Samenwerken-kies")
-//     if (e.style.display = 'none') {
-//         e.style.display = 'inline-block';
-//         console.log(e.style.display)
- 
-//     }
-// }
-
 function sam(){
     var e = document.getElementById("Samenwerken-kies")
     if (e.style.display = 'none') {
@@ -126,7 +117,34 @@ function pro1(){
         console.log(e.style.display)
     }
 }
-
+let emoji = ""
+let emoji_sad = document.getElementById("sad");
+emoji_sad.addEventListener("click", function(){
+    if(emoji == ""){
+        emoji = "sad";
+    } else{
+        emoji = ""
+    };
+    console.log(emoji)
+});
+let emoji_normal = document.getElementById("normal");
+emoji_sad.addEventListener("click", function(){
+    if(emoji == ""){
+        emoji = "sad";
+    } else{
+        emoji = ""
+    };
+    console.log(emoji)
+});
+let emoji_sad = document.getElementById("sad");
+emoji_sad.addEventListener("click", function(){
+    if(emoji == ""){
+        emoji = "sad";
+    } else{
+        emoji = ""
+    };
+    console.log(emoji)
+});
 
 function nieuw(){
 
@@ -243,31 +261,9 @@ function nieuw(){
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    // var raw = ""
-    // if (comp1 == "") {
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst});
-    // }
-    // if ((comp1 != "") && (comp2 == "")) {
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1});
-    // }
-    // if ((comp2 != "") && (comp3 == "")) {
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2});
-    // }
-    // if ((comp3 != "") && (comp4 == "")) {
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3});
-    // }
-    // if ((comp4 != "") && (comp5 == "")) {
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4});
-    // }
-    // if ((comp5 != "") && (comp6 == "")) {
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5});
-    // }
-    // if (comp6 != ""){
-    //     raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6});
-    // }
-    
-    // raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6});
-    raw = JSON.stringify({"titel":titel,"tekst":tekst})
+
+    raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6});
+    // raw = JSON.stringify({"titel":titel,"tekst":tekst,"comp1":comp1})
     console.log(raw)
     //Hier staan de fetch option
     var requestOptions = {
@@ -283,126 +279,4 @@ function nieuw(){
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
     
-    
-    yea = JSON.stringify({"comp1":comp1})
-    console.log(yea)
-    //Hier staan de fetch option
-    var yo = {
-    method: 'POST',
-    headers: myHeaders,
-    body: yea,
-    redirect: 'follow'
-    };
-
-    //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
-    fetch("http://127.0.0.1:5050/maak", yo)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-    }
-
-// var comp1 = "";
-// var comp2 = "";
-// var comp3 = "";
-// var comp4 = "";
-// var comp5 = "";
-// var comp6 = "";
-// console.log(comp1)
-// if(document.getElementById("Samenwerken-kies").style.display = 'inline-block'){
-//     comp1 = "samenwerken"
-//     console.log(comp1)
-// }
-// function sam(){
-//     var e = document.getElementById("Samenwerken-kies")
-//     var a = "ja"
-//     if (a=="ja") {
-//         e.style.display = 'inline-block'
-//         a = "nee"
-//         console.log(a)
-//     } else if (a=="nee") {
-//         e.style.display = 'none';
-//         a = "ja"
-//         console.log(a)
-//     }
-// }
-// function ref(){
-//     var e = document.getElementById("Reflecteren-kies")
-//     if (e.style.display == 'none') {
-//         e.style.display == 'inline-block'
-//         console.log(1)
-//     } else {
-//         e.style.display = 'none';
-//         console.log(2)
-//     }
-// }
-// function boo(){
-//     var e = document.getElementById("Boodschap-kies")
-//     if (e.style.display == 'none') {
-//         e.style.display = 'inline-block'
-//         console.log(1)
-//     } else {
-//         e.style.display = 'none';
-//         console.log(2)
-//     }
-// }
-// function pro(){
-//     var e = document.getElementById("Pro-actief-kies")
-//     if (e.style.display == 'none') {
-//         e.style.display = 'inline-block'
-//         console.log(1)
-//     } else {
-//         e.style.display = 'none';
-//         console.log(2)
-//     }
-// }
-// function aan(){
-//     var e = document.getElementById("Aanpassingsvermogen-kies")
-//     if (e.style.display == 'none') {
-//         e.style.display = 'inline-block'
-//         console.log(1)
-//     } else {
-//         e.style.display = 'none';
-//         console.log(2)
-//     }
-// }
-// function pla(){
-//     var e = document.getElementById("Plannen-kies")
-//     if (e.style.display == 'none') {
-//         e.style.display = 'inline-block'
-//         console.log(1)
-//     } else {
-//         e.style.display = 'none';
-//         console.log(2)
-//     }
-// }
-
-// function competentie(){
-//     var comp1 = document.getElementById().value;
-//     var comp2 = ""
-//     var comp3 = ""
-//     var comp4 = ""
-//     var comp5 = ""
-//     var comp6 = ""
-
-// }
-// let sam = 'false'
-// function samen(){
-//     if (sam = 'true'){
-//         sam = 'false'
-//         document.getElementById("samenwerken").style.display = 'inline-block'
-//         console.log(sam)
-//     } else{
-//         sam = 'true'
-//         document.getElementById("samenwerken").style.display = 'none'
-//         console.log(sam)
-//     }
-//     console.log("yeah")
-// }
-
-// function comp(){
-//     if (sam = 'true'){
-//         document.getElementById("samenwerken").style.display = 'inline-block'
-//     } else{
-//         document.getElementById("samenwerken").style.display = 'none'
-//     }
-// }
+}
