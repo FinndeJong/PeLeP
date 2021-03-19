@@ -1,38 +1,18 @@
-<<<<<<< Updated upstream
-from flask import Flask,request,jsonify,redirect,render_template,request, jsonify
-from neo4j import GraphDatabase
-import csv
-import datetime
-from datetime import date
-#establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
-    data=csv.reader(f1,delimiter=",")
-    for row in data:
-        username=row[0]
-        pwd=row[1]
-        uri=row[2]
-print(username,pwd,uri)
-driver=GraphDatabase.driver(uri=uri,auth=(username,pwd))
-session=driver.session()
-api=Flask(__name__)
-=======
-from flask import Flask, request, jsonify, redirect, render_template, request, jsonify
+from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
 
-# establish the connection
+#establish the connection
 with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
-    data = csv.reader(f1, delimiter=",")
+    data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
         pwd = row[1]
         uri = row[2]
 print(username, pwd, uri)
-driver = GraphDatabase.driver(uri=uri, auth=(username, pwd))
+driver = GraphDatabase.driver(uri=uri,auth=(username,pwd))
 session = driver.session()
 api = Flask(__name__)
->>>>>>> Stashed changes
-
 
 @api.route("/create", methods=["GET", "POST"])
 def create_node():
@@ -41,19 +21,6 @@ def create_node():
     tekst = req_data['tekst']
     emoji = req_data['emoji']
     comp1 = req_data['comp1']
-<<<<<<< Updated upstream
-    q1="""
-    create (n:checkpoint {titel:$titeltekst:$tekst})
-    """
-    map={"titel":titel,"tekst":tekst}
-    try:
-        session.run(q1,map)
-        return 'succesfull'
-    except Exception as e:
-        return (str(e))
-
-@api.route("/display",methods=["GET","POST"])
-=======
     comp2 = req_data['comp2']
     comp3 = req_data['comp3']
     comp4 = req_data['comp4']
@@ -143,19 +110,16 @@ def create_node():
         print(7)
 
 
-@api.route("/api/display", methods=["GET", "POST"])
->>>>>>> Stashed changes
+        
+@api.route("/api/display",methods=["GET","POST"])
 def display_node():
-    q1 = """
+    q1="""
     match (n:persoon) return n
     """
-    results = session.run(q1)
-    data = results.data()
+    results=session.run(q1)
+    data=results.data()
     print(data)
-    return (jsonify(data))
+    return(jsonify(data))
 
-
-if __name__ == "__main__":
+if __name__=="__main__":
     api.run(port=5050)
-
-print("hallo")
