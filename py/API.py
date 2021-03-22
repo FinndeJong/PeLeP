@@ -108,8 +108,6 @@ def create_node():
         except Exception as e:
             return (str(e))
         print(7)
-
-
         
 @api.route("/api/display",methods=["GET","POST"])
 def display_node():
