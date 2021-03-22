@@ -126,7 +126,6 @@ font-family: 'Roboto', sans-serif; */
       /* GUI website styling*/
 /* icon container */
 .main-page-container{
-  position: fixed;
   width: 100%;
 }
 .icon-container{
@@ -249,7 +248,9 @@ font-family: 'Roboto', sans-serif; */
   margin-right: 5px;
   box-shadow: 2px 4px var(--shadow-color);
 }
-
+.competenties:hover{
+  cursor: pointer;
+}
 
 #samenwerken, #Samenwerken-kies{
   background-color: var(--samenwerken);
@@ -273,6 +274,24 @@ font-family: 'Roboto', sans-serif; */
 .competentie{
   margin-right: 3px;
   margin-left: 3px;
+}
+
+.competentie:hover{
+  cursor: pointer;
+}
+.foutmelding{
+  color: red;
+  margin-left: 40px;
+}
+
+p{
+  display: inline-block;
+}
+
+.smiley{
+  display: inline-block;
+  color: red;
+  cursor: pointer;
 }
 
 #competenties-gekozen{
@@ -310,4 +329,5 @@ font-family: 'Roboto', sans-serif; */
   box-shadow: 2px 4px var(--shadow-color);
   height: 10px; 
   width: 40px;
+  cursor: pointer;
 }
