@@ -319,3 +319,79 @@ function nieuw(){
         .catch(error => console.log('error', error));
     }
 }
+
+// function test(){
+//     fetch('http://127.0.0.1:5050/display', {
+//       method: 'GET',
+//       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+//     }).then((response) => {
+//       return response.json();
+//     })
+//       .then(json => {
+//           console.log(json);
+//           document.getElementById("test").innerText = json[0].n.naam;
+//           document.getElementById("jaar").innerText = json[0].n.Leeftijd;
+//   })
+//       .catch(error => console.log('error', error));
+//   }
+//   window.onload = () => test();
+
+fetch('http://127.0.0.1:5050/pulse', {
+    method: "GET",
+})
+    .then(response => response.json())
+    .then(json => {
+
+        tabelbody = document.getElementById("timeline-container")
+            //response is wat je uit je fetch krijgt
+        // console.log(1)
+        // console.log(json.length)
+
+        // for(a = 0; a < json.length;){
+        //     let row = document.createElement("div");
+        //     row.setAttribute("id", a);
+        //     console.log(a)
+        //     a = a + 1
+        //     tabelbody.appendChild(row);
+        // }
+        // console.log(json[0].n.titel)
+        // console.log(json)
+        var i = json;
+        var pulse = 0;
+        i.forEach(function() {
+            let row = document.createElement("div");
+            var id = pulse
+            row.setAttribute("id", (id));
+            tabelbody.appendChild(row);
+            var g = json[pulse].n.tekst
+            // console.log(g)
+            x = document.getElementById(id)
+            x.innerHTML = `<h1>`+g+`<h1>`
+            console.log(x.innerHTML)
+            pulse = pulse + 1
+        })
+    
+        // for(a = 0; a < json.length; a++){
+        //     let row = document.createElement("tr");
+        //     console.log(2)
+        //     tabelbody.appendChild(row);
+        //     console.log(rows)
+        // }
+
+        // for(c = 0; c < json.length; c++){
+        //         let id = c + "-" + 0;
+        //         document.getElementById(id).innerHTML = json[c][1];
+        //     }
+        // var i = json;
+        // var a = 0;
+        // i.forEach(function() {
+        //     var id2 = a + "-" + 1;
+        //     let myid = a;
+        //     let id3 = a + "-" + 2;
+        //     console.log(a);
+        //     let r = json[a][1];
+        //     document.getElementById(id3).innerHTML = `<th><input type="checkbox" onclick="myFunction()" id="`+r+`"></th>`;
+        //     document.getElementById(id2).innerHTML = `<th><a href="javascript:void(0)" onclick="toggle_visibility(id);" class="info" id="`+myid+`">Meer info</a></th>`;
+        //     a = a + 1;
+        // })
+    })
