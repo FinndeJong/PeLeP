@@ -21,7 +21,7 @@
     </head>
 
     <body>
-        <!-- Checkpoint maken -->
+            <!-- Checkpoint maken -->
         <div id="popup" class="popup-container">
             <div class="popup-wrapper">
                 <div class="popup-screen">
@@ -49,7 +49,9 @@
                         <input type="text" placeholder="Voer hier de titel in" class="popup-input" id="popup-title-input">
                     </div>
                     <div class="popup-smiley">
-                        <h2>insert smileys hier</h2>
+                        <h2 class="smiley" id="onder">&#128577;</h2>
+                        <h2 class="smiley" id="op">&#128528;</h2>
+                        <h2 class="smiley" id="boven">&#128578;</h2>
                     </div>
                     <div id="competenties-gekozen">
                         <div id="Samenwerken-kies" onclick="sam1()">
@@ -74,8 +76,13 @@
                     <div class="popup-pulse">
                         <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context" id="popup-pulse-context"></textarea>
                     </div>
+                    <div class="foutmelding">
+                        <p id="foutmelding-emoji"></p>
+                        <p id="foutmelding-titel"></p>
+                        <p id="foutmelding-tekst"></p>
+                    </div>
                     <div class="popup-close">
-                        <button class="popup-cancel popup-button" id="popup-cancel-button">Annuleren</button>
+                        <button class="popup-cancel popup-button" id="popup-cancel-button">Anuleren</button>
                         <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
                     </div>
                 </div>
@@ -84,19 +91,6 @@
 
         <!-- GUI -->
         <div class="main-page-container">
-            <div class="icon-container">
-                <div>
-                    <img src="../img/notifications.png" class="icon-right">
-                    <img src="../img/settings.png" class="icon-right">
-                <div class="popup-title">
-                    <input type="text" placeholder="Voer hier de titel in" class="popup-input" id="popup-title-input">
-                </div>
-                <div class="popup-smiley">
-                    <h2 class="smiley" id="onder">&#128577;</h2>
-                    <h2 class="smiley" id="op">&#128528;</h2>
-                    <h2 class="smiley" id="boven">&#128578;</h2>
-                </div>
-            </div>
             <div class="profile-container">
                 <div class="profile-wrapper">
                     <div class="personal-profile">
@@ -155,18 +149,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="popup-pulse">
-                    <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context" id="popup-pulse-context"></textarea>
-                </div>
-                <div class="foutmelding">
-                    <p id="foutmelding-emoji"></p>
-                    <p id="foutmelding-titel"></p>
-                    <p id="foutmelding-tekst"></p>
-                </div>
-                <div class="popup-close">
-                    <button class="popup-cancel popup-button" id="popup-cancel-button">Anuleren</button>
-                    <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
                 </div>
             </div>
             <div class="selcheck-container">
