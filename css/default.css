@@ -181,17 +181,18 @@ font-family: 'Roboto', sans-serif; */
 .profile-picture-circle{
   border: 1px solid black;
   border-radius: 50%;
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   margin-bottom: 25px;
   background-color: var(--app-color);
 }
 /* progression graph */
 .profile-graph{
   display: inline-block;
+  width: 80%;
 }
 #dummy-graph{ 
-  width: 70%;
+  width: 55%;
   height: auto;
   margin-bottom: 20px;
   margin-left: 40px;
