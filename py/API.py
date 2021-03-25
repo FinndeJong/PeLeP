@@ -3,8 +3,8 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'C:\Users\Kuipe\OneDrive\Documenten\000Hogeschool\000Hogeschool\studiejaar1\PELEP\PELEP\PeLeP\PeLeP\txt\neo4j.text') as f1:
-    data = csv.reader(f1,delimiter=",")
+with open(r'C:\Users\caspe\Documents\GitHub\PeLeP\txt\neo4j.text') as f1:
+    data=csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
         pwd = row[1]
