@@ -14,6 +14,7 @@ driver = GraphDatabase.driver(uri=uri,auth=(username,pwd))
 session = driver.session()
 api = Flask(__name__)
 
+
 @api.route("/create", methods=["GET", "POST"])
 def create_node():
     req_data = request.get_json()
@@ -26,6 +27,7 @@ def create_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
+    
     if (comp1 == ""):
         q1 = """
         create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji})

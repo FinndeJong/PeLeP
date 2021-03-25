@@ -131,7 +131,6 @@ font-family: 'Roboto', sans-serif; */
   width: 100%;
   height: auto;
 
-  position: fixed;
   z-index: -1;
 }
 
@@ -309,7 +308,6 @@ font-family: 'Roboto', sans-serif; */
 
 }
 .timeline-wrapper{
-  background-color: var(--app-color);
   width: 70%;
   height: 1000px;
 
@@ -355,7 +353,6 @@ font-family: 'Roboto', sans-serif; */
 #timeline-container{
   width: 100%;
   font-size: 100;
-  margin-top: 300px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -406,6 +403,19 @@ font-family: 'Roboto', sans-serif; */
   cursor: pointer;
 }
 
+#Samenwerken-kies1, #Reflecteren-kies1, #Boodschap-kies1, #Pro-actief-kies1, #Plannen-kies1, #Aanpassingsvermogen-kies1{
+  text-align: center;
+  height: 20px;
+  border: 0.1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 2px 4px var(--shadow-color);
+  height: 10px; 
+  width: 40px;
+  cursor: pointer;
+}
 
 /* De smileys */
 .smiley{
@@ -437,26 +447,66 @@ p{
 
 #titel-vak{
   background-color: var(--app-color);
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  height: 40px;
-  margin-top: 200px;
+  height: 35px;
+  border: thin #B2BEC3 solid;
+  border-bottom: none;
 }
 
 #emoji-bestaande-pulse{
   float: right;
   margin-right: 40px;
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 #competentie-bestaande-pulse{
+  background-color: red;
+  display: inline-block;
+}
 
+#pulse-timeline{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#tekst-pulse{
+  margin-right: 40px;
+  margin-left: 40px;
+  display: inline-block;
+  width: 80%;
+  margin-top: 0;
+}
+
+#pulse{
+  background-color: white;
+  height: 300px;
+  width: 100%;
+  border: thin #B2BEC3 solid;
+}
+
+#tekstvak{
+  margin-top: 40px;
+  display: block;
 }
 
 #titel-bestaande-pulse{
   display: inline-block;
   margin-left: 40px;
+  margin-top: 6px;
+}
+
+#profile-pic{
+  border-radius: 100%;
+  height: 100%;
+}
+
+.profile-pic{
+  height: 150px;
+  width: 10%;
+  margin-left: 40px;
+  display: inline-block;
 }
 /* Media Query's */
 

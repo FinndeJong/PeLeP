@@ -173,6 +173,7 @@ emoji_boven.addEventListener("click", function(){
     console.log(emoji)
 });
 
+var link = 0
 function nieuw(){
     
     var titel = document.getElementById("popup-title-input").value;
@@ -317,6 +318,8 @@ function nieuw(){
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
+
+        document.getElementById("popup").style.display = 'none'
     }
 }
 
@@ -341,21 +344,10 @@ fetch('http://127.0.0.1:5050/pulse', {
 })
     .then(response => response.json())
     .then(json => {
-
-        tabelbody = document.getElementById("timeline-container")
-            //response is wat je uit je fetch krijgt
-        // console.log(1)
-        // console.log(json.length)
-
-        // for(a = 0; a < json.length;){
-        //     let row = document.createElement("div");
-        //     row.setAttribute("id", a);
-        //     console.log(a)
-        //     a = a + 1
-        //     tabelbody.appendChild(row);
-        // }
-        // console.log(json[0].n.titel)
-        // console.log(json)
+        console.log(json)
+        json.reverse();
+        console.log(json)
+        tabelbody = document.getElementById("timeline")
         var i = json;
         var pulse = 0;
         i.forEach(function() {
@@ -363,35 +355,37 @@ fetch('http://127.0.0.1:5050/pulse', {
             var id = pulse
             row.setAttribute("id", (id));
             tabelbody.appendChild(row);
-            var g = json[pulse].n.tekst
+            var g = json[pulse].n.titel;
+            var emoji = json[pulse].n.emoji;
+            if (emoji == "boven_niveau"){
+                var e = "&#128578;"
+            }
+            if (emoji == "op_niveau"){
+                var e = "&#128528;"
+            }
+            if (emoji == "onder_niveau"){
+                var e = "&#128578;"
+            }
             // console.log(g)
             x = document.getElementById(id)
-            x.innerHTML = `<h1>`+g+`<h1>`
+            x.innerHTML = `             
+            <div id="pulse-timeline">       <div id="titel-vak">
+            <h2 id="titel-bestaande-pulse">`+g+`</h2>
+            <h2 id="emoji-bestaande-pulse">`+e+`</h2>
+        </div>
+        <div id="pulse">
+            <div id="tekstvak">
+                <div class="profile-pic">
+                    <img id="profile-pic" src="../img/College-Student.jpg">
+                </div>
+                <div id="tekst-pulse">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cupiditate sapiente nisi dolore? Possimus, accusantium! Asperiores repellat aspernatur est ab sit, nulla, soluta animi consectetur distinctio vel, eius omnis ea?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>`
             console.log(x.innerHTML)
             pulse = pulse + 1
         })
-    
-        // for(a = 0; a < json.length; a++){
-        //     let row = document.createElement("tr");
-        //     console.log(2)
-        //     tabelbody.appendChild(row);
-        //     console.log(rows)
-        // }
-
-        // for(c = 0; c < json.length; c++){
-        //         let id = c + "-" + 0;
-        //         document.getElementById(id).innerHTML = json[c][1];
-        //     }
-        // var i = json;
-        // var a = 0;
-        // i.forEach(function() {
-        //     var id2 = a + "-" + 1;
-        //     let myid = a;
-        //     let id3 = a + "-" + 2;
-        //     console.log(a);
-        //     let r = json[a][1];
-        //     document.getElementById(id3).innerHTML = `<th><input type="checkbox" onclick="myFunction()" id="`+r+`"></th>`;
-        //     document.getElementById(id2).innerHTML = `<th><a href="javascript:void(0)" onclick="toggle_visibility(id);" class="info" id="`+myid+`">Meer info</a></th>`;
-        //     a = a + 1;
-        // })
     })
