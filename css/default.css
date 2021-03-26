@@ -131,7 +131,6 @@ font-family: 'Roboto', sans-serif; */
   width: 100%;
   height: auto;
 
-  position: fixed;
   z-index: -1;
 }
 
@@ -309,7 +308,6 @@ font-family: 'Roboto', sans-serif; */
 
 }
 .timeline-wrapper{
-  background-color: var(--app-color);
   width: 70%;
   height: 1000px;
 
@@ -333,23 +331,31 @@ font-family: 'Roboto', sans-serif; */
   cursor: pointer;
 }
 
-#samenwerken, #Samenwerken-kies{
+#samenwerken, #Samenwerken-kies,#samenwerken-kies1{
   background-color: var(--samenwerken);
 }
-#Pro-actief, #Pro-actief-kies{
+#Pro-actief, #Pro-actief-kies, #pro-actief-kies1{
   background-color: var(--pro-actief);
 }
-#Boodschap, #Boodschap-kies{
+#Boodschap, #Boodschap-kies, #boodschap-kies1{
   background-color: var(--boodschap-overbrengen);
 }
-#Reflecteren, #Reflecteren-kies{
+#Reflecteren, #Reflecteren-kies, #reflecteren-kies1{
   background-color: var(--reflecteren);
 }
-#Aanpassingsvermogen, #Aanpassingsvermogen-kies{
+#Aanpassingsvermogen, #Aanpassingsvermogen-kies, #aanpassingsvermogen-kies1{
   background-color: var(--aanpassingsvermogen);
 }
-#plannen, #Plannen-kies{
+#plannen, #Plannen-kies, #plannen-kies1{
   background-color: var(--plannen);
+}
+
+#timeline-container{
+  width: 100%;
+  font-size: 100;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .competentie{
@@ -358,9 +364,14 @@ font-family: 'Roboto', sans-serif; */
 }
 
 #competenties-gekozen{
+  margin-left: 200px;
+  border-radius: 25px;
+}
+
+#competenties-gekozen1{
   margin-left: 40px;
   border-radius: 25px;
-  cursor: pointer;
+  display: inline-block;
 }
 
 #Samenwerken-kies:hover{
@@ -394,8 +405,23 @@ font-family: 'Roboto', sans-serif; */
   box-shadow: 2px 4px var(--shadow-color);
   height: 10px; 
   width: 40px;
+  cursor: pointer;
 }
 
+#samenwerken-kies1, #reflecteren-kies1, #boodschap-kies1, #pro-actief-kies1, #plannen-kies1, #aanpassingsvermogen-kies1{
+  text-align: center;
+  height: 20px;
+  border: 0.1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 2px 4px var(--shadow-color);
+  height: 10px; 
+  width: 40px;
+  cursor: pointer;
+  display: inline-block;
+}
 
 /* De smileys */
 .smiley{
@@ -425,6 +451,68 @@ p{
   display: inline-block;
 }
 
+#titel-vak{
+  background-color: var(--app-color);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 35px;
+  border: thin #B2BEC3 solid;
+  border-bottom: none;
+}
+
+#emoji-bestaande-pulse{
+  float: right;
+  margin-right: 40px;
+  margin-top: 0;
+}
+
+#competentie-bestaande-pulse{
+  background-color: red;
+  display: inline-block;
+}
+
+#pulse-timeline{
+  margin-top: 10px;
+}
+
+#tekst-pulse{
+  margin-right: 40px;
+  margin-left: 40px;
+  float: right;
+  width: 65%;
+  margin-top: 0;
+}
+
+#pulse{
+  background-color: white;
+  height: 300px;
+  width: 100%;
+  border: thin #B2BEC3 solid;
+}
+
+#tekstvak{
+  margin-top: 40px;
+  display: block;
+}
+/* Zorgt dat de titel op de goede plek staat*/
+#titel-bestaande-pulse{
+  display: inline-block;
+  margin-left: 40px;
+  padding-bottom: 3px;
+  margin-top: 1px;
+}
+/* zorgt dat de profielfoto rond wordt */
+#profile-pic{
+  border-radius: 100%;
+  width: 100%;
+}
+/* profiel foto in bestaande pulses */
+.profile-pic{
+  width: 15%;
+  margin-left: 40px;
+  display: inline-block;
+}
 /* Media Query's */
 
 @media screen and (min-width:1025px){
@@ -571,36 +659,4 @@ p{
   margin-left: 40px;
   border-radius: 25px;
 }
-#Samenwerken-kies:hover{
-  background-color: #E00B00;
-}
-#Reflecteren-kies:hover{
-  background-color: #CC7700;
-}
-#Plannen-kies:hover{
-  background-color: #CC9200;
-}
-#Boodschap-kies:hover{
-  background-color: #4B9555;
-}
-#Pro-actief-kies:hover{
-  background-color: #1478A3;
-}
-#Aanpassingsvermogen-kies:hover{
-  background-color: #7A33FF;
-}
 
-#Samenwerken-kies, #Reflecteren-kies, #Boodschap-kies, #Pro-actief-kies, #Plannen-kies, #Aanpassingsvermogen-kies{
-  display: none;
-  text-align: center;
-  height: 20px;
-  border: 0.1px solid black;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  box-shadow: 2px 4px var(--shadow-color);
-  height: 10px; 
-  width: 40px;
-  cursor: pointer;
-}

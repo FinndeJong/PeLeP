@@ -173,6 +173,7 @@ emoji_boven.addEventListener("click", function(){
     console.log(emoji)
 });
 
+var link = 0
 function nieuw(){
     
     var titel = document.getElementById("popup-title-input").value;
@@ -230,42 +231,42 @@ function nieuw(){
         }
         if(document.getElementById("Boodschap-kies").style.display == 'inline-block'){
             if (comp1 == ""){
-                comp1 = "boodschap overbrengen"
+                comp1 = "boodschap"
                 console.log(1)
                 console.log(comp1)
             } else if (comp2 == ""){
-                comp2 = "boodschap overbrengen"
+                comp2 = "boodschap"
                 console.log(2)
                 console.log(comp2)
             } else if (comp3 == ""){
-                comp3 = "boodschap overbrengen"
+                comp3 = "boodschap"
                 console.log(3)
                 console.log(comp3)
             } else {
-                comp4 = "boodschap overbrengen"
+                comp4 = "boodschap"
                 console.log(4)
                 console.log(comp4)
             }
         }
         if(document.getElementById("Pro-actief-kies").style.display == 'inline-block'){
             if (comp1 == ""){
-                comp1 = "pro-actief werken"
+                comp1 = "pro-actief"
                 console.log(1)
                 console.log(comp1)
             } else if (comp2 == ""){
-                comp2 = "pro-actief werken"
+                comp2 = "pro-actief"
                 console.log(2)
                 console.log(comp2)
             } else if (comp3 == ""){
-                comp3 = "pro-actief werken"
+                comp3 = "pro-actief"
                 console.log(3)
                 console.log(comp3)
             } else if (comp4 == ""){
-                comp4 = "pro-actief werken"
+                comp4 = "pro-actief"
                 console.log(4)
                 console.log(comp4)
             } else {
-                comp5 = "pro-actief werken"
+                comp5 = "pro-actief"
                 console.log(5)
                 console.log(comp5)
             }
@@ -316,45 +317,21 @@ function nieuw(){
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
+
+        document.getElementById("popup").style.display = 'none'
     }
 }
 
-// function test(){
-//     fetch('http://127.0.0.1:5050/display', {
-//       method: 'GET',
-//       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-//     }).then((response) => {
-//       return response.json();
-//     })
-//       .then(json => {
-//           console.log(json);
-//           document.getElementById("test").innerText = json[0].n.naam;
-//           document.getElementById("jaar").innerText = json[0].n.Leeftijd;
-//   })
-//       .catch(error => console.log('error', error));
-//   }
-//   window.onload = () => test();
-
+// fetch voor het overzicht van de pulses
 fetch('http://127.0.0.1:5050/pulse', {
     method: "GET",
 })
     .then(response => response.json())
     .then(json => {
-
-        tabelbody = document.getElementById("timeline-container")
-            //response is wat je uit je fetch krijgt
-        // console.log(1)
-        // console.log(json.length)
-
-        // for(a = 0; a < json.length;){
-        //     let row = document.createElement("div");
-        //     row.setAttribute("id", a);
-        //     console.log(a)
-        //     a = a + 1
-        //     tabelbody.appendChild(row);
-        // }
-        // console.log(json[0].n.titel)
-        // console.log(json)
+        console.log(json)
+        json.reverse();
+        console.log(json)
+        tabelbody = document.getElementById("timeline")
         var i = json;
         var pulse = 0;
         i.forEach(function() {
@@ -362,35 +339,108 @@ fetch('http://127.0.0.1:5050/pulse', {
             var id = pulse
             row.setAttribute("id", (id));
             tabelbody.appendChild(row);
-            var g = json[pulse].n.tekst
-            // console.log(g)
+            // Hier word de informatie uit de database gehaald
+            var g = json[pulse].p.titel;
+            var emoji = json[pulse].p.emoji;
+            var comp1 = json[pulse].p.comp1;
+            var comp2 = json[pulse].p.comp2;
+            var comp3 = json[pulse].p.comp3;
+            var comp4 = json[pulse].p.comp4;
+            var comp5 = json[pulse].p.comp5;
+            var comp6 = json[pulse].p.comp6;
+            var t = json[pulse].p.tekst;
+            // Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
+            if (comp1 != undefined){
+                var c1 = `<div id="`+comp1+`-kies1">
+                <a class="competentie1"></a>
+            </div>`
+                console.log(1)
+            } else {
+                var c1 = ""
+                console.log(1)
+            }
+            // Hier wordt gekeken of competentie 2 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
+            if (comp2 != undefined){
+                var c2 = `<div id="`+comp2+`-kies1">
+                <a class="competentie1"></a>
+            </div>`
+            console.log("2")
+            } else {
+                var c2 = ""
+                console.log(2)
+            }
+            // Hier wordt gekeken of competentie 3 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
+            if (comp3 != undefined){
+                var c3 = `<div id="`+comp3+`-kies1">
+                <a class="competentie1"></a>
+            </div>`
+            console.log(3)
+            } else {
+                var c3 = ""
+                console.log(3)
+            }
+            // Hier wordt gekeken of competentie 4 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
+            if (comp4 != undefined){
+                var c4 = `<div id="`+comp4+`-kies1">
+                <a class="competentie1"></a>
+            </div>`
+                console.log(4)
+            } else {
+                var c4 = ""
+                console.log(4)
+            }
+            // Hier wordt gekeken of competentie 5 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
+            if (comp5 != undefined){
+                var c5 = `<div id="`+comp5+`-kies1">
+                <a class="competentie1"></a>
+            </div>`
+                console.log(c1)
+            } else {
+                var c5 = ""
+                console.log(c1)
+            }
+            // Hier wordt gekeken of competentie 6 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
+            if (comp6 != undefined){
+                var c6 = `<div id="`+comp6+`-kies1">
+                <a class="competentie1"></a>
+            </div>`
+                console.log(c1)
+            } else {
+                var c6 = ""
+                console.log(c1)
+            }
+            // hier wordt gekeken welke emoji is gekozen
+            if (emoji == "boven_niveau"){
+                var e = "&#128578;"
+            }
+            if (emoji == "op_niveau"){
+                var e = "&#128528;"
+            }
+            if (emoji == "onder_niveau"){
+                var e = "&#128578;"
+            }
             x = document.getElementById(id)
-            x.innerHTML = `<h1>`+g+`<h1>`
+            x.innerHTML = `             
+            <div id="pulse-timeline">
+            <div id="titel-vak">
+                <h2 id="titel-bestaande-pulse">`+g+`</h2>
+                <div id="competenties-gekozen1">
+                    `+c1+``+c2+``+c3+``+c4+``+c5+``+c6+`
+                </div>
+                <h2 id="emoji-bestaande-pulse">`+e+`</h2>
+            </div>
+            <div id="pulse">
+                <div id="tekstvak">
+                    <div class="profile-pic">
+                        <img id="profile-pic" src="../img/College-Student.jpg">
+                    </div>
+                    <div id="tekst-pulse">
+                        <p>`+t+`</p>
+                    </div>
+                </div>
+            </div>
+        </div>`
             console.log(x.innerHTML)
             pulse = pulse + 1
         })
-    
-        // for(a = 0; a < json.length; a++){
-        //     let row = document.createElement("tr");
-        //     console.log(2)
-        //     tabelbody.appendChild(row);
-        //     console.log(rows)
-        // }
-
-        // for(c = 0; c < json.length; c++){
-        //         let id = c + "-" + 0;
-        //         document.getElementById(id).innerHTML = json[c][1];
-        //     }
-        // var i = json;
-        // var a = 0;
-        // i.forEach(function() {
-        //     var id2 = a + "-" + 1;
-        //     let myid = a;
-        //     let id3 = a + "-" + 2;
-        //     console.log(a);
-        //     let r = json[a][1];
-        //     document.getElementById(id3).innerHTML = `<th><input type="checkbox" onclick="myFunction()" id="`+r+`"></th>`;
-        //     document.getElementById(id2).innerHTML = `<th><a href="javascript:void(0)" onclick="toggle_visibility(id);" class="info" id="`+myid+`">Meer info</a></th>`;
-        //     a = a + 1;
-        // })
     })

@@ -27,6 +27,7 @@ def create_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
+    
     if (comp1 == ""):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji})
@@ -110,7 +111,7 @@ def create_node():
             return (str(e))
         print(7)
         
-@api.route("/api/display",methods=["GET","POST"])
+@api.route("/pulse",methods=["GET","POST"])
 def display_node():
     q1="""
     MATCH (p:Pulse) RETURN p
