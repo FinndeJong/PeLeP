@@ -420,6 +420,7 @@ fetch('http://127.0.0.1:5050/pulse', {
             if (emoji == "onder_niveau"){
                 var e = "&#128578;"
             }
+            // hier word voor het id een 
             x = document.getElementById(id)
             x.innerHTML = `             
             <div id="pulse-timeline">
