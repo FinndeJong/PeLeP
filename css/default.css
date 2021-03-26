@@ -331,22 +331,22 @@ font-family: 'Roboto', sans-serif; */
   cursor: pointer;
 }
 
-#samenwerken, #Samenwerken-kies{
+#samenwerken, #Samenwerken-kies,#samenwerken-kies1{
   background-color: var(--samenwerken);
 }
-#Pro-actief, #Pro-actief-kies{
+#Pro-actief, #Pro-actief-kies, #pro-actief-kies1{
   background-color: var(--pro-actief);
 }
-#Boodschap, #Boodschap-kies{
+#Boodschap, #Boodschap-kies, #boodschap-kies1{
   background-color: var(--boodschap-overbrengen);
 }
-#Reflecteren, #Reflecteren-kies{
+#Reflecteren, #Reflecteren-kies, #reflecteren-kies1{
   background-color: var(--reflecteren);
 }
-#Aanpassingsvermogen, #Aanpassingsvermogen-kies{
+#Aanpassingsvermogen, #Aanpassingsvermogen-kies, #aanpassingsvermogen-kies1{
   background-color: var(--aanpassingsvermogen);
 }
-#plannen, #Plannen-kies{
+#plannen, #Plannen-kies, #plannen-kies1{
   background-color: var(--plannen);
 }
 
@@ -364,9 +364,14 @@ font-family: 'Roboto', sans-serif; */
 }
 
 #competenties-gekozen{
+  margin-left: 200px;
+  border-radius: 25px;
+}
+
+#competenties-gekozen1{
   margin-left: 40px;
   border-radius: 25px;
-  cursor: pointer;
+  display: inline-block;
 }
 
 #Samenwerken-kies:hover{
@@ -403,7 +408,7 @@ font-family: 'Roboto', sans-serif; */
   cursor: pointer;
 }
 
-#Samenwerken-kies1, #Reflecteren-kies1, #Boodschap-kies1, #Pro-actief-kies1, #Plannen-kies1, #Aanpassingsvermogen-kies1{
+#samenwerken-kies1, #reflecteren-kies1, #boodschap-kies1, #pro-actief-kies1, #plannen-kies1, #aanpassingsvermogen-kies1{
   text-align: center;
   height: 20px;
   border: 0.1px solid black;
@@ -415,6 +420,7 @@ font-family: 'Roboto', sans-serif; */
   height: 10px; 
   width: 40px;
   cursor: pointer;
+  display: inline-block;
 }
 
 /* De smileys */
@@ -468,14 +474,13 @@ p{
 
 #pulse-timeline{
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 #tekst-pulse{
   margin-right: 40px;
   margin-left: 40px;
-  display: inline-block;
-  width: 80%;
+  float: right;
+  width: 65%;
   margin-top: 0;
 }
 
@@ -490,21 +495,21 @@ p{
   margin-top: 40px;
   display: block;
 }
-
+/* Zorgt dat de titel op de goede plek staat*/
 #titel-bestaande-pulse{
   display: inline-block;
   margin-left: 40px;
-  margin-top: 6px;
+  padding-bottom: 3px;
+  margin-top: 1px;
 }
-
+/* zorgt dat de profielfoto rond wordt */
 #profile-pic{
   border-radius: 100%;
-  height: 100%;
+  width: 100%;
 }
-
+/* profiel foto in bestaande pulses */
 .profile-pic{
-  height: 150px;
-  width: 10%;
+  width: 15%;
   margin-left: 40px;
   display: inline-block;
 }

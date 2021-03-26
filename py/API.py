@@ -30,7 +30,7 @@ def create_node():
     
     if (comp1 == ""):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -42,7 +42,7 @@ def create_node():
         print(1)
     if ((comp1 != "") and (comp2 == "")):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -53,7 +53,7 @@ def create_node():
             return (str(e))
     if ((comp2 != "") and (comp3 == "")):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -65,7 +65,7 @@ def create_node():
         print(3)
     if ((comp3 != "") and (comp4 == "")):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -77,7 +77,7 @@ def create_node():
         print(4)
     if ((comp4 != "") and (comp5 == "")):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -88,7 +88,7 @@ def create_node():
             return (str(e))
     if ((comp5 != "") and (comp6 == "")):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -100,7 +100,7 @@ def create_node():
         print(6)
     if (comp6 != ""):
         q1 = """
-        create (n:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6})
+        create (p:pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
                "comp5": comp5, "comp6": comp6}
@@ -114,7 +114,7 @@ def create_node():
 @api.route("/pulse",methods=["GET","POST"])
 def display_node():
     q1="""
-    match (n:pulse) return n
+    match (p:pulse) return p
     """
     results=session.run(q1)
     data=results.data()
