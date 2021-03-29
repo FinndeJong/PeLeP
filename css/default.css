@@ -1,3 +1,6 @@
+*{
+  margin: auto;
+}
 html,body{
   margin: 0;
   font-family: 'Monserrat', sans-serif;
@@ -131,7 +134,6 @@ font-family: 'Roboto', sans-serif; */
   width: 100%;
   height: auto;
 
-  position: fixed;
   z-index: -1;
 }
 
@@ -139,7 +141,7 @@ font-family: 'Roboto', sans-serif; */
 .icon-container{
   position: relative;
   width: 100%;
-  height: 50px;
+  height: 30px;
 
 }
 .icon-right{
@@ -149,7 +151,6 @@ font-family: 'Roboto', sans-serif; */
 /* profile container */
 .profile-container{
   width: 100%;
-  margin-top: 30px;
   position: relative;
 }
 /* profile wrapper */
@@ -170,7 +171,7 @@ font-family: 'Roboto', sans-serif; */
 }
 /* Profile name */
 .profile-name{
-  width: 35%;
+  width: 50%;
   margin-left: 25%;
   text-align: center;
 }
@@ -427,7 +428,47 @@ p{
 
 /* Media Query's */
 
+@media screen and (max-width:1441px){
+  .profile-picture-circle{
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width:1367px){
+  .profile-picture-circle{
+    width: 180px;
+    height: 180px;
+  }
+  .profile-legenda{
+    width: 200px;
+  }
+  .selcheck-container{
+    margin-top: 70px;
+  }
+}
+
+@media screen and (max-width:1024px){
+  /* GUI */
+  .profile-picture-circle{
+    width: 130px;
+    height: 130px;
+  }
+
+  .profile-legenda{
+    margin-top: 40px;
+  }
+  .filter-button{
+    padding-left: 15px;
+  }
+  .create-checkpoint-button{
+    width: 200px;
+    margin-left: 15%;
+  }
+}
+
 @media screen and (min-width:1025px){
+  /* Popup */
   .popup-screen{
     width: 50%;
   }
@@ -448,6 +489,7 @@ p{
 
 @media screen and (max-width: 1024px){
   /* Tussen telefoon en computer in dus tablet */
+  /* Popup */
   .popup-screen{
     width: 70%;
   }
@@ -466,6 +508,15 @@ p{
   .popup-context{
     width: 100%;
   }
+  .profile-legenda{
+    margin-top: 0;
+  }
+  .selcheck-container{
+    margin-top: 40px;
+  }
+  .filter-button{
+    margin-right: 15%;
+  }
 }
 
 @media screen and (min-width: 428px) and (max-width: 768px){
@@ -473,9 +524,48 @@ p{
  .popup-screen{
    width: 80%;
  }
+
+ /* GUI */
+ .personal-profile{
+   left: 15%;
+   width: 50%;
+   text-align: center;
+ }
+ .profile-name{
+   width: 100%;
+   margin-left: 0%;
+ }
+ .profile-picture-circle{
+   width: 180px;
+   height: 180px;
+ }
+ .profile-legenda{
+   margin-right: 5%;
+ }
+ #dummy-graph{
+   display: none;
+ }
+ .filter-button{
+  margin-right: 5%;
+  width: 200px;
+ }
+ .create-checkpoint-button{
+   margin-left: 5%;
+ }
+
+ .profile-picture-circle{
+   margin: auto;
+ }
+ .selcheck-container{
+   margin-top: 30px;
+ }
+ .timeline-wrapper{
+   width: 90%;
+ }
 }
 
 @media screen and (max-width: 427px){
+  /* Popup */
   .popup-screen{
     width: 90%;
   }
@@ -506,6 +596,62 @@ p{
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 20px;
+  }
+
+  /* GUI */
+  .profile-wrapper{
+    width: 100%;
+  }
+  .personal-profile{
+    width: 100%;
+    text-align: center;
+    display: block;
+    left: 0;
+  }
+  .profile-name{
+    display: block;
+    width: 100%;
+    margin-left: 0%;
+  }
+  .profile-picture-circle{
+    width: 180px;
+    height: 180px;
+    display: block;
+  }
+  .profile-legenda{
+    margin: 0;
+    float: none;
+    margin: auto;
+  }
+  #dummy-graph{
+    display: none;
+  }
+
+  .selcheck-container{
+    display: block;
+    height: auto;
+  }
+  .create-checkpoint-button{
+    margin: auto;
+    width: 90%;
+    float: none;
+  }
+  .filter-button{
+    margin: auto;
+    width: 90%;
+    float: none;
+    text-align-last: center;
+  }
+
+  .timeline-container{
+    position: relative;
+    display: block;
+    margin-top: 25px;
+  }
+  .timeline-wrapper{
+    position: unset;
+    display: block;
+    width: 95%;
   }
 }
 
