@@ -466,6 +466,7 @@ p{
   float: right;
   margin-right: 40px;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 #competentie-bestaande-pulse{
@@ -487,9 +488,10 @@ p{
 
 #pulse{
   background-color: white;
-  height: 300px;
   width: 100%;
   border: thin #B2BEC3 solid;
+  min-height: 200px;
+  overflow: auto;
 }
 
 #tekstvak{
@@ -502,6 +504,7 @@ p{
   margin-left: 40px;
   padding-bottom: 3px;
   margin-top: 1px;
+  margin-bottom: 40px;
 }
 /* zorgt dat de profielfoto rond wordt */
 #profile-pic{
