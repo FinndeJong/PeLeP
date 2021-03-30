@@ -17,6 +17,7 @@ api = Flask(__name__)
 # aanmaken van een Pulse API
 @api.route("/create", methods=["GET", "POST"])
 def create_node():
+    # hier wordt de data uit de fe opgehaald
     req_data = request.get_json()
     titel = req_data['titel']
     tekst = req_data['tekst']
@@ -27,7 +28,7 @@ def create_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
-    
+    # Hier wordt gekeken of er een competentie in het checkpoint staat
     if (comp1 == ""):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji})
@@ -40,6 +41,7 @@ def create_node():
         except Exception as e:
             return (str(e))
         print(1)
+    # Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp1 != "") and (comp2 == "")):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1})
@@ -51,6 +53,7 @@ def create_node():
             return 'succesfull'
         except Exception as e:
             return (str(e))
+    # Hier wordt gekeken of competentie 2 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp2 != "") and (comp3 == "")):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2})
@@ -63,6 +66,7 @@ def create_node():
         except Exception as e:
             return (str(e))
         print(3)
+    # Hier wordt gekeken of competentie 3 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp3 != "") and (comp4 == "")):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3})
@@ -75,6 +79,7 @@ def create_node():
         except Exception as e:
             return (str(e))
         print(4)
+    # Hier wordt gekeken of competentie 4 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp4 != "") and (comp5 == "")):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4})
@@ -86,6 +91,7 @@ def create_node():
             return 'succesfull'
         except Exception as e:
             return (str(e))
+    # Hier wordt gekeken of competentie 5 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp5 != "") and (comp6 == "")):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5})
@@ -98,6 +104,7 @@ def create_node():
         except Exception as e:
             return (str(e))
         print(6)
+    # Hier wordt gekeken of competentie 6 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if (comp6 != ""):
         q1 = """
         CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6})
