@@ -19,6 +19,3 @@ db.sqlite3
 
 manage.py
 # de running file hiermee wordt alles gerund
-
-neo4j.text
-# neo4j text file mag niet mee vanwege de host 11002 enzo
