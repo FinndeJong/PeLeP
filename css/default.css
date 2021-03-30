@@ -659,4 +659,9 @@ p{
   margin-left: 40px;
   border-radius: 25px;
 }
-
+/* edit knop. PAS HET VOORAL AAN */
+.bewerken{
+  height: 12;
+  background-color: blue;
+  color: #cfdafc;
+}
