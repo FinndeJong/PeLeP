@@ -16,15 +16,17 @@ api = Flask(__name__)
 
 
 #Make POST request for reageren
+#Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
 def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
+    link = req_data['link']
     q1="""
-    MATCH (p:pulse{titel:"titel"})
+    MATCH (p:pulse{link:$link})
     CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
     """
-    map={"reactie":reactie}
+    map={"reactie":reactie, "link":link}
     try:
         session.run(q1,map)
         return 'succesfull'
@@ -46,5 +48,3 @@ def display_node():
 
 if __name__ == "__main__":
     api.run(debug=True)
-
-
