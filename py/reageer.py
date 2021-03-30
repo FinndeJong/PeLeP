@@ -16,7 +16,6 @@ api = Flask(__name__)
 
 
 #Make POST request for reageren
-#Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
 def reageer_post():
     req_data = request.get_json()
