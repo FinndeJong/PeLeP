@@ -15,7 +15,11 @@ db.sqlite3
 # Gegenereerde files waar ik geen ene moer mee te maken heb
 
 #virtual environment
-**/venv/
+venv/
 
 manage.py
 # de running file hiermee wordt alles gerund
+
+neo4j.text
+
+ongebruikte code.txt
