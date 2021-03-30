@@ -819,6 +819,16 @@ p{
     display: none;
   }
 
+#competenties-gekozen{
+  margin-left: 40px;
+  border-radius: 25px;
+}
+/* edit knop. PAS HET VOORAL AAN */
+.bewerken{
+  height: 12;
+  background-color: blue;
+  color: #cfdafc;
+  }
   .selcheck-container{
     display: block;
     height: auto;

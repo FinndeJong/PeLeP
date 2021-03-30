@@ -196,6 +196,7 @@ function nieuw(){
         var comp4 = "";
         var comp5 = "";
         var comp6 = "";
+        var link = "1";
         console.log(comp1)
         if (document.getElementById("Samenwerken-kies").style.display == 'inline-block'){
             comp1 = "samenwerken"
@@ -312,8 +313,6 @@ function nieuw(){
         body: raw,
         redirect: 'follow'
         };
-
-        //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
         fetch("http://127.0.0.1:5050/create", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
