@@ -314,7 +314,7 @@ function nieuw(){
         };
 
         //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
-        fetch("http://127.0.0.1:5050/create", requestOptions)
+        fetch("http://127.0.0.1:5000/create", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -324,7 +324,7 @@ function nieuw(){
 }
 
 // fetch voor het overzicht van de pulses
-fetch('http://127.0.0.1:5050/pulse', {
+fetch('http://127.0.0.1:5000/pulse', {
     method: "GET",
 })
     .then(response => response.json())
@@ -482,8 +482,8 @@ function autoResize() {
 }
 /* reageren */
 
-let edit_pulse_screen = document.getElementById("react-icon");
-edit_pulse_screen.addEventListener("click", function(){
+let react_pulse_screen = document.getElementById("react-icon");
+react_pulse_screen.addEventListener("click", function(){
     console.log('nailed it');
 
     let reaction = document.getElementById("react-textarea").value;

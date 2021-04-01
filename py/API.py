@@ -3,7 +3,7 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'/Users/arzu/Documents/pelep/neo4j.txt') as f1:
+with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.text') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -118,6 +118,16 @@ def create_node():
             return (str(e))
         print(7)
         
+#Pulse ophalen
+@api.route("/pulse",methods=["GET"])
+def display_node():
+    q1="""
+    MATCH (p:pulse) RETURN p
+    """
+    results=session.run(q1)
+    data=results.data()
+    print(data)
+    return(jsonify(data))
 
 #Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
@@ -135,18 +145,6 @@ def reageer_post():
         return 'succesfull'
     except Exception as e:
         return (str(e))
-
-
-#Display
-@api.route("/api/display", methods=["POST"])
-def display_node():
-    q1 = """
-    match (p:pulse) return n
-    """
-    results = session.run(q1)
-    data = results.data()
-    print(data)
-    return (jsonify(data))
 
 
 if __name__=="__main__":
