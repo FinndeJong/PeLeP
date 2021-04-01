@@ -264,15 +264,5 @@ def bewerken_node():
         print("kaas")
 
 if __name__=="__main__":
-    api.run(port=5050)
+    api.run(debug=True)
 
-# dit stuk uit eindelijk niet nodig gehad maar laten staan vanwege learning (Pjotr)
-    # q2="""
-    # MATCH (p.Pulse)
-    # SET (p.Titel)
-    # RETURN p:Pulse
-    # """
-    # results=sessopm.rum(q2)
-    # data=results.date()
-    # print(data)
-    # return(jsonify(data))
