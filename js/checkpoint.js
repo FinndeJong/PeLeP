@@ -313,6 +313,8 @@ function nieuw(){
         body: raw,
         redirect: 'follow'
         };
+
+        //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
         fetch("http://127.0.0.1:5000/create", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
@@ -424,11 +426,11 @@ fetch('http://127.0.0.1:5000/pulse', {
             x.innerHTML = `             
             <div id="pulse-timeline">
             <div id="titel-vak">
-                <h2 id="titel-bestaande-pulse">`+g+`</h2>
-                <div id="competenties-gekozen1">
+                <h2 id="titel-bestaande-pulse" class="titel`+id+`">`+g+`</h2>
+                <div id="competenties-gekozen1" class="comp`+id+`">
                     `+c1+``+c2+``+c3+``+c4+``+c5+``+c6+`
                 </div>
-                <h2 id="emoji-bestaande-pulse">`+e+`</h2>
+                <h2 id="emoji-bestaande-pulse" class="emoji`+id+`">`+e+`</h2>
             </div>
             <div id="pulse">
                 <div id="tekstvak">
@@ -436,8 +438,19 @@ fetch('http://127.0.0.1:5000/pulse', {
                     <img id="profile-pic" src="../img/pf.png">
                     </div>
                     <div id="tekst-pulse">
-                        <p>`+t+`</p>
+                        <p class="tekst`+id+`">`+t+`</p>
                     </div>
+                </div>
+            </div>
+            <div class="pulse-icons">
+                <div class="share-image share-styling icon-styling">
+                    <img src="../img/share.png" id="`+id+`" alt="delen" class="share-image">
+                </div>
+                <div class="react-image react-styling icon-styling">
+                    <img src="../img/reageren.png" id="`+id+`" alt="reageren" class="react-image">
+                </div>
+                <div class="edit-image edit-styling icon-styling">
+                    <img src="../img/edit.png" id="`+id+`" alt="bewerken" class="edit-image">
                 </div>
             </div>
         </div>`
@@ -445,3 +458,257 @@ fetch('http://127.0.0.1:5000/pulse', {
             pulse = pulse + 1
         })
     })
+
+
+/* JQuery auto-sizing textarea */
+textarea = document.getElementById("react-textarea");
+textarea.addEventListener('input', autoResize, false); 
+
+function autoResize() { 
+    this.style.height = 'auto'; 
+    this.style.height = this.scrollHeight + 'px'; 
+    let x = document.getElementById("share-icon"); 
+    let y = document.getElementById("react-icon");
+    let z = document.getElementById("edit-icon");
+    console.log("scrollheight is:"+" "+ this.scrollHeight)
+    
+    
+    /* Moving the icons with the auto sizing textarea! */
+    if(this.scrollHeight > 30){
+        x.style.marginTop = this.scrollHeight - 40 + 'px';
+        y.style.marginTop = this.scrollHeight - 40 + 'px';
+        z.style.marginTop = this.scrollHeight - 40 + 'px';
+        /* Dit is om de console schoon te houden 
+        console.log(x.style.marginTop, y.style.marginTop, z.style.marginTop)
+        */
+    }  
+    
+    if(this.scrollHeight == 30){
+        y.style.marginTop = 3 + 'px';
+        x.style.marginTop = 3 + 'px';
+        z.style.marginTop = 3 + 'px';
+        /* Dit is om de console schoon te houden
+        console.log(x.style.marginTop, y.style.marginTop, z.style.marginTop)
+        */
+    }
+}
+/* reageren */
+
+let react_pulse_screen = document.getElementById("react-icon");
+react_pulse_screen.addEventListener("click", function(){
+    console.log('nailed it');
+
+    let reaction = document.getElementById("react-textarea").value;
+    console.log("The reaction is: " + reaction);
+    /*
+    let pulse_id = x;
+    console.log(pulse_id);
+    */
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+    "reactie": reaction,
+    "link": "link"
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:5000/api/react", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+})
+
+
+
+function bewerk_display(clicked_id){
+    console.log("id:");
+    console.log(clicked_id);
+    let e = document.getElementById('popup-bewerken');
+    if (e.style.display = 'none') {
+        e.style.display = 'block';
+    }
+    var titelid = "titel" + clicked_id;
+    console.log(titelid)
+    var titel = document.getElementsByClassName(titelid)[0].innerHTML;
+    console.log(document.getElementsByClassName(titelid)[0])
+    console.log("titel:")
+    console.log(titel)
+    var compid = "comp" + clicked_id;
+    var comp = document.getElementsByClassName(compid)[0].value;
+    var tekstid = "tekst" + clicked_id;
+    console.log(tekstid)
+    var tekst = document.getElementsByClassName(tekstid)[0].innerHTML;
+    console.log(tekst)
+    console.log(document.getElementsByClassName(tekstid)[0])
+    var emojiid = "titel" + clicked_id;
+    var emoji = document.getElementsByClassName("emojiid").value;
+
+    document.getElementById("popup-title-input-bewerk").value = titel;
+    document.getElementById("popup-pulse-context-bewerk").value = tekst
+
+    // fetch('http://127.0.0.1:5000/pulse', {
+    //     method: "GET",
+    // })
+    //     .then(response => response.json())
+    //     .then(json => {
+
+    //         i = 0
+    //         while (json[].p.id = clicked_id ){
+    //             var g = json[pulse].p.titel;
+    //             var emoji = json[pulse].p.emoji;
+    //             var comp1 = json[pulse].p.comp1;
+    //             var comp2 = json[pulse].p.comp2;
+    //             var comp3 = json[pulse].p.comp3;
+    //             var comp4 = json[pulse].p.comp4;
+    //             var comp5 = json[pulse].p.comp5;
+    //             var comp6 = json[pulse].p.comp6;
+    //             var t = json[pulse].p.tekst;
+    //         } else {
+    //             i = i + 1
+    //         }
+    //         })
+
+
+}
+
+let close_popup_bewerken = document.getElementById("popup-cancel-button-bewerken");
+close_popup_bewerken.addEventListener("click", function(){
+    let x = document.getElementById("popup-bewerken")
+    if(x.style.display ===  "block"){
+        x.style.display = "none";
+    };
+});
+
+function bewerk(){
+    
+    var titel = document.getElementById("popup-title-input").value;
+    var tekst = document.getElementById("popup-pulse-context").value;
+    if (emoji == "" || titel == "" || tekst == ""){
+        if (emoji == ""){
+            document.getElementById("foutmelding-emoji").innerText = "Kies een emoji!"
+        }
+        if (titel == ""){
+            document.getElementById("foutmelding-titel").innerText = "Vul een titel in!"
+        } 
+        if (tekst == ""){
+            document.getElementById("foutmelding-tekst").innerText = "Vul een tekst in!"
+        }
+    } else {
+        console.log(emoji)
+        var comp1 = "";
+        var comp2 = "";
+        var comp3 = "";
+        var comp4 = "";
+        var comp5 = "";
+        var comp6 = "";
+        var link = "1";
+        console.log(comp1)
+        if (document.getElementById("Samenwerken-kies").style.display == 'inline-block'){
+            comp1 = "samenwerken"
+            console.log(1)
+            console.log(comp1)
+        } 
+        if (document.getElementById("Reflecteren-kies").style.display == 'inline-block'){
+            if (comp1 == ""){
+                comp1 = "reflecteren"
+                console.log(1)
+                console.log(comp1)
+            } else {
+                comp2 = "reflecteren"
+                console.log(2)
+                console.log(comp2)
+            }
+        }
+        if(document.getElementById("Plannen-kies").style.display == 'inline-block'){
+            if (comp1 == ""){
+                comp1 = "plannen"
+                console.log(1)
+                console.log(comp1)
+            } else if (comp2 == ""){
+                comp2 = "plannen"
+                console.log(2)
+                console.log(comp2)
+            } else {
+                comp3 = "plannen"
+                console.log(3)
+                console.log(comp3)
+            }
+        }
+        if(document.getElementById("Boodschap-kies").style.display == 'inline-block'){
+            if (comp1 == ""){
+                comp1 = "boodschap"
+                console.log(1)
+                console.log(comp1)
+            } else if (comp2 == ""){
+                comp2 = "boodschap"
+                console.log(2)
+                console.log(comp2)
+            } else if (comp3 == ""){
+                comp3 = "boodschap"
+                console.log(3)
+                console.log(comp3)
+            } else {
+                comp4 = "boodschap"
+                console.log(4)
+                console.log(comp4)
+            }
+        }
+        if(document.getElementById("Pro-actief-kies").style.display == 'inline-block'){
+            if (comp1 == ""){
+                comp1 = "pro-actief"
+                console.log(1)
+                console.log(comp1)
+            } else if (comp2 == ""){
+                comp2 = "pro-actief"
+                console.log(2)
+                console.log(comp2)
+            } else if (comp3 == ""){
+                comp3 = "pro-actief"
+                console.log(3)
+                console.log(comp3)
+            } else if (comp4 == ""){
+                comp4 = "pro-actief"
+                console.log(4)
+                console.log(comp4)
+            } else {
+                comp5 = "pro-actief"
+                console.log(5)
+                console.log(comp5)
+            }
+        }
+        if(document.getElementById("Aanpassingsvermogen-kies").style.display == 'inline-block'){
+            if (comp1 == ""){
+                comp1 = "aanpassingsvermogen"
+                console.log(1)
+                console.log(comp1)
+            } else if (comp2 == ""){
+                comp2 = "aanpassingsvermogen"
+                console.log(2)
+                console.log(comp2)
+            } else if (comp3 == ""){
+                comp3 = "aanpassimgsvermogen"
+                console.log(3)
+                console.log(comp3)
+            } else if (comp4 == ""){
+                comp4 = "aanpassingsvermogen"
+                console.log(4)
+                console.log(comp4)
+            } else if(comp5 == ""){
+                comp5 = "aanpassingsvermogen"
+                console.log(5)
+                console.log(comp5)
+            } else {
+                comp6 = "aanpassingsvermogen"
+                console.log(6)
+                console.log(comp6)
+            }
+        }
+}}

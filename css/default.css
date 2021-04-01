@@ -25,7 +25,7 @@ font-family: 'Roboto', sans-serif; */
 
 
 /* checkpoint maken CSS */
-.popup-container {
+.popup-container,.popup-container-bewerken {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -497,6 +497,7 @@ p{
   margin-top: 40px;
   display: block;
 }
+
 /* Zorgt dat de titel op de goede plek staat*/
 #titel-bestaande-pulse{
   display: inline-block;
@@ -584,10 +585,15 @@ p{
   border:#B2BEC3 solid thin;
   border-top: none;
   width: 100%;
-  height: 57px;
+  overflow-y: auto;
+
+  position: absolute;
 }
 .icon-styling{
-  margin-top: 8px;
+  margin-top: 3px;
+  margin-bottom: 8px;
+
+  bottom: 0;
 }
 .share-image{
   display: inline-block;
@@ -614,7 +620,21 @@ p{
 .react-styling{
   margin-right: 15px;
 }
+.react-textarea{
+  float: right;
 
+  border: thin solid #B2BEC3;
+
+  width: 65%;
+  resize: none;
+
+  margin-right: 33px;
+  margin-left: 40px;
+  margin-top: 8px;
+  margin-bottom: 3px;
+
+  padding: 0;
+}
 
 
 

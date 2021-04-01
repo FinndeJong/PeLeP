@@ -128,6 +128,24 @@ def display_node():
     print(data)
     return(jsonify(data))
 
+#Make POST request for reageren
+@api.route("/api/react", methods=["POST"])
+def reageer_post():
+    req_data = request.get_json()
+    reactie = req_data['reactie']
+    link = req_data['link']
+    q1="""
+    MATCH (p:pulse{link:$link})
+    CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
+    """
+    map={"reactie":reactie, "link":link}
+    try:
+        session.run(q1,map)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+   
+    
 # api voor het ophalen van de Data uit de DB voor het bewerken van een Checkpoint (in dit document veel get api's dus we moeten nog kijken welke er weg kunnen)
 # waar nu id 15 is gedefinieerd moet automatisch het ID van de Pulse die bewerkt moet worden.
 @api.route("/ophalen",methods=["GET"])
