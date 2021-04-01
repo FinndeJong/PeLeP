@@ -467,9 +467,9 @@ textarea.addEventListener('input', autoResize, false);
 function autoResize() { 
     this.style.height = 'auto'; 
     this.style.height = this.scrollHeight + 'px'; 
-    let x = document.getElementById("share-icon"); 
-    let y = document.getElementById("react-icon");
-    let z = document.getElementById("edit-icon");
+    let x = document.getElementsByClassName("share-image")[0]; 
+    let y = document.getElementsByClassName("react-image")[0];
+    let z = document.getElementsByClassName("edit-image")[0];
     console.log("scrollheight is:"+" "+ this.scrollHeight)
     
     
@@ -554,31 +554,8 @@ function bewerk_display(clicked_id){
     document.getElementById("popup-title-input-bewerk").value = titel;
     document.getElementById("popup-pulse-context-bewerk").value = tekst
 
-    // fetch('http://127.0.0.1:5000/pulse', {
-    //     method: "GET",
-    // })
-    //     .then(response => response.json())
-    //     .then(json => {
-
-    //         i = 0
-    //         while (json[].p.id = clicked_id ){
-    //             var g = json[pulse].p.titel;
-    //             var emoji = json[pulse].p.emoji;
-    //             var comp1 = json[pulse].p.comp1;
-    //             var comp2 = json[pulse].p.comp2;
-    //             var comp3 = json[pulse].p.comp3;
-    //             var comp4 = json[pulse].p.comp4;
-    //             var comp5 = json[pulse].p.comp5;
-    //             var comp6 = json[pulse].p.comp6;
-    //             var t = json[pulse].p.tekst;
-    //         } else {
-    //             i = i + 1
-    //         }
-    //         })
-
-
 }
-
+// Met deze functie wordt de bewerk popup gesloten.
 let close_popup_bewerken = document.getElementById("popup-cancel-button-bewerken");
 close_popup_bewerken.addEventListener("click", function(){
     let x = document.getElementById("popup-bewerken")
@@ -587,6 +564,8 @@ close_popup_bewerken.addEventListener("click", function(){
     };
 });
 
+
+// Met deze functie word de informatie van een checkpoint opgehaald en de bewerkingen doorgestuurd.
 function bewerk(){
     
     var titel = document.getElementById("popup-title-input").value;
