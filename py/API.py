@@ -3,7 +3,7 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
+with open(r'/Users/arzu/Documents/pelep/neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -118,15 +118,36 @@ def create_node():
             return (str(e))
         print(7)
         
-@api.route("/pulse",methods=["GET","POST"])
-def display_node():
+
+#Make POST request for reageren
+@api.route("/api/react", methods=["POST"])
+def reageer_post():
+    req_data = request.get_json()
+    reactie = req_data['reactie']
+    link = req_data['link']
     q1="""
-    match (p:pulse) return p
+    MATCH (p:pulse{link:$link})
+    CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
     """
-    results=session.run(q1)
-    data=results.data()
+    map={"reactie":reactie, "link":link}
+    try:
+        session.run(q1,map)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+
+
+#Display
+@api.route("/api/display", methods=["POST"])
+def display_node():
+    q1 = """
+    match (p:pulse) return n
+    """
+    results = session.run(q1)
+    data = results.data()
     print(data)
-    return(jsonify(data))
+    return (jsonify(data))
+
 
 if __name__=="__main__":
-    api.run(port=5050)
+    api.run(debug=True)
