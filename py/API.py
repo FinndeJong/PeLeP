@@ -118,15 +118,35 @@ def create_node():
             return (str(e))
         print(7)
         
-@api.route("/pulse",methods=["GET","POST"])
+#Display
+@api.route("/api/display", methods=["POST"])
 def display_node():
-    q1="""
-    match (p:pulse) return p
+    q1 = """
+    match (p:pulse) return n
     """
-    results=session.run(q1)
-    data=results.data()
+    results = session.run(q1)
+    data = results.data()
     print(data)
-    return(jsonify(data))
+    return (jsonify(data))
+
+
+#Make POST request for reageren
+@api.route("/api/react", methods=["POST"])
+def reageer_post():
+    req_data = request.get_json()
+    reactie = req_data['reactie']
+    link = req_data['link']
+    q1="""
+    MATCH (p:pulse{link:$link})
+    CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
+    """
+    map={"reactie":reactie, "link":link}
+    try:
+        session.run(q1,map)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+
 
 if __name__=="__main__":
-    api.run(port=5050)
+    api.run(debug=True)
