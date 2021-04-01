@@ -20,6 +20,6 @@ venv/
 manage.py
 # de running file hiermee wordt alles gerund
 
-neo4j.text
+neo4j.txt
 
-ongebruikte_code.txt
+ongebruikte code.txt

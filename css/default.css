@@ -25,7 +25,7 @@ font-family: 'Roboto', sans-serif; */
 
 
 /* checkpoint maken CSS */
-.popup-container {
+.popup-container,.popup-container-bewerken {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -497,6 +497,7 @@ p{
   margin-top: 40px;
   display: block;
 }
+
 /* Zorgt dat de titel op de goede plek staat*/
 #titel-bestaande-pulse{
   display: inline-block;
