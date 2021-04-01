@@ -313,6 +313,8 @@ function nieuw(){
         body: raw,
         redirect: 'follow'
         };
+
+        //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
         fetch("http://127.0.0.1:5000/create", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
@@ -456,6 +458,75 @@ fetch('http://127.0.0.1:5000/pulse', {
             pulse = pulse + 1
         })
     })
+
+
+/* JQuery auto-sizing textarea */
+textarea = document.getElementById("react-textarea");
+textarea.addEventListener('input', autoResize, false); 
+
+function autoResize() { 
+    this.style.height = 'auto'; 
+    this.style.height = this.scrollHeight + 'px'; 
+    let x = document.getElementById("share-icon"); 
+    let y = document.getElementById("react-icon");
+    let z = document.getElementById("edit-icon");
+    console.log("scrollheight is:"+" "+ this.scrollHeight)
+    
+    
+    /* Moving the icons with the auto sizing textarea! */
+    if(this.scrollHeight > 30){
+        x.style.marginTop = this.scrollHeight - 40 + 'px';
+        y.style.marginTop = this.scrollHeight - 40 + 'px';
+        z.style.marginTop = this.scrollHeight - 40 + 'px';
+        /* Dit is om de console schoon te houden 
+        console.log(x.style.marginTop, y.style.marginTop, z.style.marginTop)
+        */
+    }  
+    
+    if(this.scrollHeight == 30){
+        y.style.marginTop = 3 + 'px';
+        x.style.marginTop = 3 + 'px';
+        z.style.marginTop = 3 + 'px';
+        /* Dit is om de console schoon te houden
+        console.log(x.style.marginTop, y.style.marginTop, z.style.marginTop)
+        */
+    }
+}
+/* reageren */
+
+let react_pulse_screen = document.getElementById("react-icon");
+react_pulse_screen.addEventListener("click", function(){
+    console.log('nailed it');
+
+    let reaction = document.getElementById("react-textarea").value;
+    console.log("The reaction is: " + reaction);
+    /*
+    let pulse_id = x;
+    console.log(pulse_id);
+    */
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+    "reactie": reaction,
+    "link": "link"
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:5000/api/react", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+})
+
+
 
 function bewerk_display(clicked_id){
     console.log("id:");

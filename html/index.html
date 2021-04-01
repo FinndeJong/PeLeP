@@ -82,7 +82,75 @@
                     <p id="foutmelding-tekst"></p>
                 </div>
                 <div class="popup-close">
-                    <button class="popup-cancel popup-button" id="popup-cancel-button">Anuleren</button>
+                    <button class="popup-cancel popup-button" id="popup-cancel-button">Annuleren</button>
+                    <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Checkpoint bewerken -->
+    <div id="popup-bewerken" class="popup-container-bewerken">
+        <div class="popup-wrapper">
+            <div class="popup-screen">
+                <div class="popup-competenties">
+                    <div class="competenties" id="samenwerken" onclick="sam()">
+                        <a class="competentie" id="sam">Samenwerken</a>
+                    </div>
+                    <div class="competenties" id="Reflecteren" onclick="ref()">
+                        <a class="competentie" id="ref">Reflecteren</a>
+                    </div>
+                    <div class="competenties" id="plannen" onclick="pla()">
+                        <a class="competentie" id="plan">Plannen</a>
+                    </div>
+                    <div class="competenties" id="Boodschap" onclick="boo()">
+                        <a class="competentie" id="boo">Boodschap overbrengen</a>
+                    </div>
+                    <div class="competenties" id="Pro-actief" onclick="pro()">
+                        <a class="competentie" id="pro">Pro-actief werken</a>
+                    </div>
+                    <div class="competenties" id="Aanpassingsvermogen" onclick="aan()">
+                        <a class="competentie" id="aan">Aanpassingsvermogen</a>
+                    </div>
+                </div>
+                <div class="popup-title">
+                    <input type="text" placeholder="Voer hier de titel in" class="popup-input" id="popup-title-input-bewerk">
+                </div>
+                <div class="popup-smiley">
+                    <h2 class="smiley" id="onder">&#128577;</h2>
+                    <h2 class="smiley" id="op">&#128528;</h2>
+                    <h2 class="smiley" id="boven">&#128578;</h2>
+                </div>
+                <div id="competenties-gekozen">
+                    <div id="Samenwerken-kies" onclick="sam1()">
+                        <a class="competentie1"></a>
+                    </div>
+                    <div id="Reflecteren-kies" onclick="ref1()">
+                        <a class="competentie1"></a>
+                    </div>
+                    <div id="Plannen-kies" onclick="pla1()">
+                        <a class="competentie1"></a>
+                    </div>
+                    <div id="Boodschap-kies" onclick="boo1()">
+                        <a class="competentie1"></a>
+                    </div>
+                    <div id="Pro-actief-kies" onclick="pro1()">
+                        <a class="competentie1"></a>
+                    </div>
+                    <div id="Aanpassingsvermogen-kies" onclick="aan1()">
+                        <a class="competentie1"></a>
+                    </div>
+                </div>
+                <div class="popup-pulse">
+                    <textarea rows="12" placeholder="Vul hier de Pulse in" class="popup-context" id="popup-pulse-context-bewerk"></textarea>
+                </div>
+                <div class="foutmelding">
+                    <p id="foutmelding-emoji"></p>
+                    <p id="foutmelding-titel"></p>
+                    <p id="foutmelding-tekst"></p>
+                </div>
+                <div class="popup-close">
+                    <button class="popup-cancel popup-button" id="popup-cancel-button-bewerken">Anuleren</button>
                     <button class="popup-create popup-button" id="popup-create-button" onclick="nieuw()">Maak</button>
                 </div>
             </div>
@@ -286,6 +354,7 @@
                             <div class="edit-image edit-styling icon-styling">
                                 <img src="../img/edit.png" alt="bewerken" class="edit-image" onclick="bewerk_display(this.id)">
                             </div>
+                            <textarea class="react-textarea" id="react-textarea"></textarea>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
+with open(r'C:\Users\Kuipe\OneDrive\Documenten\000Hogeschool\000Hogeschool\studiejaar1\PELEP\PELEP\PeLeP\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -128,6 +128,24 @@ def display_node():
     print(data)
     return(jsonify(data))
 
+#Make POST request for reageren
+@api.route("/api/react", methods=["POST"])
+def reageer_post():
+    req_data = request.get_json()
+    reactie = req_data['reactie']
+    link = req_data['link']
+    q1="""
+    MATCH (p:pulse{link:$link})
+    CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
+    """
+    map={"reactie":reactie, "link":link}
+    try:
+        session.run(q1,map)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+   
+    
 # api voor het ophalen van de Data uit de DB voor het bewerken van een Checkpoint (in dit document veel get api's dus we moeten nog kijken welke er weg kunnen)
 # waar nu id 15 is gedefinieerd moet automatisch het ID van de Pulse die bewerkt moet worden.
 @api.route("/ophalen",methods=["GET"])
@@ -265,4 +283,3 @@ def bewerken_node():
 
 if __name__=="__main__":
     api.run(debug=True)
-
