@@ -3,7 +3,7 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'C:\Users\Kuipe\OneDrive\Documenten\000Hogeschool\000Hogeschool\studiejaar1\PELEP\PELEP\PeLeP\PeLeP\txt\neo4j.text') as f1:
+with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.text') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -264,15 +264,5 @@ def bewerken_node():
         print("kaas")
 
 if __name__=="__main__":
-    api.run(port=5050)
+    api.run(debug=True)
 
-# dit stuk uit eindelijk niet nodig gehad maar laten staan vanwege learning (Pjotr)
-    # q2="""
-    # MATCH (p.Pulse)
-    # SET (p.Titel)
-    # RETURN p:Pulse
-    # """
-    # results=sessopm.rum(q2)
-    # data=results.date()
-    # print(data)
-    # return(jsonify(data))
