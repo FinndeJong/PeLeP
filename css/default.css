@@ -586,8 +586,7 @@ p{
   border-top: none;
   width: 100%;
   overflow-y: auto;
-
-  position: absolute;
+  margin-bottom: 10;
 }
 .icon-styling{
   margin-top: 3px;
