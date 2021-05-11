@@ -82,6 +82,7 @@
         background-color: white;
         width: 75%;
         border-radius: 10px;
+        border: thin solid #577590;
     }
     /* Emoji pulse */
     .emoji{
@@ -134,12 +135,25 @@
         width: 98%;
         margin-left: auto;
         margin-right: auto;
+        background-color: #577590; 
+        color: #577590;
+        opacity: 1;
+        border: none;
+        min-height: 0.5px !important;
+        max-height: 0.5px !important;
+        height: 0.5px !important;
+        border-width: 0;
+
     }
     /* lijn tussen knoppen en pulses*/
     .style1-start{
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+        background-color: #577590; 
+        color: #577590;
+        opacity: 1;
+        margin-bottom: 50px;
     }
 
  /*competenties  */
@@ -254,4 +268,26 @@
     .comp{
         display: inline-block;
         width: auto !important;
+    }
+
+
+
+    /*
+      Rollover Image
+     */
+    .figure {
+        position: relative;
+    }
+    .figure img.image-hover {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .btn-filter:hover img.image-hover, .btn-pulse:hover img.image-hover, .btn-popup:hover img.image-hover {
+      opacity: 1;
     }

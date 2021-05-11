@@ -177,15 +177,15 @@ function nieuw(){
 
     // Hier wordt gecontroleerd of er een emoji, titel en tekst is gekozen
     if (emoji == "" || titel == "" || tekst == ""){
-        if (emoji == ""){
-            document.getElementById("foutmelding-emoji").innerText = "Kies een emoji!"
-        }
-        if (titel == ""){
-            document.getElementById("foutmelding-titel").innerText = "Vul een titel in!"
-        } 
-        if (tekst == ""){
-            document.getElementById("foutmelding-tekst").innerText = "Vul een tekst in!"
-        }
+        // if (emoji == ""){
+        //     document.getElementById("foutmelding-emoji").innerText = "Kies een emoji!"
+        // }
+        // if (titel == ""){
+        //     document.getElementById("foutmelding-titel").innerText = "Vul een titel in!"
+        // } 
+        // if (tekst == ""){
+        //     document.getElementById("foutmelding-tekst").innerText = "Vul een tekst in!"
+        // }
     } else {
 
         // Hier word gekeken welke competenties er zijn toegevoegd
@@ -317,7 +317,7 @@ function nieuw(){
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 
-        
+        document.getElementById("exampleModal").style.display = "none"
     }
 }
 
