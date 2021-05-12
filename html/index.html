@@ -167,114 +167,226 @@
 
 <!-- Popup-nieuw -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg">
-  <div class="modal-content">
-    <div class="modal-header">
-      <div class="row p-3 pt-0">
-        <div class="col p-3 pb-0">
-          <div class="row">
-            <div class="chip popup" id="samenwerken">
-              <div class="color-samenwerken">
-                <img src="../img/Gekozen.png" id="img-sam" class="img-gekozen">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row p-3 pt-0">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="samenwerken">
+                <div class="color-samenwerken">
+                  <img src="../img/Gekozen.png" id="img-sam" class="img-gekozen">
+                </div>
+                Samenwerken
               </div>
-              Samenwerken
             </div>
           </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div class="row">
-            <div class="chip popup" id="reflecteren">
-              <div class="color-reflecteren">
-                <img src="../img/Gekozen.png" id="img-ref" class="img-gekozen">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="reflecteren">
+                <div class="color-reflecteren">
+                  <img src="../img/Gekozen.png" id="img-ref" class="img-gekozen">
+                </div>
+                Reflecteren
               </div>
-              Reflecteren
             </div>
           </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div class="row">
-            <div class="chip popup" id="plannen">
-              <div class="color-plannen">
-                <img src="../img/Gekozen.png" id="img-pla" class="img-gekozen">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="plannen">
+                <div class="color-plannen">
+                  <img src="../img/Gekozen.png" id="img-pla" class="img-gekozen">
+                </div>
+                Plannen
               </div>
-              Plannen
             </div>
           </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div class="row">
-            <div class="chip popup" id="pro-actief">
-              <div class="color-pro-actief">
-                <img src="../img/Gekozen.png" id="img-pro" class="img-gekozen">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="pro-actief">
+                <div class="color-pro-actief">
+                  <img src="../img/Gekozen.png" id="img-pro" class="img-gekozen">
+                </div>
+                Pro-actief
               </div>
-              Pro-actief
             </div>
           </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div class="row">
-            <div class="chip-boo popup" id="boodschap">
-              <div class="color-boodschap">
-                <img src="../img/Gekozen.png" id="img-boo" class="img-gekozen">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip-boo popup" id="boodschap">
+                <div class="color-boodschap">
+                  <img src="../img/Gekozen.png" id="img-boo" class="img-gekozen">
+                </div>
+                Boodschap overbrengen
               </div>
-              Boodschap overbrengen
             </div>
           </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div class="row">
-            <div class="chip-aan popup" id="aanpassingsvermogen">
-              <div class="color-aanpassingsvermogen">
-                <img src="../img/Gekozen.png" id="img-aan" class="img-gekozen">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip-aan popup" id="aanpassingsvermogen">
+                <div class="color-aanpassingsvermogen">
+                  <img src="../img/Gekozen.png" id="img-aan" class="img-gekozen">
+                </div>
+                Aanpassingsvermogen
               </div>
-              Aanpassingsvermogen
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="modal-body" id="modal-text">
-      <div class="row pb-3">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Titel" id="popup-title-input">
+      <div class="modal-body" id="modal-text">
+        <div class="row pb-3">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Titel" id="popup-title-input">
+          </div>
+          <div class="col p-3 me-2 pb-0 pt-0 text-end">
+            <img src="../img/sad (1).png" class="emoji-popup" id="onder">
+            <img src="../img/meh.png" class="emoji-popup" id="op">
+            <img src="../img/smile.png" class="emoji-popup" id="boven">
+          </div>
         </div>
-        <div class="col p-3 me-2 pb-0 pt-0 text-end">
-          <img src="../img/sad (1).png" class="emoji-popup" id="onder">
-          <img src="../img/meh.png" class="emoji-popup" id="op">
-          <img src="../img/smile.png" class="emoji-popup" id="boven">
+        <div class="row">
+          <div class="col">
+            <textarea class="form-control" id="popup-pulse-context" placeholder="Uw pulse" rows="5"></textarea>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <textarea class="form-control" id="popup-pulse-context" rows="5"></textarea>
+      <div class="modal-footer">
+        <div class="col align-self-start">
+          <button type="button" class="btn btn-popup btn-lg" data-bs-dismiss="modal">
+            
+          <div class="figure">
+            <img src="../img/error (1).png" height="30" class="Sirv image-main p-1">
+            <img src="../img/error wit.png" height="30" class="Sirv image-hover p-1">
+          </div>
+            Close
+          </button>
         </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <div class="col align-self-start">
-        <button type="button" class="btn btn-popup btn-lg" data-bs-dismiss="modal">
-          
-        <div class="figure">
-          <img src="../img/error (1).png" height="30" class="Sirv image-main p-1">
-          <img src="../img/error wit.png" height="30" class="Sirv image-hover p-1">
+        <div class="col text-end">
+          <button type="button" class="btn btn-popup btn-lg" onclick="nieuw()"class="btn-close" data-bs-dismiss="modal">
+            
+          <div class="figure">
+            <img src="../img/plus blauw.png" height="30" class="Sirv image-main p-1">
+            <img src="../img/plus (4).png" height="30" class="Sirv image-hover p-1">
+          </div>
+            Save changes
+          </button>
         </div>
-          Close
-        </button>
-      </div>
-      <div class="col text-end">
-        <button type="button" class="btn btn-popup btn-lg" onclick="nieuw()"class="btn-close" data-bs-dismiss="modal">
-          
-        <div class="figure">
-          <img src="../img/plus blauw.png" height="30" class="Sirv image-main p-1">
-          <img src="../img/plus (4).png" height="30" class="Sirv image-hover p-1">
-        </div>
-          Save changes
-        </button>
       </div>
     </div>
   </div>
 </div>
-</div>
+
+<!-- bewerken -->
+<div class="modal fade" id="bewerk-popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row p-3 pt-0">
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="samenwerken">
+                <div class="color-samenwerken">
+                  <img src="../img/Gekozen.png" id="img-sam" class="img-gekozen">
+                </div>
+                Samenwerken
+              </div>
+            </div>
+          </div>
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="reflecteren">
+                <div class="color-reflecteren">
+                  <img src="../img/Gekozen.png" id="img-ref" class="img-gekozen">
+                </div>
+                Reflecteren
+              </div>
+            </div>
+          </div>
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="plannen">
+                <div class="color-plannen">
+                  <img src="../img/Gekozen.png" id="img-pla" class="img-gekozen">
+                </div>
+                Plannen
+              </div>
+            </div>
+          </div>
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip popup" id="pro-actief">
+                <div class="color-pro-actief">
+                  <img src="../img/Gekozen.png" id="img-pro" class="img-gekozen">
+                </div>
+                Pro-actief
+              </div>
+            </div>
+          </div>
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip-boo popup" id="boodschap">
+                <div class="color-boodschap">
+                  <img src="../img/Gekozen.png" id="img-boo" class="img-gekozen">
+                </div>
+                Boodschap overbrengen
+              </div>
+            </div>
+          </div>
+          <div class="col p-3 pb-0">
+            <div class="row">
+              <div class="chip-aan popup" id="aanpassingsvermogen">
+                <div class="color-aanpassingsvermogen">
+                  <img src="../img/Gekozen.png" id="img-aan" class="img-gekozen">
+                </div>
+                Aanpassingsvermogen
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" id="modal-text">
+        <div class="row pb-3">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Titel" id="popup-title-bewerk">
+          </div>
+          <div class="col p-3 me-2 pb-0 pt-0 text-end">
+            <img src="../img/sad (1).png" class="emoji-popup" id="onder-bewerk">
+            <img src="../img/meh.png" class="emoji-popup" id="op-bewerk">
+            <img src="../img/smile.png" class="emoji-popup" id="boven-bewerk">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <textarea class="form-control" id="popup-tekst-bewerk" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col align-self-start">
+          <button type="button" class="btn btn-popup btn-lg" data-bs-dismiss="modal">
+            
+          <div class="figure">
+            <img src="../img/error (1).png" height="30" class="Sirv image-main p-1">
+            <img src="../img/error wit.png" height="30" class="Sirv image-hover p-1">
+          </div>
+            Close
+          </button>
+        </div>
+        <div class="col text-end">
+          <button type="button" class="btn btn-popup btn-lg" onclick="nieuw()"class="btn-close" data-bs-dismiss="modal">
+            
+          <div class="figure">
+            <img src="../img/plus blauw.png" height="30" class="Sirv image-main p-1">
+            <img src="../img/plus (4).png" height="30" class="Sirv image-hover p-1">
+          </div>
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
 
 
 

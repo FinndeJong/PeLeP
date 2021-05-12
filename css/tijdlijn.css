@@ -129,6 +129,11 @@
         color: white !important;
     }
 
+    /* Border om het vak */
+    .modal-content{
+        border: #577590 solid thin !important;
+    }
+
 /* Lijnen */
     /* lijn in de pulse */
     .style1{

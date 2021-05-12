@@ -435,13 +435,22 @@ fetch('http://127.0.0.1:5000/pulse', {
             }
             // hier wordt gekeken welke emoji is gekozen
             if (emoji == "boven_niveau"){
-                var e = "&#128578;"
+                var e = 
+                `<div class="col p-3 me-2 pb-0 text-end">
+                    <img src="../img/smile.png" id="emoji`+id+`" class="emoji">
+                </div>`
             }
             if (emoji == "op_niveau"){
-                var e = "&#128528;"
+                var e = 
+                `<div class="col p-3 me-2 pb-0 text-end">
+                    <img src="../img/meh.png" id="emoji`+id+`" class="emoji">
+                </div>`
             }
             if (emoji == "onder_niveau"){
-                var e = "&#128578;"
+                var e = 
+                `<div class="col p-3 me-2 pb-0 text-end">
+                    <img src="../img/sad (1).png" id="emoji`+id+`" class="emoji">
+                </div>`
             }
             // hier word voor het id een 
             x = document.getElementById(id)
@@ -449,11 +458,9 @@ fetch('http://127.0.0.1:5000/pulse', {
             <div class="container mb-4 mt-2" id="pulse-page">
                 <div class="row">
                     <div class="col p-3 ms-2 mb-0 pb-0">
-                        <h3>`+g+`</h3>
+                        <h3 id="titel`+id+`">`+g+`</h3>
                     </div>
-                    <div class="col p-3 me-2 pb-0 text-end">
-                        <img src="../img/sad (1).png" class="emoji">
-                    </div>
+                    `+e+`
                 </div>
                 <div class="row ps-3 pe-3">
                 `+c1+``+c2+``+c3+``+c4+``+c5+``+c6+`
@@ -465,7 +472,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                     </div>
                     <div class="col-sm-8 pl-4">
                     <h4 class="fw-bold">Lieke Crum 26-04-2021</h4>
-                    <p>`+t+`</p>
+                    <p id="tekst`+id+`">`+t+`</p>
                     </div>
                 </div>
                 <hr class="style1">
@@ -474,7 +481,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                         <img src="../img/share.png" class="icon">
                     </div>
                     <div class="col-sm-1 text-center pb-3">
-                        <img src="../img/edit (2).png" class="icon">
+                        <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
                     </div>
                     <div class="col-sm-9 pb-3">
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
@@ -484,7 +491,47 @@ fetch('http://127.0.0.1:5000/pulse', {
                     </div>
                 </div>
             </div>`
-            console.log(x.innerHTML)
             pulse = pulse + 1
         })
     })
+
+// Functie voor de bewerk popup
+function bewerk_display(clicked_id){
+    console.log("id:");
+    console.log(clicked_id);
+    var titelid = "titel" + clicked_id;
+    console.log(titelid)
+    var titel = document.getElementById(titelid).innerHTML;
+    console.log(document.getElementById(titelid))
+    console.log("titel:")
+    console.log(titel)
+    // var compid = "comp" + clicked_id;
+    // var comp = document.getElementsByClassName(compid)[0].value;
+    var tekstid = "tekst" + clicked_id;
+    console.log(tekstid)
+    var tekst = document.getElementById(tekstid).innerHTML;
+    console.log(tekst)
+    console.log(document.getElementById(tekstid))
+    var emojiid = "emoji" + clicked_id;
+    console.log(emojiid)
+    var emoji = document.getElementById(emojiid).src;
+    console.log(document.getElementById(emojiid).src)
+    console.log(emoji)
+
+    
+    if (emoji == "http://127.0.0.1:5501/img/smile.png"){
+        var a = document.getElementById("boven-bewerk")
+        a.style.backgroundColor = "#D5DDE4"
+    } else if( emoji == "http://127.0.0.1:5501/img/meh.png"){
+        var a = document.getElementById("op-bewerk")
+        a.style.backgroundColor = "#D5DDE4"
+    } else{
+        var a = document.getElementById("onder-bewerk")
+        a.style.backgroundColor = "#D5DDE4"
+    }
+    
+
+    document.getElementById("popup-title-bewerk").value = titel;
+    document.getElementById("popup-tekst-bewerk").value = tekst
+
+}
