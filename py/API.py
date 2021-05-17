@@ -3,7 +3,7 @@ from neo4j import GraphDatabase
 import csv
 
 #establish the connection
-with open(r'C:\Users\Kuipe\OneDrive\Documenten\000Hogeschool\000Hogeschool\studiejaar1\PELEP\PELEP\PeLeP\PeLeP\txt\neo4j.txt') as f1:
+with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -31,10 +31,9 @@ def create_node():
     # Hier wordt gekeken of er een competentie in het checkpoint staat
     if (comp1 == ""):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst})
         """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+        map = {"titel": titel, "tekst": tekst}
         try:
             session.run(q1, map)
             return 'succesfull'

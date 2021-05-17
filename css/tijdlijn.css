@@ -1,0 +1,293 @@
+/* De variabelen */
+    :root{
+        --samenwerken: #ff8b85;
+        --reflecteren: #ffc370;
+        --plannen: #FFF170;
+        --boodschap-overbrengen: #A5d2ab;
+        --pro-actief: #6ec7ed;
+        --aanpassingsvermogen: #deccff;
+    }
+
+/* Lettertype en achtergrond */
+    body{
+        background: #F5F7F9 !important;
+        font-family: 'Merriweather', serif !important;
+    }
+
+/* Navigatiebalk */
+    .navbar {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        background-color: #577590;
+        color: white;
+    }
+
+    .active{
+        background-color: #4A657E;
+        height: 100%;
+        color:white;
+    }
+
+    .nav-link{
+        color: white !important;
+    }
+
+    .nav-link:hover{
+        color: #D5DDE4 !important;
+    }
+
+/* Vak met knoppen filer en pulse */
+    #button-con{
+        width: 75%;
+    }
+
+    /* Pulse popup open knop */
+        .btn-pulse{
+            background-color: #577590 !important;
+            color: white !important;
+        }
+
+        .btn-pulse:hover{
+            background-color: #F5F7F9 !important;
+            color: #577590 !important;
+            border-color: #577590 !important;
+        }
+
+    /* Filter knop */
+        .btn-filter{
+            float: right;
+            background-color: #F5F7F9 !important;
+            border-color: #577590 !important;
+            color: #577590 !important;
+        }
+
+        .btn-filter:hover{
+            background-color: #577590 !important;
+            color: white !important;
+        }
+
+/* persoonlijke foto*/
+    #pf-start{
+        border-radius: 50% !important;
+    }
+
+/* Pulse in tijdlijn */
+    /* Blok Pulse */
+    #pulse-page{
+        background-color: white;
+        width: 75%;
+        border-radius: 10px;
+        border: thin solid #577590;
+    }
+    /* Emoji pulse */
+    .emoji{
+        height: 35px;
+        border-radius: 50%;
+    }
+    /* Icoontjes onderaan (Delen, Bewerken en Versturen) */
+    .icon{
+        max-height: 50px;
+        margin-top: auto;
+        margin-bottom: auto;
+        border-radius: 50%;
+        color: #577590;
+    }
+    
+    .icon:hover{
+        background-color: #D5DDE4;
+    }
+    /* Afbeelding persoon */
+    .picture{
+        border-radius: 50%;
+        width: 100%;
+        max-width: 150px;
+    }
+
+ /*Popup  */
+    /* emoji's */
+    .emoji-popup{
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .emoji-popup:hover{
+        background-color: #D5DDE4;
+    }
+    /* Knoppen in de popup */
+    .btn-popup{
+        border-color: #577590 !important;
+        color: #577590 !important;
+    }
+    
+    .btn-popup:hover{
+        background-color: #577590;
+        color: white !important;
+    }
+
+/* Lijnen */
+    /* lijn in de pulse */
+    .style1{
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #577590; 
+        color: #577590;
+        opacity: 1;
+        border: none;
+        min-height: 0.5px !important;
+        max-height: 0.5px !important;
+        height: 0.5px !important;
+        border-width: 0;
+
+    }
+    /* lijn tussen knoppen en pulses*/
+    .style1-start{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #577590; 
+        color: #577590;
+        opacity: 1;
+        margin-bottom: 50px;
+    }
+
+ /*competenties  */
+    .chip {
+        display: inline-block;
+        padding: 0 25px 0px 14px;
+        height: 25px;
+        font-size: 16px;
+        border-radius: 25px;
+        background-color: #f1f1f1;
+        width: auto !important;
+        min-width: 200px;
+    }
+    /* Deze chip moet langer zodat de tekst er niet uit gaat */
+    .chip-boo {
+        display: inline-block;
+        padding: 0 25px 0px 14px;
+        height: 25px;
+        font-size: 16px;
+        border-radius: 25px;
+        background-color: #f1f1f1;
+        width: auto !important;
+        min-width: 244px;
+    }
+    /* Deze chip moet langer zodat de tekst er niet uit gaat */
+    .chip-aan {
+        display: inline-block;
+        padding: 0 25px 0px 14px;
+        height: 25px;
+        font-size: 16px;
+        border-radius: 25px;
+        background-color: #f1f1f1;
+        width: auto !important;
+        min-width: 234px;
+    }
+    /* Samenwerken chip */ 
+    .color-samenwerken {
+        float: left;
+        margin: 0px 6px 0 -14px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: #ff8b85;
+        text-align: center;
+    }
+
+    /* Reflecteren chip */
+    .color-reflecteren {
+        float: left;
+        margin: 0px 6px 0 -14px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: var(--reflecteren);
+        text-align: center;
+    }
+
+    /* Plannen chip */
+    .color-plannen {
+        float: left;
+        margin: 0px 6px 0 -14px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: var(--plannen);
+        text-align: center;
+    }
+
+    /* Boodschap overberengen chip */
+    .color-pro-actief {
+        float: left;
+        margin: 0px 6px 0 -14px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: var(--boodschap-overbrengen);
+        text-align: center;
+    }
+
+    /* Pro-actief handelen chip */
+    .color-boodschap {
+        float: left;
+        margin: 0px 6px 0 -14px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: var(--pro-actief);
+        text-align: center;
+    }
+
+    /* Aanpassingsvermogen chip */
+    .color-aanpassingsvermogen {
+        float: left;
+        margin: 0px 6px 0 -14px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: var(--aanpassingsvermogen);
+        text-align: center;
+    }
+    /* De hover als je in de popup over de competenties gaat*/
+    .popup:hover{
+        background-color: #E0E0E0;
+        cursor: pointer;
+    }
+    /* Het vinkje voor geselecteerd */
+    #img-sam,#img-ref,#img-aan,#img-pro,#img-boo,#img-pla{
+        height: 17px;
+        display: none;
+    }
+    /* zorgt dat de competenties goed komen te staan */
+    .comp{
+        display: inline-block;
+        width: auto !important;
+    }
+
+
+
+    /*
+      Rollover Image
+     */
+    .figure {
+        position: relative;
+    }
+    .figure img.image-hover {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .btn-filter:hover img.image-hover, .btn-pulse:hover img.image-hover, .btn-popup:hover img.image-hover {
+      opacity: 1;
+    }
