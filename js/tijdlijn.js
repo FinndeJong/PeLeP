@@ -297,11 +297,16 @@ function nieuw(){
             }
         }
 
-        
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var tijd = date+' '+time;
+        console.log(tijd)
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6, "emoji":emoji });
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6, "emoji":emoji, "datum-tijd":tijd });
         
         //Hier staan de fetch option
         var requestOptions = {
@@ -320,6 +325,7 @@ function nieuw(){
         document.getElementById("exampleModal").style.display = "none"
     }
 }
+
 
 // De data uit de database wordt op de pagina gezet
 // fetch voor het overzicht van de pulses
@@ -349,13 +355,14 @@ fetch('http://127.0.0.1:5000/pulse', {
             var comp5 = json[pulse].p.comp5;
             var comp6 = json[pulse].p.comp6;
             var t = json[pulse].p.tekst;
+            var datum = json[pulse].p.datum;
             // Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
             if (comp1 != undefined){
                 var c1 = `
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp1+`"></div>
-                        `+comp1+`
+                        <a class="comp`+id+`" id="competentie-link">`+comp1+`</a>
                     </div>
                 </div>`
                 console.log(1)
@@ -369,7 +376,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp2+`"></div>
-                        `+comp2+`
+                        <a class="comp`+id+`" id="competentie-link">`+comp2+`</a>
                     </div>
                 </div>`
             console.log("2")
@@ -383,7 +390,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp3+`"></div>
-                        `+comp3+`
+                        <a class="comp`+id+`" id="competentie-link">`+comp3+`</a>
                     </div>
                 </div>`
             console.log(3)
@@ -397,7 +404,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp4+`"></div>
-                        `+comp4+`
+                        <a class="comp`+id+`" id="competentie-link">`+comp4+`</a>
                     </div>
                 </div>`
                 console.log(4)
@@ -411,7 +418,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp5+`"></div>
-                        `+comp5+`
+                        <a class="comp`+id+`" id="competentie-link">`+comp5+`</a>
                     </div>
                 </div>`
                 console.log(c1)
@@ -425,7 +432,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp6+`"></div>
-                        `+comp6+`
+                        <a class="comp`+id+`" id="competentie-link">`+comp6+`</a>
                     </div>
                 </div>`
                 console.log(c1)
@@ -462,7 +469,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                     </div>
                     `+e+`
                 </div>
-                <div class="row ps-3 pe-3">
+                <div class="row ps-3 pe-3" id="comp`+id+`">
                 `+c1+``+c2+``+c3+``+c4+``+c5+``+c6+`
                 </div>
                 <hr class="style1">
@@ -471,7 +478,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                         <img src="../img/pf.png" class="picture">
                     </div>
                     <div class="col-sm-8 pl-4">
-                    <h4 class="fw-bold">Lieke Crum 26-04-2021</h4>
+                    <h4 class="fw-bold">Lieke Crum `+datum+`</h4>
                     <p id="tekst`+id+`">`+t+`</p>
                     </div>
                 </div>
@@ -505,8 +512,100 @@ function bewerk_display(clicked_id){
     console.log(document.getElementById(titelid))
     console.log("titel:")
     console.log(titel)
-    // var compid = "comp" + clicked_id;
-    // var comp = document.getElementsByClassName(compid)[0].value;
+    var compid = "comp" + clicked_id;
+    // hier word gekeken of er 1 gekozen was in de oude pulse
+    if (document.getElementsByClassName(compid)[0] != undefined){
+        var comp1 = document.getElementsByClassName(compid)[0].innerHTML;
+        console.log(comp1)
+        var str = "img-" + comp1
+        img = str.replace(/\s/g, '');
+        console.log(img)
+        var achtergrondid = comp1 + "-bewerk"
+        achtergrond = achtergrondid.replace(/\s/g, '');
+        var e = document.getElementById(img)
+        var s = document.getElementById(achtergrond)
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+        sam = "gekozen"
+        console.log(e.style.display);
+    }
+    // hier word gekeken of er 2 gekozen was in de oude pulse
+    if (document.getElementsByClassName(compid)[1] != undefined){
+        var comp2 = document.getElementsByClassName(compid)[1].innerHTML;
+        console.log(comp2)
+        var str = "img-" + comp2
+        img = str.replace(/\s/g, '');
+        console.log(img)
+        var achtergrondid = comp2 + "-bewerk"
+        achtergrond = achtergrondid.replace(/\s/g, '');
+        var e = document.getElementById(img)
+        var s = document.getElementById(achtergrond)
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    }
+    // hier word gekeken of er 3 gekozen was in de oude pulse
+    if (document.getElementsByClassName(compid)[2] != undefined){
+        var comp3 = document.getElementsByClassName(compid)[2].innerHTML;
+        console.log(comp3)
+        var str = "img-" + comp3
+        img = str.replace(/\s/g, '');
+        console.log(img)
+        var achtergrondid = comp3 + "-bewerk"
+        achtergrond = achtergrondid.replace(/\s/g, '');
+        var e = document.getElementById(img)
+        var s = document.getElementById(achtergrond)
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+        sam = "gekozen"
+        console.log(e.style.display);
+    }
+    // hier word gekeken of er 4 gekozen was in de oude pulse
+    if (document.getElementsByClassName(compid)[3] != undefined){
+        var comp4 = document.getElementsByClassName(compid)[3].innerHTML;
+        console.log(comp4)
+        var str = "img-" + comp4
+        img = str.replace(/\s/g, '');
+        console.log(img)
+        var achtergrondid = comp4 + "-bewerk"
+        achtergrond = achtergrondid.replace(/\s/g, '');
+        var e = document.getElementById(img)
+        var s = document.getElementById(achtergrond)
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+        sam = "gekozen"
+        console.log(e.style.display);
+    }
+    // hier word gekeken of er 5 gekozen was in de oude pulse
+    if (document.getElementsByClassName(compid)[4] != undefined){
+        var comp5 = document.getElementsByClassName(compid)[4].innerHTML;
+        console.log(comp5)
+        var str = "img-" + comp5
+        img = str.replace(/\s/g, '');
+        console.log(img)
+        var achtergrondid = comp5 + "-bewerk"
+        achtergrond = achtergrondid.replace(/\s/g, '');
+        var e = document.getElementById(img)
+        var s = document.getElementById(achtergrond)
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+        sam = "gekozen"
+        console.log(e.style.display);
+    }
+    // hier word gekeken of er 6 gekozen was in de oude pulse
+    if (document.getElementsByClassName(compid)[5] != undefined){
+        var comp6 = document.getElementsByClassName(compid)[5].innerHTML;
+        console.log(comp6)
+        var str = "img-" + comp6
+        img = str.replace(/\s/g, '');
+        console.log(img)
+        var achtergrondid = comp6 + "-bewerk"
+        achtergrond = achtergrondid.replace(/\s/g, '');
+        console.log(achtergrond)
+        var e = document.getElementById(img);
+        var s = document.getElementById(achtergrond);
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    }
     var tekstid = "tekst" + clicked_id;
     console.log(tekstid)
     var tekst = document.getElementById(tekstid).innerHTML;
@@ -519,15 +618,21 @@ function bewerk_display(clicked_id){
     console.log(emoji)
 
     
-    if (emoji == "http://127.0.0.1:5501/img/smile.png"){
+    if (emoji == "http://127.0.0.1:5500/img/smile.png"){
         var a = document.getElementById("boven-bewerk")
         a.style.backgroundColor = "#D5DDE4"
-    } else if( emoji == "http://127.0.0.1:5501/img/meh.png"){
+        document.getElementById("op-bewerk").style.backgroundColor = "white"
+        document.getElementById("onder-bewerk").style.backgroundColor = "white"
+    } else if( emoji == "http://127.0.0.1:5500/img/meh.png"){
         var a = document.getElementById("op-bewerk")
         a.style.backgroundColor = "#D5DDE4"
+        document.getElementById("boven-bewerk").style.backgroundColor = "white"
+        document.getElementById("onder-bewerk").style.backgroundColor = "white"
     } else{
         var a = document.getElementById("onder-bewerk")
         a.style.backgroundColor = "#D5DDE4"
+        document.getElementById("op-bewerk").style.backgroundColor = "white"
+        document.getElementById("boven-bewerk").style.backgroundColor = "white"
     }
     
 
@@ -535,3 +640,93 @@ function bewerk_display(clicked_id){
     document.getElementById("popup-tekst-bewerk").value = tekst
 
 }
+
+// Hier wordt gekeken welke emoji word gekozen
+let emoji_bewerk = ""
+let emoji_op_bewerk = document.getElementById("op-bewerk");
+let emoji_onder_bewerk = document.getElementById("onder-bewerk");
+let emoji_boven_bewerk = document.getElementById("boven-bewerk");
+
+emoji_onder_bewerk.addEventListener("click", function(){
+    if(emoji != "onder_niveau"){
+        emoji = "onder_niveau";
+        emoji_onder_bewerk.style.backgroundColor = "#D5DDE4"
+        emoji_op_bewerk.style.backgroundColor = "white"
+        emoji_boven_bewerk.style.backgroundColor = "white"
+        emoji_op_bewerk.style.border = "none"
+        emoji_boven_bewerk.style.border = "none"
+        // document.getElementById("foutmelding-emoji").innerText = ""
+    } else{
+        emoji_onder_bewerk.style.border = "none"
+        emoji_onder_bewerk.style.backgroundColor = "white"
+        emoji = ""
+    };
+    console.log(emoji)
+});
+
+emoji_op_bewerk.addEventListener("click", function(){
+    if(emoji != "op_niveau"){
+        emoji = "op_niveau";
+        emoji_op_bewerk.style.backgroundColor = "#D5DDE4"
+        emoji_onder_bewerk.style.backgroundColor = "white"
+        emoji_boven_bewerk.style.backgroundColor = "white"
+        emoji_onder_bewerk.style.border = "none"
+        emoji_boven_bewerk.style.border = "none"
+        // document.getElementById("foutmelding-emoji").innerText = ""
+    } else{
+        emoji_op_bewerk.style.border = "none"
+        emoji_op_bewerk.style.backgroundColor = "white"
+        emoji = ""
+    };
+    console.log(emoji)
+});
+
+emoji_boven_bewerk.addEventListener("click", function(){
+    if(emoji != "boven_niveau"){
+        emoji = "boven_niveau";
+        emoji_boven_bewerk.style.backgroundColor = "#D5DDE4"
+        emoji_onder_bewerk.style.border = "none"
+        emoji_op_bewerk.style.border = "none"
+        emoji_op_bewerk.style.backgroundColor = "white"
+        emoji_onder_bewerk.style.backgroundColor = "white"
+        // document.getElementById("foutmelding-emoji").innerText = ""
+    } else{
+        emoji_boven_bewerk.style.border = "none"
+        emoji_boven_bewerk.style.backgroundColor = "white"
+        emoji = ""
+    };
+    console.log(emoji)
+});
+
+
+// // Hier wordt samenwerken geselecteerd en gedeselecteerd
+// let show_sam = document.getElementById("samenwerken");
+// let sam = ""
+// show_sam.addEventListener("click", function(){
+//     console.log(1)
+//     var e = document.getElementById("img-sam")
+//     var s = document.getElementById("samenwerken")
+//     if (sam == "") {
+//         e.style.display = 'inline-block';
+//         s.style.backgroundColor = '#E0E0E0';
+//         sam = "gekozen"
+//         console.log(e.style.display);
+//     } else {
+//         e.style.display = 'none'
+//         s.style.backgroundColor = '#f1f1f1'
+//         sam = ""
+//     }
+// })
+
+// Deze functie zorgt er voor dat de bewerk popup weer leeg is als je hem anuleerd
+function leeg(){
+    // hiermee wordt de achtergrondkleur van de comopetenties weet als ongeselecteerd
+    var a = document.querySelectorAll(".popup");
+    for (i = 0; i < a.length; i++) {
+        a[i].style.backgroundColor = "#f1f1f1";
+    }
+    // hiermee gaat het vinkje weer weg bij geselecteerde competenties
+    var b = document.querySelectorAll(".img-gekozen");
+    for (i = 0; i < b.length; i++) {
+        b[i].style.display = "none";
+}}

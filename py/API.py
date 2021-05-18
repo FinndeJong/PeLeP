@@ -1,6 +1,7 @@
 from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
+from datetime import datetime
 
 #establish the connection
 with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
@@ -17,6 +18,9 @@ api = Flask(__name__)
 # aanmaken van een Pulse API
 @api.route("/create", methods=["GET", "POST"])
 def create_node():
+    
+    # dateTimeObj = "datetime()"
+    # print(dateTimeObj)
     # hier wordt de data uit de fe opgehaald
     req_data = request.get_json()
     titel = req_data['titel']
@@ -28,14 +32,15 @@ def create_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
+    tijd = req_data['datum-tijd']
     # Hier wordt gekeken of er een competentie in het checkpoint staat
     if (comp1 == ""):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst, datum:$tijd})
         """
-        map = {"titel": titel, "tekst": tekst}
+        map = {"titel": titel, "tekst": tekst, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -43,24 +48,24 @@ def create_node():
     # Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp1 != "") and (comp2 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
     # Hier wordt gekeken of competentie 2 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp2 != "") and (comp3 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -68,12 +73,12 @@ def create_node():
     # Hier wordt gekeken of competentie 3 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp3 != "") and (comp4 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -81,24 +86,24 @@ def create_node():
     # Hier wordt gekeken of competentie 4 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp4 != "") and (comp5 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
     # Hier wordt gekeken of competentie 5 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp5 != "") and (comp6 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -106,24 +111,24 @@ def create_node():
     # Hier wordt gekeken of competentie 6 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if (comp6 != ""):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
-        print(7)
+            print(7)
         
 @api.route("/pulse",methods=["GET"])
 def display_node():
     q1="""
     MATCH (p:Pulse) RETURN p
     """
-    results=session.run(q1)
-    data=results.data()
+    results = session.run(q1)
+    data = results.data()
     print(data)
     return(jsonify(data))
 
@@ -279,6 +284,7 @@ def bewerken_node():
         print(7)
     else:
         print("kaas")
+
 
 if __name__=="__main__":
     api.run(debug=True)

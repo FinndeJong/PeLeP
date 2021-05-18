@@ -162,6 +162,12 @@
     }
 
  /*competenties  */
+
+    #competentie-link{
+        text-decoration: none;
+        color: black;
+    }
+
     .chip {
         display: inline-block;
         padding: 0 25px 0px 14px;
@@ -265,7 +271,7 @@
         cursor: pointer;
     }
     /* Het vinkje voor geselecteerd */
-    #img-sam,#img-ref,#img-aan,#img-pro,#img-boo,#img-pla{
+    #img-sam,#img-ref,#img-aan,#img-pro,#img-boo,#img-pla, #img-samenwerken, #img-reflecteren, #img-aanpassingsvermogen, #img-pro-actief, #img-boodschapoverbrengen, #img-plannen{
         height: 17px;
         display: none;
     }
