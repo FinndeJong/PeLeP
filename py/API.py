@@ -18,8 +18,12 @@ session = driver.session()
 api = Flask(__name__)
 
 # aanmaken van een Pulse API
+
 @api.route("/create", methods=["GET", "POST"])
 def create_node():
+    
+    # dateTimeObj = "datetime()"
+    # print(dateTimeObj)
     # hier wordt de data uit de fe opgehaald
     req_data = request.get_json()
     titel = req_data['titel']
@@ -31,15 +35,15 @@ def create_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
+    tijd = req_data['datum-tijd']
     # Hier wordt gekeken of er een competentie in het checkpoint staat
     if (comp1 == ""):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,gemaakt_op:str(datetime}})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst, datum:$tijd})
         """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+        map = {"titel": titel, "tekst": tekst, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -47,24 +51,24 @@ def create_node():
     # Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp1 != "") and (comp2 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,gemaakt_op:str(datetime}})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
     # Hier wordt gekeken of competentie 2 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp2 != "") and (comp3 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,gemaakt_op:str(datetime}})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -72,12 +76,12 @@ def create_node():
     # Hier wordt gekeken of competentie 3 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp3 != "") and (comp4 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,gemaakt_op:str(datetime}})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -85,24 +89,24 @@ def create_node():
     # Hier wordt gekeken of competentie 4 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp4 != "") and (comp5 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,gemaakt_op:str(datetime}})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
     # Hier wordt gekeken of competentie 5 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if ((comp5 != "") and (comp6 == "")):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,gemaakt_op:str(datetime}})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
@@ -110,26 +114,38 @@ def create_node():
     # Hier wordt gekeken of competentie 6 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
     if (comp6 != ""):
         q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6,gemaakt_op:str(datetime})
+        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6}
+               "comp5": comp5, "comp6": comp6, "datum":tijd}
         try:
-            session.run(q1, map)
+            session.run(q1, map, tijd = tijd)
             return 'succesfull'
         except Exception as e:
             return (str(e))
         print(7)
-        
-@api.route("/pulse",methods=["GET"])
-def display_node():
-    q1="""
-    MATCH (p:Pulse) RETURN p
+
+
+@api.route("/api/personen", methods=["POST"])
+def persoon_post():
+    req_data = request.get_json()
+    persoon = req_data["persoon"]
+    link = req_data['link']
+
+    mens="""
+    CREATE (p:Persoon {naam:$naam, mailadres:$mailadres, wachtwoord:$wachtwoord, gemaakt_op:datetime()})
     """
-    results=session.run(q1)
-    data=results.data()
-    print(data)
-    return(jsonify(data))
+
+@api.route("/api/relpulsepersoon", methods=["POST"])
+def relpulsepersoon():
+    req_data = request.get_json()
+    persoon = req_data["persoon"]
+    pulse = req_data["pulse"]
+
+    rel= """
+    MATCH (p:Persoon {naam:$naam, mailadres:$mailadres, wachtwoord:$wachtwoord, gemaakt_op:datetime()}), (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
+    SET (p:Pulse{maker:$persoon}) -[r:gemaakt_door]->(:Persoon) 
+    """
 
 #Make POST request for reageren 
 # moet nog aan gewerkt worden
@@ -139,16 +155,16 @@ def reageer_post():
     reactie = req_data['reactie']
     link = req_data['link']
     commenter = req_data['commenter']
-    if current_user.is_authenticated:
-        print("Persoon is ingelogd")
+    # if current_user.is_authenticated:
+    #     print("Persoon is ingelogd")
              
-    else:
-        print("Persoon is niet ingelogd")
+    # else:
+    #     print("Persoon is niet ingelogd")
         
     
     q1="""
     MATCH (p:pulse{link:$link})
-    CREATE (c:Comment {reactie:$reactie, commenter:$commenter,gemaakt_op:str(datetime}})-[r:gereageerd]->(p)
+    CREATE (c:Comment {reactie:$reactie, commenter:$commenter,gemaakt_op:datetime})-[r:gereageerd]->(p)
     """
     map={"reactie":reactie, "link":link}
     try:
@@ -210,9 +226,6 @@ def bewerken_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
-    str(datetime)
-    nu = datetime.now()
-    date_time = nu.strftime("%Y-%m-%d %H:%M:%S")
 
     # today = datetime.today()
     # date_format = "%Y-%m-%d %H:%M:%S"
@@ -226,10 +239,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.gemaakt_op:nu
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": "nu"}
+            "comp5": comp5, "comp6": comp6}
         try:
             session.run(q1, map)
             return 'succesfull'
@@ -241,10 +254,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.gemaakt_op:date_time
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": "date_time"}
+            "comp5": comp5, "comp6": comp6}
         try:
             session.run(q1, map)
             return 'succesfull'
@@ -255,10 +268,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.gemaakt_op:date_time
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": "date_time"}
+            "comp5": comp5, "comp6": comp6}
         try:
             session.run(q1, map)
             return 'succesfull'
@@ -269,10 +282,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.gemaakt_op:date_time
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": "str(datetime}"}
+            "comp5": comp5, "comp6": comp6}
         try:
             session.run(q1, map)
             return 'succesfull'
@@ -283,10 +296,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.gemaakt_op:str(datetime}
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": "str(datetime}"}
+            "comp5": comp5, "comp6": comp6}
         try:
             session.run(q1, map)
             return 'succesfull'
@@ -297,10 +310,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.comp5:$comp5,p.gemaakt_op:str(datetime}
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.comp5:$comp5
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": "str(datetime}"}
+            "comp5": comp5, "comp6": comp6}
         try:
             session.run(q1, map)
             return 'succesfull'
@@ -311,11 +324,10 @@ def bewerken_node():
         q1 = """
         MATCH(p:Pulse)
         WHERE id(p)="19"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.comp5:$comp5,p.comp6:$comp6,p.gemaakt_op:$nu
+        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.comp5:$comp5,p.comp6:$comp6
         """
         map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "gemaakt_op": nu}
-        logger.debug(session.run(q1, map))
+            "comp5": comp5, "comp6": comp6}
         try:
             print(session.run(q1, map))
             session.run(q1, map)
@@ -328,3 +340,4 @@ def bewerken_node():
 
 if __name__=="__main__":
     api.run(debug=True)
+    
