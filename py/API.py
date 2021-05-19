@@ -139,10 +139,10 @@ def reageer_post():
     reactie = req_data['reactie']
     link = req_data['link']
     q1="""
-    MATCH (p:pulse{link:$link})
+    MATCH (p:Pulse{link:$link})
     CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
     """
-    map={"reactie":reactie, "link":link}
+    map = {"reactie":reactie, "link":link}
     try:
         session.run(q1,map)
         return 'succesfull'

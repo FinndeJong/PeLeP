@@ -134,6 +134,11 @@
         border: #577590 solid thin !important;
     }
 
+    .modal-header{
+        border-bottom: #577590 solid thin!important;
+        opacity: 1 !important;
+    }
+
 /* Lijnen */
     /* lijn in de pulse */
     .style1{

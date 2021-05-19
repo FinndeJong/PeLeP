@@ -170,7 +170,7 @@ show_pla.addEventListener("click", function(){
 })
 
 // Met deze functie wordt de pulse toegevoegd aan de database
-function nieuw(){
+function nieuw(){                                                                                                                                                                                                                                                                                                                                                                                                                                                        
     
     var titel = document.getElementById("popup-title-input").value;
     var tekst = document.getElementById("popup-pulse-context").value;
@@ -306,7 +306,7 @@ function nieuw(){
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        raw = JSON.stringify({"titel":titel,"tekst":tekst, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6, "emoji":emoji, "datum-tijd":tijd });
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "emoji":emoji, "datum-tijd":tijd, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6});
         
         //Hier staan de fetch option
         var requestOptions = {
@@ -504,118 +504,116 @@ fetch('http://127.0.0.1:5000/pulse', {
 
 // Functie voor de bewerk popup
 function bewerk_display(clicked_id){
-    console.log("id:");
-    console.log(clicked_id);
+    // console.log("id:");
+    // console.log(clicked_id);
     var titelid = "titel" + clicked_id;
-    console.log(titelid)
+    // console.log(titelid)
     var titel = document.getElementById(titelid).innerHTML;
-    console.log(document.getElementById(titelid))
-    console.log("titel:")
-    console.log(titel)
+    // console.log(document.getElementById(titelid))
+    // console.log("titel:")
+    // console.log(titel)
     var compid = "comp" + clicked_id;
+
     // hier word gekeken of er 1 gekozen was in de oude pulse
     if (document.getElementsByClassName(compid)[0] != undefined){
         var comp1 = document.getElementsByClassName(compid)[0].innerHTML;
-        console.log(comp1)
         var str = "img-" + comp1
         img = str.replace(/\s/g, '');
-        console.log(img)
+
         var achtergrondid = comp1 + "-bewerk"
         achtergrond = achtergrondid.replace(/\s/g, '');
+
         var e = document.getElementById(img)
         var s = document.getElementById(achtergrond)
+
         e.style.display = 'inline-block';
         s.style.backgroundColor = '#E0E0E0';
-        sam = "gekozen"
-        console.log(e.style.display);
     }
     // hier word gekeken of er 2 gekozen was in de oude pulse
     if (document.getElementsByClassName(compid)[1] != undefined){
         var comp2 = document.getElementsByClassName(compid)[1].innerHTML;
-        console.log(comp2)
         var str = "img-" + comp2
         img = str.replace(/\s/g, '');
-        console.log(img)
+  
         var achtergrondid = comp2 + "-bewerk"
         achtergrond = achtergrondid.replace(/\s/g, '');
+
         var e = document.getElementById(img)
         var s = document.getElementById(achtergrond)
+
         e.style.display = 'inline-block';
         s.style.backgroundColor = '#E0E0E0';
     }
     // hier word gekeken of er 3 gekozen was in de oude pulse
     if (document.getElementsByClassName(compid)[2] != undefined){
         var comp3 = document.getElementsByClassName(compid)[2].innerHTML;
-        console.log(comp3)
         var str = "img-" + comp3
         img = str.replace(/\s/g, '');
-        console.log(img)
+
         var achtergrondid = comp3 + "-bewerk"
         achtergrond = achtergrondid.replace(/\s/g, '');
+
         var e = document.getElementById(img)
         var s = document.getElementById(achtergrond)
+
         e.style.display = 'inline-block';
         s.style.backgroundColor = '#E0E0E0';
-        sam = "gekozen"
-        console.log(e.style.display);
     }
     // hier word gekeken of er 4 gekozen was in de oude pulse
     if (document.getElementsByClassName(compid)[3] != undefined){
         var comp4 = document.getElementsByClassName(compid)[3].innerHTML;
-        console.log(comp4)
         var str = "img-" + comp4
         img = str.replace(/\s/g, '');
-        console.log(img)
+        
         var achtergrondid = comp4 + "-bewerk"
         achtergrond = achtergrondid.replace(/\s/g, '');
+
         var e = document.getElementById(img)
         var s = document.getElementById(achtergrond)
+
         e.style.display = 'inline-block';
         s.style.backgroundColor = '#E0E0E0';
-        sam = "gekozen"
-        console.log(e.style.display);
     }
     // hier word gekeken of er 5 gekozen was in de oude pulse
     if (document.getElementsByClassName(compid)[4] != undefined){
         var comp5 = document.getElementsByClassName(compid)[4].innerHTML;
-        console.log(comp5)
         var str = "img-" + comp5
         img = str.replace(/\s/g, '');
-        console.log(img)
+       
         var achtergrondid = comp5 + "-bewerk"
         achtergrond = achtergrondid.replace(/\s/g, '');
+
         var e = document.getElementById(img)
         var s = document.getElementById(achtergrond)
+
         e.style.display = 'inline-block';
         s.style.backgroundColor = '#E0E0E0';
-        sam = "gekozen"
-        console.log(e.style.display);
     }
     // hier word gekeken of er 6 gekozen was in de oude pulse
     if (document.getElementsByClassName(compid)[5] != undefined){
         var comp6 = document.getElementsByClassName(compid)[5].innerHTML;
-        console.log(comp6)
         var str = "img-" + comp6
         img = str.replace(/\s/g, '');
-        console.log(img)
+ 
         var achtergrondid = comp6 + "-bewerk"
         achtergrond = achtergrondid.replace(/\s/g, '');
-        console.log(achtergrond)
+
         var e = document.getElementById(img);
         var s = document.getElementById(achtergrond);
+
         e.style.display = 'inline-block';
         s.style.backgroundColor = '#E0E0E0';
     }
     var tekstid = "tekst" + clicked_id;
-    console.log(tekstid)
+    // console.log(tekstid)
     var tekst = document.getElementById(tekstid).innerHTML;
-    console.log(tekst)
-    console.log(document.getElementById(tekstid))
+    // console.log(tekst)
+    // console.log(document.getElementById(tekstid))
     var emojiid = "emoji" + clicked_id;
-    console.log(emojiid)
+    // console.log(emojiid)
     var emoji = document.getElementById(emojiid).src;
-    console.log(document.getElementById(emojiid).src)
-    console.log(emoji)
+    // console.log(document.getElementById(emojiid).src)
+    // console.log(emoji)
 
     
     if (emoji == "http://127.0.0.1:5500/img/smile.png"){
@@ -641,62 +639,6 @@ function bewerk_display(clicked_id){
 
 }
 
-// Hier wordt gekeken welke emoji word gekozen
-let emoji_bewerk = ""
-let emoji_op_bewerk = document.getElementById("op-bewerk");
-let emoji_onder_bewerk = document.getElementById("onder-bewerk");
-let emoji_boven_bewerk = document.getElementById("boven-bewerk");
-
-emoji_onder_bewerk.addEventListener("click", function(){
-    if(emoji != "onder_niveau"){
-        emoji = "onder_niveau";
-        emoji_onder_bewerk.style.backgroundColor = "#D5DDE4"
-        emoji_op_bewerk.style.backgroundColor = "white"
-        emoji_boven_bewerk.style.backgroundColor = "white"
-        emoji_op_bewerk.style.border = "none"
-        emoji_boven_bewerk.style.border = "none"
-        // document.getElementById("foutmelding-emoji").innerText = ""
-    } else{
-        emoji_onder_bewerk.style.border = "none"
-        emoji_onder_bewerk.style.backgroundColor = "white"
-        emoji = ""
-    };
-    console.log(emoji)
-});
-
-emoji_op_bewerk.addEventListener("click", function(){
-    if(emoji != "op_niveau"){
-        emoji = "op_niveau";
-        emoji_op_bewerk.style.backgroundColor = "#D5DDE4"
-        emoji_onder_bewerk.style.backgroundColor = "white"
-        emoji_boven_bewerk.style.backgroundColor = "white"
-        emoji_onder_bewerk.style.border = "none"
-        emoji_boven_bewerk.style.border = "none"
-        // document.getElementById("foutmelding-emoji").innerText = ""
-    } else{
-        emoji_op_bewerk.style.border = "none"
-        emoji_op_bewerk.style.backgroundColor = "white"
-        emoji = ""
-    };
-    console.log(emoji)
-});
-
-emoji_boven_bewerk.addEventListener("click", function(){
-    if(emoji != "boven_niveau"){
-        emoji = "boven_niveau";
-        emoji_boven_bewerk.style.backgroundColor = "#D5DDE4"
-        emoji_onder_bewerk.style.border = "none"
-        emoji_op_bewerk.style.border = "none"
-        emoji_op_bewerk.style.backgroundColor = "white"
-        emoji_onder_bewerk.style.backgroundColor = "white"
-        // document.getElementById("foutmelding-emoji").innerText = ""
-    } else{
-        emoji_boven_bewerk.style.border = "none"
-        emoji_boven_bewerk.style.backgroundColor = "white"
-        emoji = ""
-    };
-    console.log(emoji)
-});
 
 
 // // Hier wordt samenwerken geselecteerd en gedeselecteerd
@@ -730,3 +672,149 @@ function leeg(){
     for (i = 0; i < b.length; i++) {
         b[i].style.display = "none";
 }}
+
+// Hier wordt gekeken welke emoji word gekozen bij het bewerken
+let emoji_bewerk = ""
+let emoji_op_bewerk = document.getElementById("op-bewerk");
+let emoji_onder_bewerk = document.getElementById("onder-bewerk");
+let emoji_boven_bewerk = document.getElementById("boven-bewerk");
+
+emoji_onder_bewerk.addEventListener("click", function(){
+    if(emoji != "onder_niveau"){
+        emoji = "onder_niveau";
+        emoji_onder_bewerk.style.backgroundColor = "#D5DDE4"
+        emoji_op_bewerk.style.backgroundColor = "white"
+        emoji_boven_bewerk.style.backgroundColor = "white"
+        emoji_op_bewerk.style.border = "none"
+        emoji_boven_bewerk.style.border = "none"
+        // document.getElementById("foutmelding-emoji").innerText = ""
+    } else{
+        emoji_onder_bewerk.style.border = "none"
+        emoji_onder_bewerk.style.backgroundColor = "white"
+        emoji = ""
+    };
+    // console.log(emoji)
+});
+
+emoji_op_bewerk.addEventListener("click", function(){
+    if(emoji != "op_niveau"){
+        emoji = "op_niveau";
+        emoji_op_bewerk.style.backgroundColor = "#D5DDE4"
+        emoji_onder_bewerk.style.backgroundColor = "white"
+        emoji_boven_bewerk.style.backgroundColor = "white"
+        emoji_onder_bewerk.style.border = "none"
+        emoji_boven_bewerk.style.border = "none"
+        // document.getElementById("foutmelding-emoji").innerText = ""
+    } else{
+        emoji_op_bewerk.style.border = "none"
+        emoji_op_bewerk.style.backgroundColor = "white"
+        emoji = ""
+    };
+    // console.log(emoji)
+});
+
+emoji_boven_bewerk.addEventListener("click", function(){
+    if(emoji != "boven_niveau"){
+        emoji = "boven_niveau";
+        emoji_boven_bewerk.style.backgroundColor = "#D5DDE4"
+        emoji_onder_bewerk.style.border = "none"
+        emoji_op_bewerk.style.border = "none"
+        emoji_op_bewerk.style.backgroundColor = "white"
+        emoji_onder_bewerk.style.backgroundColor = "white"
+        // document.getElementById("foutmelding-emoji").innerText = ""
+    } else {
+        emoji_boven_bewerk.style.border = "none"
+        emoji_boven_bewerk.style.backgroundColor = "white"
+        emoji = ""
+    };
+    // console.log(emoji)
+});
+
+// Hier wordt samenwerken geselecteerd en gedeselecteerd
+let show_sam_bewerk = document.getElementById("samenwerken-bewerk");
+var sam_bewerk = 
+show_sam_bewerk.addEventListener("click", function(){
+    var e = document.getElementById("img-samenwerken")
+    var s = document.getElementById("samenwerken-bewerk")
+    if (s != '#f1f1f1') {
+        console.log("ja")
+        e.style.display = 'none'
+        s.style.backgroundColor = '#f1f1f1'
+    } else {
+        console.log("nee")
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    }
+})
+
+// Hier wordt reflecteren geselecteerd en gedeselecteerd
+let show_ref_bewerk = document.getElementById("reflecteren-bewerk");
+show_ref_bewerk.addEventListener("click", function(){
+    var e = document.getElementById("img-reflecteren")
+    var s = document.getElementById("reflecteren-bewerk")
+    if (show_ref_bewerk.style.backgroundColor == "#f1f1f1") {
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    } else {
+        e.style.display = 'none'
+        s.style.backgroundColor = '#f1f1f1'
+    }
+})
+
+// Hier wordt boodschap geselecteerd en gedeselecteerd
+let show_boo_bewerk = document.getElementById("boodschapoverbrengen-bewerk");
+show_boo_bewerk.addEventListener("click", function(){
+    var e = document.getElementById("img-boodschapoverbrengen")
+    var s = document.getElementById("boodschapoverbrengen-bewerk")
+    if (s.style.backgroundColor === "#f1f1f1") {
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    } else {
+        e.style.display = 'none';
+        s.style.backgroundColor = '#f1f1f1';
+    }
+})
+
+// Hier wordt aanpassingsvermogen geselecteerd en gedeselecteerd
+let show_aan_bewerk = document.getElementById("aanpassingsvermogen-bewerk");
+show_aan_bewerk.addEventListener("click", function(){
+    var e = document.getElementById("img-aanpassingsvermogen")
+    var s = document.getElementById("aanpassingsvermogen-bewerk")
+    if (show_aan_bewerk.style.backgroundColor == "#f1f1f1") {
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    } else {
+        e.style.display = 'none'
+        s.style.backgroundColor = '#f1f1f1'
+    }
+})
+
+// Hier wordt pro-actief geselecteerd en gedeselecteerd
+let show_pro_bewerk = document.getElementById("pro-actief-bewerk");
+show_pro_bewerk.addEventListener("click", function(){
+    console.log(1)
+    var e = document.getElementById("img-pro-actief")
+    var s = document.getElementById("pro-actief-bewerk")
+    if (show_pro_bewerk.style.backgroundColor == "#f1f1f1") {
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    } else {
+        e.style.display = 'none'
+        s.style.backgroundColor = '#f1f1f1'
+    }
+})
+
+// Hier wordt plannen geselecteerd en gedeselecteerd
+let show_pla_bewerk = document.getElementById("plannen-bewerk");
+show_pla_bewerk.addEventListener("click", function(){
+    console.log(1)
+    var e = document.getElementById("img-plannen")
+    var s = document.getElementById("plannen-bewerk")
+    if (show_pla_bewerk.style.backgroundColor == "#f1f1f1") {
+        e.style.display = 'inline-block';
+        s.style.backgroundColor = '#E0E0E0';
+    } else {
+        e.style.display = 'none'
+        s.style.backgroundColor = '#f1f1f1'
+    }
+})
