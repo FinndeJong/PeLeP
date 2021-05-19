@@ -1,9 +1,10 @@
 from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
+from var import pathvar
 
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
+with open(f'{pathvar}') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]

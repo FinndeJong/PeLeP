@@ -477,10 +477,10 @@ fetch('http://127.0.0.1:5000/pulse', {
                         <img src="../img/edit (2).png" class="icon">
                     </div>
                     <div class="col-sm-9 pb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        <textarea class="form-control reacttxt`+id+`" id="exampleFormControlTextarea1" rows="2"></textarea>
                     </div>
                     <div class="col-sm-1 text-start p-0 pb-3">
-                        <img src="../img/success (1).png" class="icon">
+                        <img src="../img/success (1).png" class="icon" id="reactbtn`+id+`">
                     </div>
                 </div>
             </div>`
@@ -488,3 +488,37 @@ fetch('http://127.0.0.1:5000/pulse', {
             pulse = pulse + 1
         })
     })
+
+
+// Hier word de reactie gepost naar database!!
+            //test verander de variabele!!
+let tesssst = document.getElementById("reactbtn0");
+let tessstreactie = document.getElementsByClassName("reacttxt0")[0];
+console.log(tesssst);
+console.log(tessstreactie);
+
+tesssst.addEventListener("click", function(){
+    console.log(tesssst);
+    console.log(tessstreactie);
+    console.log(tessstreactie2);
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "reactie": tessstreactie2,
+        "link": "link"
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:5000/api/react", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+})
