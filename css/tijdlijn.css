@@ -39,6 +39,7 @@
 
     .nav-link:hover{
         color: #D5DDE4 !important;
+        cursor: pointer;
     }
 
 /* Vak met knoppen filer en pulse */
@@ -56,6 +57,7 @@
             background-color: #F5F7F9 !important;
             color: #577590 !important;
             border-color: #577590 !important;
+            cursor: pointer;
         }
 
     /* Filter knop */
@@ -69,6 +71,7 @@
         .btn-filter:hover{
             background-color: #577590 !important;
             color: white !important;
+            cursor: pointer;
         }
 
 /* persoonlijke foto*/
@@ -100,6 +103,7 @@
     
     .icon:hover{
         background-color: #D5DDE4;
+        cursor: pointer;
     }
     /* Afbeelding persoon */
     .picture{
@@ -117,6 +121,7 @@
 
     .emoji-popup:hover{
         background-color: #D5DDE4;
+        cursor: pointer;
     }
     /* Knoppen in de popup */
     .btn-popup{
@@ -127,6 +132,7 @@
     .btn-popup:hover{
         background-color: #577590;
         color: white !important;
+        cursor: pointer;
     }
 
     /* Border om het vak */

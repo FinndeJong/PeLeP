@@ -249,6 +249,12 @@
             <textarea class="form-control" id="popup-pulse-context" placeholder="Uw pulse" rows="5"></textarea>
           </div>
         </div>
+        
+        <div class="row" id="foutmelding">
+          <p id="foutmelding-emoji"></p>
+          <p id="foutmelding-titel"></p>
+          <p id="foutmelding-tekst"></p>
+      </div>
       </div>
       <div class="modal-footer">
         <div class="col align-self-start">
@@ -262,7 +268,7 @@
           </button>
         </div>
         <div class="col text-end">
-          <button type="button" class="btn btn-popup btn-lg" onclick="nieuw()"class="btn-close" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-popup btn-lg" onclick="nieuw()" class="btn-close" data-bs-dismiss="modal">
             
           <div class="figure">
             <img src="../img/plus blauw.png" height="30" class="Sirv image-main p-1">
@@ -373,15 +379,16 @@
           </button>
         </div>
         <div class="col text-end">
-          <button type="button" class="btn btn-popup btn-lg" onclick="nieuw()" class="btn-close" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-popup btn-lg" onclick="bewerken()" class="btn-close" data-bs-dismiss="modal">
             
           <div class="figure">
             <img src="../img/plus blauw.png" height="30" class="Sirv image-main p-1">
             <img src="../img/plus (4).png" height="30" class="Sirv image-hover p-1">
           </div>
-            Save changes
+            Opslaan
           </button>
         </div>
+        <div id="pulse_token" style="display: none;"></div>
       </div>
     </div>
   </div>

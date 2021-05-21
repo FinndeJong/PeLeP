@@ -18,9 +18,6 @@ api = Flask(__name__)
 # aanmaken van een Pulse API
 @api.route("/create", methods=["GET", "POST"])
 def create_node():
-    
-    # dateTimeObj = "datetime()"
-    # print(dateTimeObj)
     # hier wordt de data uit de fe opgehaald
     req_data = request.get_json()
     titel = req_data['titel']
@@ -33,95 +30,20 @@ def create_node():
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
     tijd = req_data['datum-tijd']
-    # Hier wordt gekeken of er een competentie in het checkpoint staat
-    if (comp1 == ""):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(1)
-    # Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
-    if ((comp1 != "") and (comp2 == "")):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-    # Hier wordt gekeken of competentie 2 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
-    if ((comp2 != "") and (comp3 == "")):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(3)
-    # Hier wordt gekeken of competentie 3 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
-    if ((comp3 != "") and (comp4 == "")):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(4)
-    # Hier wordt gekeken of competentie 4 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
-    if ((comp4 != "") and (comp5 == "")):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-    # Hier wordt gekeken of competentie 5 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
-    if ((comp5 != "") and (comp6 == "")):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(6)
-    # Hier wordt gekeken of competentie 6 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
-    if (comp6 != ""):
-        q1 = """
-        CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-               "comp5": comp5, "comp6": comp6, "datum":tijd}
-        try:
-            session.run(q1, map, tijd = tijd)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-            print(7)
-        
+
+    # Hier wordt de data naar de be gestuurd
+    q1 = """
+    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
+    """
+    map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
+            "comp5": comp5, "comp6": comp6, "datum":tijd}
+    try:
+        session.run(q1, map, tijd = tijd)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+
+# API voor het ophealen van de pulses
 @api.route("/pulse",methods=["GET"])
 def display_node():
     q1="""
@@ -149,25 +71,11 @@ def reageer_post():
     except Exception as e:
         return (str(e))
    
-    
-# api voor het ophalen van de Data uit de DB voor het bewerken van een Checkpoint (in dit document veel get api's dus we moeten nog kijken welke er weg kunnen)
-# waar nu id 15 is gedefinieerd moet automatisch het ID van de Pulse die bewerkt moet worden.
-@api.route("/ophalen",methods=["GET"])
-def ophalen_node():
-    q1="""
-    MATCH (p:Pulse {id:15}) 
-    RETURN p
-    """
-    results=session.run(q1)
-    data=results.data()
-    print(data)
-    return(jsonify(data))
-
 # API voor het bewerken van een Checkpoint -->
 @api.route("/bewerken",methods=["PUT"])
 def bewerken_node():
+    # hier worden alle onderdelen gedefiniëerd
     req_data = request.get_json()
-    print(req_data)
     titel = req_data['titel']
     tekst = req_data['tekst']
     emoji = req_data['emoji']
@@ -177,113 +85,20 @@ def bewerken_node():
     comp4 = req_data['comp4']
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
-    # hierboven worden alle onderdelen gedefiniëerd
-    # hier onder wordt er gezocht of er 1 tot en met 6 competenties zijn en aan de hand daarvan springt hij in een if statement met de daarbij horende aantal competenties.
+    tijd = req_data['bewerkdatum']
+    pulse_token = req_data['pulse_token']
     # waar hij vervolgens de bewerkte informatie aanpast in de DB0
-    # waar nu id 15 is gedefinieerd moet automatisch het ID van de Pulse die bewerkt moet worden.
-    if (comp1 == ""):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        try:
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(1)
-
-    elif ((comp1 != "") and (comp2 == "")):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        try:
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(2)
-    elif ((comp2 != "") and (comp3 == "")):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        try:
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(3)
-    elif ((comp3 != "") and (comp4 == "")):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        try:
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(4)
-    elif ((comp4 != "") and (comp5 == "")):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        try:
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(5)
-    elif ((comp5 != "") and (comp6 == "")):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.comp5:$comp5
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        try:
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(6)
-    elif (comp6 != ""):
-        q1 = """
-        MATCH(p:Pulse)
-        WHERE id(p)="15"
-        SET p.titel:$titel,p.tekst:$tekst,p.emoji:$emoji,p.comp1:$comp1,p.comp2:$comp2,p.comp3:$comp3,p.comp4:$comp4,p.comp5:$comp5,p.comp6:$comp6
-        """
-        map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6}
-        print(map)
-        try:
-            print(session.run(q1, map))
-            session.run(q1, map)
-            return 'succesfull'
-        except Exception as e:
-            return (str(e))
-        print(7)
-    else:
-        print("kaas")
+    q1 = """
+    MATCH (p:Pulse {pulse_token:$pulse_token})
+    SET p.titel=$titel,p.tekst=$tekst,p.emoji=$emoji,p.comp1=$comp1,p.comp2=$comp2,p.comp3=$comp3,p.comp4=$comp4,p.comp5=$comp5,p.comp6=$comp6,p.bewerkdatum=$tijd
+    """
+    map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
+        "comp5": comp5, "comp6": comp6, "bewerkdatum":tijd, "pulse_token":pulse_token}
+    try:
+        session.run(q1, map, tijd = tijd)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
 
 
 if __name__=="__main__":
