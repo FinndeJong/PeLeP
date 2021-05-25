@@ -108,6 +108,17 @@
         max-width: 150px;
     }
 
+    .picture-react{
+        border-radius: 50%;
+        width: 100%;
+        max-width: 110px;
+    }
+
+    /* Reageren */
+    .fs-pulse{
+        font-size: 0.85rem;
+    }
+
  /*Popup  */
     /* emoji's */
     .emoji-popup{

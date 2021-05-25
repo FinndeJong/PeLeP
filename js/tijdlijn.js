@@ -279,7 +279,7 @@ function nieuw(){
                 console.log(2)
                 console.log(comp2)
             } else if (comp3 == ""){
-                comp3 = "aanpassimgsvermogen"
+                comp3 = "aanpassingsvermogen"
                 console.log(3)
                 console.log(comp3)
             } else if (comp4 == ""){
@@ -323,7 +323,7 @@ function nieuw(){
 
 // De data uit de database wordt op de pagina gezet
 // fetch voor het overzicht van de pulses
-fetch('http://127.0.0.1:5000/pulse', {
+fetch('http://127.0.0.1:5000/reacties', {
     method: "GET",
 })
     .then(response => response.json())
@@ -334,6 +334,7 @@ fetch('http://127.0.0.1:5000/pulse', {
         tabelbody = document.getElementById("timeline")
         var i = json;
         var pulse = 0;
+
         i.forEach(function() {
             let row = document.createElement("div");
             var id = pulse
@@ -443,6 +444,53 @@ fetch('http://127.0.0.1:5000/pulse', {
             if (emoji == "onder_niveau"){
                 var e = "&#128578;"
             }
+
+            // Hier word gekeken of er een reactie is op de checkpoint!!
+            var reactions_hvl = Object.keys(json[pulse].p.comments).length
+            var reaction_array = []
+            var reaction_html = []
+
+            // Variabelen hoeveel reacties!!
+            // var r1 = 0;
+            // var r2 = 1;
+            // var r3 = 2;
+            // var r4 = 3;
+            // var r5 = 4;
+            // var r6 = 5;
+            // var r7 = 6;
+            // var r8 = 7;
+            // var r9 = 8;
+            // var r10 = 9;
+
+            if (reactions_hvl > 0){
+                for (let i = 0; i < reactions_hvl; i++) {
+                    // console.log(json[pulse].p.comments[i]["reactie"])
+                    reaction_array.push(json[pulse].p.comments[i]["reactie"])
+                }
+
+                reaction_array.forEach(function(reactions){
+                    rtest = `
+                    <div class="row mt-4 mb-4 ps-5">
+                        <div class="col-sm-3 text-center">
+                          <img src="../img/pf.png" class="picture-react">
+                        </div>
+                        <div class="col-sm-8 pl-4">
+                          <h5 class="fw-bold">Finn de Jong 28-04-2021</h5>
+                          <p class="fs-pulse">`+reactions+`</p>
+                        </div>
+                    </div>
+                    
+                    <hr class="style1">`
+                    reaction_html.push(rtest)
+                })
+
+                console.log(reaction_html.join(""))
+                var r = reaction_html.join("")
+            }
+            else{
+                var r = "";
+            }
+
             // hier word voor het id een 
             x = document.getElementById(id)
             x.innerHTML = `             
@@ -469,6 +517,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                     </div>
                 </div>
                 <hr class="style1">
+                `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
                         <img src="../img/share.png" class="icon">
@@ -477,14 +526,14 @@ fetch('http://127.0.0.1:5000/pulse', {
                         <img src="../img/edit (2).png" class="icon">
                     </div>
                     <div class="col-sm-9 pb-3">
-                        <textarea class="form-control reacttxt`+id+`" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        <textarea class="form-control" id="react-area`+id+`" rows="2"></textarea>
                     </div>
                     <div class="col-sm-1 text-start p-0 pb-3">
-                        <img src="../img/success (1).png" class="icon" id="reactbtn`+id+`">
+                        <img src="../img/success (1).png" class="icon" id="`+id+`" onclick="send_reaction(this.id)">
                     </div>
                 </div>
             </div>`
-            console.log(x.innerHTML)
+            //console.log(x.innerHTML)
             pulse = pulse + 1
         })
     })
@@ -492,22 +541,21 @@ fetch('http://127.0.0.1:5000/pulse', {
 
 // Hier word de reactie gepost naar database!!
             //test verander de variabele!!
-let tesssst = document.getElementById("reactbtn0");
-let tessstreactie = document.getElementsByClassName("reacttxt0")[0];
-console.log(tesssst);
-console.log(tessstreactie);
+function send_reaction(id){
+    console.log("clicked")
+    console.log(id)
+    var pulse_id = "react-area"+id
+    var react_text = document.getElementById(pulse_id).value;
+    var delink = "gegroet";
 
-tesssst.addEventListener("click", function(){
-    console.log(tesssst);
-    console.log(tessstreactie);
-    console.log(tessstreactie2);
+    console.log(react_text);
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "reactie": tessstreactie2,
-        "link": "link"
+        "reactie": react_text,
+        "link": delink
     });
 
     var requestOptions = {
@@ -521,4 +569,17 @@ tesssst.addEventListener("click", function(){
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
-})
+}
+
+function get_reacties(){
+    console.log("reacties!!!!")
+    fetch('http://127.0.0.1:5000/reacties', {
+    method: "GET",
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json)
+        json.reverse();
+        console.log(json)
+    })
+}

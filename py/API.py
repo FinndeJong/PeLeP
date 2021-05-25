@@ -1,10 +1,9 @@
 from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
-from var import pathvar
 
 #establish the connection
-with open(f'{pathvar}') as f1:
+with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -118,13 +117,27 @@ def create_node():
             return (str(e))
         print(7)
         
-@api.route("/pulse",methods=["GET"])
-def display_node():
+# @api.route("/pulse",methods=["GET"])
+# def display_node():
+#     q1="""
+#     MATCH (p:Pulse) RETURN p
+#     """
+#     results=session.run(q1)
+#     data=results.data()
+#     print(data)
+#     return(jsonify(data))
+
+
+#Get reacties van checkpoint
+@api.route("/reacties",methods=["GET"])
+def display_node_reactie():
     q1="""
-    MATCH (p:Pulse) RETURN p
+    MATCH (p:Pulse)
+    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
+    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
     """
-    results=session.run(q1)
-    data=results.data()
+    results = session.run(q1)
+    data = results.data()
     print(data)
     return(jsonify(data))
 
@@ -134,17 +147,18 @@ def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
     link = req_data['link']
-    q1="""
-    MATCH (p:pulse{link:$link})
+    print(reactie)
+    print(link)
+    q2="""
+    MATCH (p:Pulse{link:$link})
     CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
     """
     map={"reactie":reactie, "link":link}
     try:
-        session.run(q1,map)
+        session.run(q2, map)
         return 'succesfull'
     except Exception as e:
         return (str(e))
-   
     
 # api voor het ophalen van de Data uit de DB voor het bewerken van een Checkpoint (in dit document veel get api's dus we moeten nog kijken welke er weg kunnen)
 # waar nu id 15 is gedefinieerd moet automatisch het ID van de Pulse die bewerkt moet worden.

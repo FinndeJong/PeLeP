@@ -1,1 +1,0 @@
-pathvar = r"C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt"
