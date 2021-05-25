@@ -566,7 +566,7 @@ close_popup_bewerken.addEventListener("click", function(){
 
 
 // Met deze functie word de informatie van een checkpoint opgehaald en de bewerkingen doorgestuurd.
-function bewerk(){
+function bewerk(emoji){
     
     var titel = document.getElementById("popup-title-input").value;
     var tekst = document.getElementById("popup-pulse-context").value;
