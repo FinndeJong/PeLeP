@@ -1,2 +1,5 @@
 venv/
 
+txt/neo4j.text
+.vscode/settings.json
+Neo4j/Test-API.text
