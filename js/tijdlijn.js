@@ -476,7 +476,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                         </div>
                         <div class="col-sm-8 pl-4">
                           <h5 class="fw-bold">Finn de Jong 28-04-2021</h5>
-                          <p class="fs-pulse">`+reactions+`</p>
+                          <p class="fs-pulse preserve-breaks">`+reactions+`</p>
                         </div>
                     </div>
                     
@@ -513,7 +513,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                     </div>
                     <div class="col-sm-8 pl-4">
                     <h4 class="fw-bold">Lieke Crum 26-04-2021</h4>
-                    <p>`+t+`</p>
+                    <p class="preserve-breaks">`+t+`</p>
                     </div>
                 </div>
                 <hr class="style1">
