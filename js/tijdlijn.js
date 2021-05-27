@@ -359,12 +359,6 @@ fetch('http://127.0.0.1:5000/pulse', {
             var t = json[pulse].p.tekst;
             var datum = json[pulse].p.datum;
             var pulse_token = "JHbfjew&"
-            console.log(comp1)
-            console.log(comp2)
-            console.log(comp3)
-            console.log(comp4)
-            console.log(comp5)
-            console.log(comp6)
             // Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
             if (comp1 == undefined || comp1 == ""){
                 var c1 = ""
@@ -503,14 +497,8 @@ fetch('http://127.0.0.1:5000/pulse', {
 
 // Functie voor de bewerk popup
 function bewerk_display(clicked_id){
-    // console.log("id:");
-    // console.log(clicked_id);
     var titelid = "titel" + clicked_id;
-    // console.log(titelid)
     var titel = document.getElementById(titelid).innerHTML;
-    // console.log(document.getElementById(titelid))
-    // console.log("titel:")
-    // console.log(titel)
     var compid = "comp" + clicked_id;
 
     var pulse_tokenid = "pulse_token" + clicked_id;
