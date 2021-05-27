@@ -1,3 +1,11 @@
+// Reload function!!
+function refreshPage(){
+    // Stopt de reset van scrollen bij reload!!
+    history.scrollRestoration = 'auto'
+    // Relaod Page!!
+    window.location.reload()
+}
+
 // Hier wordt gekeken welke emoji word gekozen
 let emoji = ""
 let emoji_op = document.getElementById("op");
@@ -326,12 +334,14 @@ console.log("yeah")
 
         document.getElementById("exampleModal").style.display = "none"
     }
+
+    refreshPage();
 }
 
 
 // De data uit de database wordt op de pagina gezet
 // fetch voor het overzicht van de pulses
-fetch('http://127.0.0.1:5000/reacties', {
+fetch('http://127.0.0.1:5000/pulse', {
     method: "GET",
 })
     .then(response => response.json())
@@ -374,7 +384,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp1+`"></div>
-                        <a class="comp`+id+`" id="competentie-link">`+comp1+`</a>
+                        <a class="comp`+id+`" id="competentie-link">Samenwerken</a>
                     </div>
                 </div>`
             }
@@ -386,7 +396,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp2+`"></div>
-                        <a class="comp`+id+`" id="competentie-link">`+comp2+`</a>
+                        <a class="comp`+id+`" id="competentie-link">Reflecteren</a>
                     </div>
                 </div>`
             }
@@ -398,7 +408,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp3+`"></div>
-                        <a class="comp`+id+`" id="competentie-link">`+comp3+`</a>
+                        <a class="comp`+id+`" id="competentie-link">Plannen</a>
                     </div>
                 </div>`
             }
@@ -410,7 +420,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp4+`"></div>
-                        <a class="comp`+id+`" id="competentie-link">`+comp4+`</a>
+                        <a class="comp`+id+`" id="competentie-link">Boodschap overbrengen</a>
                     </div>
                 </div>`
             }
@@ -422,7 +432,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp5+`"></div>
-                        <a class="comp`+id+`" id="competentie-link">`+comp5+`</a>
+                        <a class="comp`+id+`" id="competentie-link">Pro-actief</a>
                     </div>
                 </div>`
             }
@@ -434,7 +444,7 @@ fetch('http://127.0.0.1:5000/reacties', {
                 <div class="comp p-3 pb-0">
                     <div class="chip">
                         <div class="color-`+comp6+`"></div>
-                        <a class="comp`+id+`" id="competentie-link">`+comp6+`</a>
+                        <a class="comp`+id+`" id="competentie-link">Aanpassingsvermogen</a>
                     </div>
                 </div>`
             }
@@ -580,6 +590,8 @@ function send_reaction(id){
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+
+    refreshPage();
 }
 
 function get_reacties(){
@@ -1089,6 +1101,7 @@ function bewerken(){
         .catch(error => console.log('error', error));
 
         document.getElementById("exampleModal").style.display = "none"
+
+        refreshPage();
     }
 // }
-
