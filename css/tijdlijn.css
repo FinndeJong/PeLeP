@@ -160,6 +160,11 @@
         opacity: 1 !important;
     }
 
+    .modal-footer{
+        border-top: #577590 solid thin!important;
+        opacity: 1 !important;
+    }
+
 /* Lijnen */
     /* lijn in de pulse */
     .style1{
