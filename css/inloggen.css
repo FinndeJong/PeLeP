@@ -1,0 +1,101 @@
+body{
+    background: #F5F7F9 !important;
+    font-family: 'Merriweather', serif !important;
+}
+
+.container{
+    width: 30% !important;
+    margin: auto;
+    border: 1px solid #577590;
+    border-radius: 10px;
+    background: white;
+}
+
+.mb-0{
+    color: #577590;
+}
+
+hr{
+    opacity: 1 !important;
+    color: #577590 !important;
+}
+
+.pelep_logo{
+    width: 80%;
+}
+
+.logo{
+    text-align: center;
+}
+
+.gast_knop{
+    background-color: #577590 !important;
+    color: white !important;
+    width: 100%;
+}
+
+.log_in{
+    color: #577590 !important;
+    width: 100%;
+}
+
+.log_in:hover{
+    background-color: #F5F7F9 !important;
+    border-color: #577590 !important;
+    color: #577590 !important;
+    cursor: pointer;
+}
+
+.gast_knop:hover{
+    background-color: white !important;
+    color: #577590 !important;
+    border-color: #577590 !important;
+    cursor: pointer;
+}
+
+.btn2{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    color: #577590;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn2:hover{
+    background-color: white;
+    border: 1px solid;
+    color: #577590;
+}
+
+.form-control {
+    border: 1px solid #577590 !important;
+} 
+
+/* Margin top container */
+.container{
+    margin-top: 120px;
+}
+
+/* Button password input*/
+.pswspan{
+    border-radius: 0 .25rem .25rem 0 !important;
+    border: 1px solid #577590 !important;
+    background-color: white !important;
+}
+.pswspan:hover{
+    cursor: pointer;
+    background-color: #E6EBF0 !important;
+}
+.pswimage{
+    height: 30px;
+    width: 30px;
+}
+.hidewwimg{
+    display: none;
+}
+.showwwimg{
+    display: block;
+}
