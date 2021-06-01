@@ -473,17 +473,6 @@ fetch('http://127.0.0.1:5000/pulse', {
             var reaction_array = []
             var reaction_html = []
 
-            // Variabelen hoeveel reacties!!
-            // var r1 = 0;
-            // var r2 = 1;
-            // var r3 = 2;
-            // var r4 = 3;
-            // var r5 = 4;
-            // var r6 = 5;
-            // var r7 = 6;
-            // var r8 = 7;
-            // var r9 = 8;
-            // var r10 = 9;
 
             if (reactions_hvl > 0){
                 for (let i = 0; i < reactions_hvl; i++) {
