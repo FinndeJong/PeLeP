@@ -26,3 +26,10 @@ try:
     print ("Email sent!")
 except:
     print ("Something went wrong.")
+
+#https://stackabuse.com/how-to-send-emails-with-gmail-using-python/
+#https://mailtrap.io/blog/starttls-ssl-tls/
+#(waarom tls ipv ssl) because it is newer
+#https://www.youtube.com/watch?v=Y_tnWTjTfzY
+#https://stackoverflow.com/questions/53535150/populate-other-email-fields-like-subject-in-python-mail-function
+#https://stackoverflow.com/questions/59158283/as-string-method-return-an-attributeerror
