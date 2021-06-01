@@ -3,12 +3,20 @@ body{
     font-family: 'Merriweather', serif !important;
 }
   
-.container{
+.form{
     width: 30% !important;
     margin: auto;
     border: 1px solid #577590;
     border-radius: 10px;
     background: white;
+}
+
+.alert{
+    z-index: 2;
+}
+
+.fout{
+    color: #FF8B85;
 }
 
 .mb-0{
@@ -40,7 +48,6 @@ hr{
 }
 
 .log_in:hover{
-    background-color: #F5F7F9 !important;
     border-color: #577590 !important;
     color: #577590 !important;
     cursor: pointer;
@@ -73,3 +80,7 @@ hr{
 .form-control {
     border: 1px solid #577590 !important;
 }
+
+input.invalid {
+    border-color: red;
+  }

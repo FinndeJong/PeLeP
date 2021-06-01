@@ -54,6 +54,17 @@ def display_node():
     print(data)
     return(jsonify(data))
 
+# API voor het ophealen van de pulses
+@api.route("/gebruiker",methods=["GET"])
+def gebruiker_ophalen():
+    q1="""
+    MATCH (g:Gebruiker) RETURN g
+    """
+    results = session.run(q1)
+    data = results.data()
+    print(data)
+    return(jsonify(data))
+
 #Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
 def reageer_post():
