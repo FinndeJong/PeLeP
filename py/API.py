@@ -2,6 +2,8 @@ from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
 from datetime import datetime
+from passlib.hash import sha256_crypt
+
 
 #establish the connection
 with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
@@ -64,6 +66,29 @@ def gebruiker_ophalen():
     data = results.data()
     print(data)
     return(jsonify(data))
+
+@api.route("/nieuwe_gebruiker", methods=["POST"])
+def nieuwe_gebruiker():
+    req_data = request.get_json()
+    email = req_data["email"]
+    gebruikersnaam = req_data["gebruikersnaam"]
+    wachtwoord = req_data["wachtwoord"]
+    print("mail")
+    print(email)
+    print("naam")
+    print(gebruikersnaam)
+    encrypt_wachtwoord = sha256_crypt.hash(wachtwoord)
+    print("wachtwoord")
+    print(encrypt_wachtwoord)
+    q1="""
+    CREATE (g:Gebruiker {gebruikersnaam:$gebruikersnaam, email:$email, wachtwoord:$encrypt_wachtwoord})
+    """
+    map = {"gebruikersnaam":gebruikersnaam, "email":email, "wachtwoord":encrypt_wachtwoord}
+    try:
+        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
 
 #Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
