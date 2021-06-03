@@ -24,7 +24,7 @@ def display_node():
     return(jsonify(data))
 
 gmail_user = "casperweijtmans@gmail.com"
-gmail_password = "Kr4ken0ce4n!"
+gmail_password = "xxxxxx"
 
 sent_from = gmail_user
 to = ["casper.weijtmans@student.hu.nl"]
