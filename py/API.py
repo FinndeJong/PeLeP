@@ -106,6 +106,14 @@ def bewerken_node():
     except Exception as e:
         return (str(e))
 
+# API voor inlog validatie (test)!!
+@api.route("/api/login", methods=["GET", "POST"])
+def validatelogin():
+    # Haal de body van js op (dus ww en username)
+    req_data = request.get_json()
+    username = req_data['username']
+    password = req_data['password']
+
 
 if __name__=="__main__":
     api.run(debug=True)
