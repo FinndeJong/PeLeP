@@ -3,6 +3,9 @@ from neo4j import GraphDatabase
 import csv
 from datetime import datetime
 from passlib.hash import sha256_crypt
+from flask_mail import Mail, Message
+from werkzeug.utils import html
+import secrets
 
 
 #establish the connection
@@ -13,9 +16,9 @@ with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f
         pwd = row[1]
         uri = row[2]
 print(username, pwd, uri)
-driver = GraphDatabase.driver(uri=uri,auth=(username,pwd))
+driver = GraphDatabase.driver(uri = uri,auth = (username,pwd))
 session = driver.session()
-api = Flask(__name__)
+api = Flask(__name__, template_folder='../templates')
 
 # aanmaken van een Pulse API
 @api.route("/create", methods=["GET", "POST"])
@@ -67,6 +70,8 @@ def gebruiker_ophalen():
     print(data)
     return(jsonify(data))
 
+
+
 @api.route("/nieuwe_gebruiker", methods=["POST"])
 def nieuwe_gebruiker():
     req_data = request.get_json()
@@ -80,15 +85,37 @@ def nieuwe_gebruiker():
     encrypt_wachtwoord = sha256_crypt.hash(wachtwoord)
     print("wachtwoord")
     print(encrypt_wachtwoord)
+    status = "niet Geactiveerd"
+    user_token = secrets.token_urlsafe()
+        
+    api.config['MAIL_SERVER']='smtp.gmail.com'
+    api.config['MAIL_PORT'] = 465
+    api.config['MAIL_USERNAME'] = 'personal.learning.pulse@gmail.com'
+    api.config['MAIL_PASSWORD'] = 'up4BCcZJ'
+    api.config['MAIL_USE_TLS'] = False
+    api.config['MAIL_USE_SSL'] = True
+    mail = Mail(api)
+
+    msg = Message('Bevestiging registratie pelep', sender = 'personal.learning.pulse@gmail.com', recipients = [email])
+    # msg.body = (f"Beste {gebruikersnaam},\nBedankt voor het registreren bij PeLeP.\n\nHeeft u geen acount aangemaakt klik dan alsublieft hier: {link}\n")
+    msg.html = render_template("email.html", content = gebruikersnaam, token = user_token)
+    mail.send(msg)
+    print("Sent")
+
     q1="""
-    CREATE (g:Gebruiker {gebruikersnaam:$gebruikersnaam, email:$email, wachtwoord:$encrypt_wachtwoord})
+    CREATE (g:Gebruiker {gebruikersnaam:$gebruikersnaam, email:$email, wachtwoord:$encrypt_wachtwoord, status:$status, gebruiker_token:$user_token})
     """
-    map = {"gebruikersnaam":gebruikersnaam, "email":email, "wachtwoord":encrypt_wachtwoord}
+    map = {"gebruikersnaam":gebruikersnaam, "email":email, "wachtwoord":encrypt_wachtwoord, "status":status, "gebruiker_token":user_token}
     try:
-        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord)
+        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord, user_token = user_token)
         return 'succesfull'
     except Exception as e:
         return (str(e))
+
+@api.route("/bevestigen", methods=["PUT"])
+def bevestig_gebruiker():
+    req_data = request.get_json()
+
 
 #Make POST request for reageren
 @api.route("/api/react", methods=["POST"])

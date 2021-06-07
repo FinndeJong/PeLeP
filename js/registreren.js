@@ -48,9 +48,22 @@ function registreren(){
             } else {
                 document.getElementById("fout_email").innerHTML = "Vul een geldig email adres in";
                 console.log("4")
-            }  
-            var token =  Math.random().toString(36).substr(2); 
-            console.log(token)
+            } 
+
+
+         
+            // var token_databse = json[aantal].g.token
+            // var token =  Math.random().toString(36).substr(2); 
+            // while (token == token_databse){
+            //     console.log(token)
+            //     console.log(token_databse)
+            //     var token =  Math.random().toString(36).substr(2); 
+            //     if (token != token_databse){
+            //         console.log(token)
+            //         console.log(token_databse)
+            //         break
+            //     }
+            // } 
             aantal = aantal + 1
         })
 
