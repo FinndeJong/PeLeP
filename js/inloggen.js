@@ -13,29 +13,39 @@ document.getElementById("showpassword").addEventListener('click', function(){
     DisplayPassword();
 })
 
+// E-mail validation!!
+function isValidEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 
-// Kijk of Invoervelden ingevuld zijn
-
+// Kijk of Invoervelden ingevuld zijn!!
 var login = document.getElementById("loginbtn");
 login.addEventListener("click", function(){
-    let inputnaam = document.getElementById("gebruikersnaaminput");
+    let inputemail = document.getElementById("emailinput");
     let inputpassword = document.getElementById("inputpassword");
     // console.log(inputnaam.value);
     // console.log(inputpassword.value);
 
-    function validateinput(naam, password) {
+    function validateinput(email, password) {
         let x = true;
         let y = true;
         let inputfields = 0;
-        
-        if (naam.value != "") {
-            if (naam.value.includes("`") || naam.value.includes(`"`) || naam.value.includes("'")) {
+    
+        if (email.value != "") {
+            if (email.value.includes("`") || email.value.includes(`"`) || email.value.includes("'")) {
                 // console.log("fout");
                 x = true
             }
             else {
-                // console.log("naam is goed");
-                x = false
+                console.log(isValidEmail(email.value))
+                if (isValidEmail(email.value) == true) {
+                    x = false
+                    console.log("email is goed");
+                }
+                else {
+                    console.log("email error")
+                }
             }                
         }
         else {
@@ -55,9 +65,6 @@ login.addEventListener("click", function(){
         else {
             inputfields = 0
         }
-        // if (naam.value == "" && password.value == "") {
-            
-        // }
         if (x == false && y == false) {
             inputfields = 1
         }
@@ -65,10 +72,8 @@ login.addEventListener("click", function(){
     };
 
     let xa = document.getElementById("inlogerror");
-    // console.log(xa.style.visibility) 
 
-    if (validateinput(inputnaam, inputpassword) == 1) {
-        // console.log(validateinput(inputnaam, inputpassword));
+    if (validateinput(inputemail, inputpassword) == 1) {
         xa.style.display = "none";
 
         // HIER MOET DE TIJDLIJN LINK KOMEN MET DE USER TOKEN ERIN,
@@ -78,15 +83,12 @@ login.addEventListener("click", function(){
 
     }
     else {
-        if (inputnaam.value == "" && inputpassword.value == "") {
+        if (inputemail.value == "" && inputpassword.value == "") {
             xa.style.display = "none"
         }
         else {
             xa.style.display = "block";
-            // console.log(validateinput(inputnaam, inputpassword));
             console.log("show error")
         }
     }
-        
-    // validateinput(inputnaam, inputpassword);
 })
