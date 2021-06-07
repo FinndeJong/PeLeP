@@ -99,3 +99,13 @@ hr{
 .showwwimg{
     display: block;
 }
+
+/* Error messages!! */
+.ongeldigetekenserror{
+    margin-bottom: 0;
+    color: red;
+    text-align: center;
+}
+#inlogerror{
+    display: none;
+}
