@@ -115,6 +115,19 @@ def nieuwe_gebruiker():
 @api.route("/bevestigen", methods=["PUT"])
 def bevestig_gebruiker():
     req_data = request.get_json()
+    token = req_data['gebruiker_token']
+    print(token)
+    status = "geactiveerd"
+    q1="""
+    MATCH (g:Gebruiker{gebruiker_token:$token})
+    SET g.status = $status
+    """
+    map = {"status": status, "gebruiker_token": token}
+    try:
+        session.run(q1,map, token = token)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
 
 
 #Make POST request for reageren
