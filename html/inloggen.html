@@ -30,13 +30,19 @@
             </div>
     <!-- input e-mail + wachtwoord -->
             <div class="row">
-                <div class="col-12 mb-3">
+                <div class="col-12 mb-0">
                     <label class="mb-0 ms-2">E-mail</label>
                     <input type="text" class="form-control" id="emailinput" name="name" placeholder="E-mail" required>
                 </div>
-                <div class="col-12 mb-1">
+                <div class="col-12 mb-3">
+                    <p class="ongeldigerror">
+                        Ongeldig e-mailadres
+                    </p>
+                </div>
+
+                <div class="col-12 mb-0">
                     <label class="mb-0 ms-2">Wachtwoord</label>
-                    <div class="input-group mb-2">
+                    <div class="input-group">
                         <input type="password" class="form-control" id="inputpassword" placeholder="Wachtwoord" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                         <div class="input-group-append">
                             <span class="input-group-text pswspan" id="showpassword">
@@ -46,7 +52,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mb-1 inlogerror" id="inlogerror">
+                <div class="col-12 mb-3">
+                    <p class="ongeldigerror">
+                        Ongeldig wachtwoord
+                    </p>
+                </div>
+
+
+                <div class="col-12 mb-3 inlogerror" id="inlogerror">
                     <p class="ongeldigetekenserror">E-mail of wachtwoord is niet ingevuld of heeft één of meerdere ongeldige tekens, zoals: <br>(" ' `)</p>
                 </div>
             </div>
