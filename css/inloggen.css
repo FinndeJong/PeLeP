@@ -109,10 +109,10 @@ hr{
 .ongeldigerror{
     color: red;
     margin-bottom: 0;
-
+}
+#ongeldigww{
     display: none;
 }
-
-#inlogerror{
+#ongeldigemail{
     display: none;
 }

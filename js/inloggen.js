@@ -24,6 +24,10 @@ var login = document.getElementById("loginbtn");
 login.addEventListener("click", function(){
     let inputemail = document.getElementById("emailinput");
     let inputpassword = document.getElementById("inputpassword");
+
+    let invalidmail = document.getElementById("ongeldigemail");
+    let invalidpsw = document.getElementById("ongeldigww");
+
     // console.log(inputnaam.value);
     // console.log(inputpassword.value);
 
@@ -32,6 +36,11 @@ login.addEventListener("click", function(){
         let y = true;
         let inputfields = 0;
     
+        // Inputfields = 0 is Standaard variable
+        // Inputfields = 1 is Goed ingevuld
+        // Inputfields = 2 is alleen E-mail goed
+        // Inputfields = 3 is alleen Wachtwoord goed
+
         if (email.value != "") {
             if (email.value.includes("`") || email.value.includes(`"`) || email.value.includes("'")) {
                 // console.log("fout");
@@ -41,10 +50,10 @@ login.addEventListener("click", function(){
                 console.log(isValidEmail(email.value))
                 if (isValidEmail(email.value) == true) {
                     x = false
-                    console.log("email is goed");
+                    // console.log("email is goed");
                 }
                 else {
-                    console.log("email error")
+                    // console.log("email error")
                 }
             }                
         }
@@ -68,13 +77,21 @@ login.addEventListener("click", function(){
         if (x == false && y == false) {
             inputfields = 1
         }
+        else if (x == false && y == true) {
+            inputfields = 2
+        }
+        else if (x == true && y == false) {
+            inputfields = 3
+        }
+        
         return inputfields
     };
 
     let xa = document.getElementById("inlogerror");
 
     if (validateinput(inputemail, inputpassword) == 1) {
-        xa.style.display = "none";
+        invalidmail.style.display = "none";
+        invalidpsw.style.display = "none";
 
         // HIER MOET DE TIJDLIJN LINK KOMEN MET DE USER TOKEN ERIN,
         // nu staat er een tijdelijke html link in!!
@@ -84,11 +101,18 @@ login.addEventListener("click", function(){
     }
     else {
         if (inputemail.value == "" && inputpassword.value == "") {
-            xa.style.display = "none"
+            invalidmail.style.display = "none"
+            invalidpsw.style.display = "none"
         }
         else {
-            xa.style.display = "block";
-            console.log("show error")
+            if (validateinput(inputemail, inputpassword) == 2) {
+                invalidpsw.style.display = "block"
+                invalidmail.style.display = "none"
+            }
+            else if (validateinput(inputemail, inputpassword) == 3 || validateinput(inputemail, inputpassword) == 0) {
+                invalidmail.style.display = "block"
+                invalidpsw.style.display = "none"
+            }
         }
-    }
+    }    
 })
