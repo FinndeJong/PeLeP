@@ -2,6 +2,11 @@ from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
 from datetime import datetime
+from passlib.hash import sha256_crypt
+from flask_mail import Mail, Message
+from werkzeug.utils import html
+import secrets
+
 
 #establish the connection
 with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
@@ -11,9 +16,9 @@ with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.t
         pwd = row[1]
         uri = row[2]
 print(username, pwd, uri)
-driver = GraphDatabase.driver(uri=uri,auth=(username,pwd))
+driver = GraphDatabase.driver(uri = uri,auth = (username,pwd))
 session = driver.session()
-api = Flask(__name__)
+api = Flask(__name__, template_folder='../templates')
 
 # aanmaken van een Pulse API
 @api.route("/create", methods=["GET", "POST"])
@@ -56,6 +61,77 @@ def display_node():
     data = results.data()
     print(data)
     return(jsonify(data))
+
+# API voor het ophealen van de pulses
+@api.route("/gebruiker",methods=["GET"])
+def gebruiker_ophalen():
+    q1="""
+    MATCH (g:Gebruiker) RETURN g
+    """
+    results = session.run(q1)
+    data = results.data()
+    print(data)
+    return(jsonify(data))
+
+
+
+@api.route("/nieuwe_gebruiker", methods=["POST"])
+def nieuwe_gebruiker():
+    req_data = request.get_json()
+    email = req_data["email"]
+    gebruikersnaam = req_data["gebruikersnaam"]
+    wachtwoord = req_data["wachtwoord"]
+    print("mail")
+    print(email)
+    print("naam")
+    print(gebruikersnaam)
+    encrypt_wachtwoord = sha256_crypt.hash(wachtwoord)
+    print("wachtwoord")
+    print(encrypt_wachtwoord)
+    status = "niet Geactiveerd"
+    user_token = secrets.token_urlsafe()
+        
+    api.config['MAIL_SERVER']='smtp.gmail.com'
+    api.config['MAIL_PORT'] = 465
+    api.config['MAIL_USERNAME'] = 'personal.learning.pulse@gmail.com'
+    api.config['MAIL_PASSWORD'] = 'up4BCcZJ'
+    api.config['MAIL_USE_TLS'] = False
+    api.config['MAIL_USE_SSL'] = True
+    mail = Mail(api)
+
+    msg = Message('Bevestiging registratie pelep', sender = 'personal.learning.pulse@gmail.com', recipients = [email])
+    # msg.body = (f"Beste {gebruikersnaam},\nBedankt voor het registreren bij PeLeP.\n\nHeeft u geen acount aangemaakt klik dan alsublieft hier: {link}\n")
+    msg.html = render_template("email.html", content = gebruikersnaam, token = user_token)
+    mail.send(msg)
+    print("Sent")
+
+    q1="""
+    CREATE (g:Gebruiker {gebruikersnaam:$gebruikersnaam, email:$email, wachtwoord:$encrypt_wachtwoord, status:$status, gebruiker_token:$user_token})
+    """
+    map = {"gebruikersnaam":gebruikersnaam, "email":email, "wachtwoord":encrypt_wachtwoord, "status":status, "gebruiker_token":user_token}
+    try:
+        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord, user_token = user_token)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+
+@api.route("/bevestigen", methods=["PUT"])
+def bevestig_gebruiker():
+    req_data = request.get_json()
+    token = req_data['gebruiker_token']
+    print(token)
+    status = "geactiveerd"
+    q1="""
+    MATCH (g:Gebruiker{gebruiker_token:$token})
+    SET g.status = $status
+    """
+    map = {"status": status, "gebruiker_token": token}
+    try:
+        session.run(q1,map, token = token)
+        return 'succesfull'
+    except Exception as e:
+        return (str(e))
+
 
 #Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
