@@ -9,7 +9,7 @@ import secrets
 
 
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
+with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -51,8 +51,11 @@ def create_node():
 # API voor het ophealen van de pulses
 @api.route("/pulse",methods=["GET"])
 def display_node():
+
     q1="""
-    MATCH (p:Pulse) RETURN p
+    MATCH (p:Pulse)
+    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
+    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
     """
     results = session.run(q1)
     data = results.data()
@@ -136,17 +139,20 @@ def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
     link = req_data['link']
-    q1="""
+    
+    print(reactie)
+    print(link)
+    q2="""
     MATCH (p:Pulse{link:$link})
     CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
     """
     map = {"reactie":reactie, "link":link}
     try:
-        session.run(q1,map)
+        session.run(q2, map)
         return 'succesfull'
     except Exception as e:
         return (str(e))
-   
+
 # API voor het bewerken van een Checkpoint -->
 @api.route("/bewerken",methods=["PUT"])
 def bewerken_node():
