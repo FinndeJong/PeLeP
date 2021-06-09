@@ -23,3 +23,5 @@ manage.py
 neo4j.txt
 
 ongebruikte code.txt
+
+__pycache__

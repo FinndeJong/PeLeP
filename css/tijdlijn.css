@@ -112,6 +112,21 @@
         max-width: 150px;
     }
 
+    .picture-react{
+        border-radius: 50%;
+        width: 100%;
+        max-width: 110px;
+    }
+
+    /* Reageren */
+    .fs-pulse{
+        font-size: 0.85rem;
+    }
+
+    .preserve-breaks{
+        white-space: pre-wrap !important;
+    }
+
  /*Popup  */
     /* emoji's */
     .emoji-popup{
@@ -142,6 +157,11 @@
 
     .modal-header{
         border-bottom: #577590 solid thin!important;
+        opacity: 1 !important;
+    }
+
+    .modal-footer{
+        border-top: #577590 solid thin!important;
         opacity: 1 !important;
     }
 
