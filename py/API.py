@@ -107,6 +107,8 @@ def bewerken_node():
         return (str(e))
 
 # API voor inlog validatie (test)!!
+# TEST
+# TEST
 @api.route("/api/login", methods=["GET", "POST"])
 def validatelogin():
     # Haal de body van js op (dus ww en username)

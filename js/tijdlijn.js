@@ -182,7 +182,7 @@ function nieuw(){
     
     var titel = document.getElementById("popup-title-input").value;
     var tekst = document.getElementById("popup-pulse-context").value;
-console.log("yeah")
+    console.log("yeah")
     // Hier wordt gecontroleerd of er een emoji, titel en tekst is gekozen
     if (emoji == "" || titel == "" || tekst == ""){
         console.log("goed")
@@ -335,7 +335,7 @@ console.log("yeah")
         document.getElementById("exampleModal").style.display = "none"
     }
 
-    refreshPage();
+    setTimeout(function() { refreshPage(); }, 500);
 }
 
 
@@ -580,7 +580,7 @@ function send_reaction(id){
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 
-    refreshPage();
+      setTimeout(function() { refreshPage(); }, 500);
 }
 
 function get_reacties(){
@@ -1091,6 +1091,6 @@ function bewerken(){
 
         document.getElementById("exampleModal").style.display = "none"
 
-        refreshPage();
+        setTimeout(function() { refreshPage(); }, 500);
     }
 // }
