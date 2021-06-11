@@ -538,7 +538,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
-                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" onclick="copylink()" data-content="`+link+`" data-original-title="" title="">  
+                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="`+link+`" data-original-title="" title="">  
                     </div>
                     <div class="col-sm-1 text-center pb-3">
                         <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
@@ -1103,19 +1103,3 @@ function bewerken(){
         setTimeout(function() { refreshPage(); }, 500);
     }
 // }
-
-function copylink() {
-  
-  /* Get the text field */
-  var copyText = document.getElementsByClassName("popover-body")[0].innerText;
-  console.log(copyText)
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-}
