@@ -9,7 +9,7 @@ import secrets
 
 
 #establish the connection
-with open(r'C:\Users\Kuipe\OneDrive\Documenten\000Hogeschool\000Hogeschool\studiejaar1\PELEP\PELEP\PeLeP\PeLeP\Frontend\txt\neo4j.txt') as f1:
+with open(r'C:\Users\Kuipe\OneDrive\Documenten\000Hogeschool\000Hogeschool\studiejaar1\PELEP\PELEP\PeLeP\PeLeP\Backend\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -51,8 +51,11 @@ def create_node():
 # API voor het ophealen van de pulses
 @api.route("/pulse",methods=["GET"])
 def display_node():
+
     q1="""
-    MATCH (p:Pulse) RETURN p
+    MATCH (p:Pulse)
+    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
+    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
     """
     results = session.run(q1)
     data = results.data()
