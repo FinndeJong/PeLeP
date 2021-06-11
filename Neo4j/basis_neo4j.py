@@ -1,6 +1,6 @@
 from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
-import csv,secrets
+import csv,secrets,requests
 
 #establish the connection
 with open(r'C:\Users\caspe\Documents\GitHub\PeLeP\Neo4j\Test-API.text') as f1:
@@ -26,9 +26,10 @@ api = Flask(__name__)
 
 
 # werkende token post
+# run this query in Neo4j: CREATE CONSTRAINT ON (p:plulse) ASSERT p.token IS UNIQUE
 @api.route("/test_token", methods=["POST"])
 def test_token():
-    naam = "Test 9"
+    naam = "xxxxxxxxxx"
     token = secrets.token_urlsafe()
     print(token)
     q1="""
@@ -39,9 +40,9 @@ def test_token():
         session.run(q1, map, token = token)
         return 'succesfull'
     except:
-        token =secrets.token_urlsafe()
+        token = secrets.token_urlsafe()
         session.run(q1, map, token = token)
-        return 'second try'
+        return 'another try'
 
 # token post loop in progress 
 # @api.route("/test_token", methods=["POST"])
