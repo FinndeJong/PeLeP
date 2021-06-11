@@ -182,7 +182,7 @@ function nieuw(){
     
     var titel = document.getElementById("popup-title-input").value;
     var tekst = document.getElementById("popup-pulse-context").value;
-console.log("yeah")
+    console.log("yeah")
     // Hier wordt gecontroleerd of er een emoji, titel en tekst is gekozen
     if (emoji == "" || titel == "" || tekst == ""){
         console.log("goed")
@@ -335,7 +335,7 @@ console.log("yeah")
         document.getElementById("exampleModal").style.display = "none"
     }
 
-    refreshPage();
+    setTimeout(function() { refreshPage(); }, 500);
 }
 
 
@@ -369,7 +369,7 @@ fetch('http://127.0.0.1:5000/pulse', {
             var comp6 = json[pulse].p.comp6;
             var t = json[pulse].p.tekst;
             var datum = json[pulse].p.datum;
-            var pulse_token = "JHbfjew&"
+            var pulse_token = json[pulse].p.pulse_token
             // Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
             if (comp1 == undefined || comp1 == ""){
                 var c1 = ""
@@ -507,7 +507,10 @@ fetch('http://127.0.0.1:5000/pulse', {
             else{
                 var r = "";
             }
-
+            console.log("token:")
+            console.log(pulse_token) 
+            var link = "http://localhost/PeLeP/html/reactgast.html?token=" + pulse_token
+            console.log(link)
             // hier word voor het id een 
             x = document.getElementById(id)
             x.innerHTML = `             
@@ -535,7 +538,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
-                        <img src="../img/share.png" class="icon">
+                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="`+link+`" data-original-title="" title="">  
                     </div>
                     <div class="col-sm-1 text-center pb-3">
                         <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
@@ -551,6 +554,13 @@ fetch('http://127.0.0.1:5000/pulse', {
             </div>`
             pulse = pulse + 1
             console.log(emoji)
+
+            var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
+            var popoverList = popoverTriggerList.map( function( popoverTrigger )
+            {
+            console.log("yeh")
+            return new bootstrap.Popover( popoverTrigger );
+            } );
         })
     })
 
@@ -585,7 +595,7 @@ function send_reaction(id){
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 
-    refreshPage();
+      setTimeout(function() { refreshPage(); }, 500);
 }
 
 function get_reacties(){
@@ -1090,6 +1100,6 @@ function bewerken(){
 
         document.getElementById("exampleModal").style.display = "none"
 
-        refreshPage();
+        setTimeout(function() { refreshPage(); }, 500);
     }
 // }
