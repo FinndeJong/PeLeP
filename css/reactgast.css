@@ -1,0 +1,82 @@
+/* Box sizing en opmaak */
+.container2 {
+  width: 600px;
+  height: 480px;
+  padding: 50px;
+  margin: auto;
+  margin-top: 10rem;
+  border: 1px solid #577590;
+  border-radius: 8px;
+  background: white;
+}
+
+/* hr Kleur */
+hr {
+  opacity: 1 !important;
+  color: #577590 !important;
+}
+
+/* Tekst-plaats + Tekst-kleur */
+.txt2 {
+  text-align: center;
+  color: #577590;
+}
+
+/* Logo opmaak */
+.logo {
+  width: 30vh;
+  height: 145px;
+  margin: auto;
+  display: block;
+  margin-bottom: 30px;
+}
+
+/* Ga verder button */
+.btn1 {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  background-color: #577590;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Ga verder button hover */
+.btn1:hover {
+  background-color: white;
+  border: 1px solid;
+  color: #577590;
+}
+
+/* Log-in button */
+.btn2 {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  color: #577590;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Log-in button hover */
+.btn2:hover {
+  background-color: white;
+  border: 1px solid;
+  color: #577590;
+}
+
+/* Input opmaak */
+input:invalid {
+  border: 1px solid #577590;
+  opacity: 70%;
+}
+
+/* Opmaak invalid */
+.invalid {
+  color: red;
+  text-align: center;
+}
