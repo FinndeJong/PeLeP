@@ -507,7 +507,10 @@ fetch('http://127.0.0.1:5000/pulse', {
             else{
                 var r = "";
             }
-
+            console.log("token:")
+            console.log(pulse_token) 
+            var link = "http://localhost/PeLeP/html/reactgast.html?token=" + pulse_token
+            console.log(link)
             // hier word voor het id een 
             x = document.getElementById(id)
             x.innerHTML = `             
@@ -535,7 +538,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
-                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="http://localhost/PeLeP/html/reactgast.html?token=`+pulse_token+`">  
+                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" onclick="copylink()" data-content="`+link+`" data-original-title="" title="">  
                     </div>
                     <div class="col-sm-1 text-center pb-3">
                         <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
@@ -551,6 +554,13 @@ fetch('http://127.0.0.1:5000/pulse', {
             </div>`
             pulse = pulse + 1
             console.log(emoji)
+
+            var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
+            var popoverList = popoverTriggerList.map( function( popoverTrigger )
+            {
+            console.log("yeh")
+            return new bootstrap.Popover( popoverTrigger );
+            } );
         })
     })
 
@@ -1094,28 +1104,18 @@ function bewerken(){
     }
 // }
 
-var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
-var popoverList = popoverTriggerList.map( function( popoverTrigger )
-{
-    return new bootstrap.Popover( popoverTrigger );
-} );
+function copylink() {
+  
+  /* Get the text field */
+  var copyText = document.getElementsByClassName("popover-body")[0].innerText;
+  console.log(copyText)
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
 
-// $(document).ready(function(){
-//     $('[data-toggle="popover"]').popover();   
-//   });
-// $(document).ready(function(){
-//     $('#vehicle').popover({
-//         content: '<input>',
-//         html: true,
-//         container: 'body',
-//         placement: 'bottom',
-//         trigger: 'click'
-//     });
-// });
-
-// $(function () {
-//     $('.example-popover').popover({
-//       container: 'body'
-//     })
-//   })
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
