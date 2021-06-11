@@ -369,7 +369,7 @@ fetch('http://127.0.0.1:5000/pulse', {
             var comp6 = json[pulse].p.comp6;
             var t = json[pulse].p.tekst;
             var datum = json[pulse].p.datum;
-            var pulse_token = "JHbfjew&"
+            var pulse_token = json[pulse].p.pulse_token
             // Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
             if (comp1 == undefined || comp1 == ""){
                 var c1 = ""
@@ -535,7 +535,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
-                        <img src="../img/share.png" class="icon">
+                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="http://localhost/PeLeP/html/reactgast.html?token=`+pulse_token+`">  
                     </div>
                     <div class="col-sm-1 text-center pb-3">
                         <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
@@ -1099,3 +1099,23 @@ var popoverList = popoverTriggerList.map( function( popoverTrigger )
 {
     return new bootstrap.Popover( popoverTrigger );
 } );
+
+
+// $(document).ready(function(){
+//     $('[data-toggle="popover"]').popover();   
+//   });
+// $(document).ready(function(){
+//     $('#vehicle').popover({
+//         content: '<input>',
+//         html: true,
+//         container: 'body',
+//         placement: 'bottom',
+//         trigger: 'click'
+//     });
+// });
+
+// $(function () {
+//     $('.example-popover').popover({
+//       container: 'body'
+//     })
+//   })

@@ -35,17 +35,19 @@ def create_node():
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
     tijd = req_data['datum-tijd']
-
+    token = secrets.token_urlsafe()
     # Hier wordt de data naar de be gestuurd
     q1 = """
-    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
+    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd, pulse_token:$token})
     """
     map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "datum":tijd}
+            "comp5": comp5, "comp6": comp6, "datum":tijd, "pulse_token":token}
     try:
-        session.run(q1, map, tijd = tijd)
-        return 'succesfull'
+        session.run(q1, map, tijd = tijd, token = token)
+        return "succesfull"
     except Exception as e:
+        token = secrets.token_urlsafe()
+        session.run(q1, map, tijd = tijd, token = token)
         return (str(e))
 
 # API voor het ophealen van de pulses
@@ -100,10 +102,8 @@ def nieuwe_gebruiker():
     mail = Mail(api)
 
     msg = Message('Bevestiging registratie pelep', sender = 'personal.learning.pulse@gmail.com', recipients = [email])
-    # msg.body = (f"Beste {gebruikersnaam},\nBedankt voor het registreren bij PeLeP.\n\nHeeft u geen acount aangemaakt klik dan alsublieft hier: {link}\n")
     msg.html = render_template("email.html", content = gebruikersnaam, token = user_token)
-    mail.send(msg)
-    print("Sent")
+
 
     q1="""
     CREATE (g:Gebruiker {gebruikersnaam:$gebruikersnaam, email:$email, wachtwoord:$encrypt_wachtwoord, status:$status, gebruiker_token:$user_token})
@@ -111,9 +111,15 @@ def nieuwe_gebruiker():
     map = {"gebruikersnaam":gebruikersnaam, "email":email, "wachtwoord":encrypt_wachtwoord, "status":status, "gebruiker_token":user_token}
     try:
         session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord, user_token = user_token)
-        return 'succesfull'
-    except Exception as e:
-        return (str(e))
+        mail.send(msg)
+        print("Sent")
+        return "succesfull"
+    except:
+        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord, user_token = user_token)
+        user_token = secrets.token_urlsafe()
+        mail.send(msg)
+        print("Sent")
+        return "new succesfull"
 
 @api.route("/bevestigen", methods=["PUT"])
 def bevestig_gebruiker():
@@ -128,7 +134,7 @@ def bevestig_gebruiker():
     map = {"status": status, "gebruiker_token": token}
     try:
         session.run(q1,map, token = token)
-        return 'succesfull'
+        return "succesfull"
     except Exception as e:
         return (str(e))
 
@@ -149,7 +155,7 @@ def reageer_post():
     map = {"reactie":reactie, "link":link}
     try:
         session.run(q2, map)
-        return 'succesfull'
+        return "succesfull"
     except Exception as e:
         return (str(e))
 
@@ -178,7 +184,7 @@ def bewerken_node():
         "comp5": comp5, "comp6": comp6, "bewerkdatum":tijd, "pulse_token":pulse_token}
     try:
         session.run(q1, map, tijd = tijd)
-        return 'succesfull'
+        return "succesfull"
     except Exception as e:
         return (str(e))
 
