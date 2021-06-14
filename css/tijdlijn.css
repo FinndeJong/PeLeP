@@ -39,6 +39,7 @@
 
     .nav-link:hover{
         color: #D5DDE4 !important;
+        cursor: pointer;
     }
 
 /* Vak met knoppen filer en pulse */
@@ -56,6 +57,7 @@
             background-color: #F5F7F9 !important;
             color: #577590 !important;
             border-color: #577590 !important;
+            cursor: pointer;
         }
 
     /* Filter knop */
@@ -69,6 +71,7 @@
         .btn-filter:hover{
             background-color: #577590 !important;
             color: white !important;
+            cursor: pointer;
         }
 
 /* persoonlijke foto*/
@@ -100,12 +103,28 @@
     
     .icon:hover{
         background-color: #D5DDE4;
+        cursor: pointer;
     }
     /* Afbeelding persoon */
     .picture{
         border-radius: 50%;
         width: 100%;
         max-width: 150px;
+    }
+
+    .picture-react{
+        border-radius: 50%;
+        width: 100%;
+        max-width: 110px;
+    }
+
+    /* Reageren */
+    .fs-pulse{
+        font-size: 0.85rem;
+    }
+
+    .preserve-breaks{
+        white-space: pre-wrap !important;
     }
 
  /*Popup  */
@@ -117,6 +136,7 @@
 
     .emoji-popup:hover{
         background-color: #D5DDE4;
+        cursor: pointer;
     }
     /* Knoppen in de popup */
     .btn-popup{
@@ -127,6 +147,22 @@
     .btn-popup:hover{
         background-color: #577590;
         color: white !important;
+        cursor: pointer;
+    }
+
+    /* Border om het vak */
+    .modal-content{
+        border: #577590 solid thin !important;
+    }
+
+    .modal-header{
+        border-bottom: #577590 solid thin!important;
+        opacity: 1 !important;
+    }
+
+    .modal-footer{
+        border-top: #577590 solid thin!important;
+        opacity: 1 !important;
     }
 
 /* Lijnen */
@@ -157,6 +193,12 @@
     }
 
  /*competenties  */
+
+    #competentie-link{
+        text-decoration: none;
+        color: black;
+    }
+
     .chip {
         display: inline-block;
         padding: 0 25px 0px 14px;
@@ -260,7 +302,7 @@
         cursor: pointer;
     }
     /* Het vinkje voor geselecteerd */
-    #img-sam,#img-ref,#img-aan,#img-pro,#img-boo,#img-pla{
+    #img-sam,#img-ref,#img-aan,#img-pro,#img-boo,#img-pla, #img-samenwerken, #img-reflecteren, #img-aanpassingsvermogen, #img-pro-actief, #img-boodschapoverbrengen, #img-plannen{
         height: 17px;
         display: none;
     }
@@ -269,7 +311,6 @@
         display: inline-block;
         width: auto !important;
     }
-
 
 
     /*
