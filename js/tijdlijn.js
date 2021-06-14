@@ -473,13 +473,14 @@ fetch('http://127.0.0.1:5000/pulse', {
             var reaction_array = []
             var reaction_html = []
 
-
-            if (reactions_hvl > 0){
+            // Hier word gekeken of er uberhaupt reacties zijn!!
+            if (reactions_hvl > 0) {
                 for (let i = 0; i < reactions_hvl; i++) {
                     // console.log(json[pulse].p.comments[i]["reactie"])
                     reaction_array.push(json[pulse].p.comments[i]["reactie"])
                 }
 
+                // Voor elke reactie word hier een stukje html aangemaakt!!
                 reaction_array.forEach(function(reactions){
                     rtest = `
                     <div class="row mt-4 mb-4 ps-5">
@@ -499,7 +500,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 console.log(reaction_html.join(""))
                 var r = reaction_html.join("")
             }
-            else{
+            else {
                 var r = "";
             }
 

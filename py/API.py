@@ -2,6 +2,7 @@ from flask import Flask,request,jsonify,redirect,render_template,request,jsonify
 from neo4j import GraphDatabase
 import csv
 from datetime import datetime
+from passlib.hash import sha256_crypt
 
 #establish the connection
 with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
@@ -109,13 +110,33 @@ def bewerken_node():
 # API voor inlog validatie (test)!!
 # TEST
 # TEST
+# Functie om wachtwoord te valideren
+def valdidatepassword(email, password, dbemail, dbpassword, active):
+    if active == True:
+        if email == dbemail:
+            if sha256_crypt.verify(password, dbpassword) == True:
+                return 200
+            else:
+                return 403
+        else:
+            return 403
+    else:
+        return 403
+
 @api.route("/api/login", methods=["GET", "POST"])
 def validatelogin():
-    # Haal de body van js op (dus ww en username)
-    req_data = request.get_json()
-    username = req_data['username']
-    password = req_data['password']
+    # Haal de body van js op (dus ww en email)
+    # req_data = request.get_json()
+    # email = req_data['email']
+    # password = req_data['password']
 
+    q1 = """MATCH (g:Gebruiker) RETURN g"""
+    results = session.run(q1)
+    data = results.data()
+    print(data)
+    print(data[0])
+    return "User data returned"
+    
 
 if __name__=="__main__":
     api.run(debug=True)
