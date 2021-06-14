@@ -120,7 +120,9 @@ def create_node():
 @api.route("/pulse",methods=["GET"])
 def display_node():
     q1="""
-    MATCH (p:Pulse) RETURN p
+    MATCH (p:Pulse)
+    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
+    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
     """
     results=session.run(q1)
     data=results.data()
@@ -279,6 +281,21 @@ def bewerken_node():
         print(7)
     else:
         print("kaas")
+
+@api.route("/delen", methods=["GET"])
+def gedeelde_pulse():
+    req_data = request.get_json()
+    token = req_data['Pulse_token']
+    print(token)
+    q1="""
+    MATCH (p:Pulse{Pulse_token:$token})
+    RETURN p
+    """
+    results = session.run(q1)
+    data = results.data()
+    print(data)
+    return(jsonify(data))
+
 
 if __name__=="__main__":
     api.run(debug=True)
