@@ -68,7 +68,9 @@ def display_node():
 @api.route("/gebruiker",methods=["GET"])
 def gebruiker_ophalen():
     q1="""
-    MATCH (g:Gebruiker) RETURN g
+    MATCH (p:Pulse)
+    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
+    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
     """
     results = session.run(q1)
     data = results.data()
@@ -187,6 +189,21 @@ def bewerken_node():
         return "succesfull"
     except Exception as e:
         return (str(e))
+
+
+@api.route("/delen", methods=["GET"])
+def gedeelde_pulse():
+    req_data = request.get_json()
+    token = req_data['Pulse_token']
+    print(token)
+    q1="""
+    MATCH (p:Pulse{Pulse_token:$token})
+    RETURN p
+    """
+    results = session.run(q1)
+    data = results.data()
+    print(data)
+    return(jsonify(data))
 
 
 if __name__=="__main__":
