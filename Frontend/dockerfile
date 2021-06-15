@@ -1,6 +1,6 @@
 FROM node:12.8.0-alpine
 WORKDIR /server
-COPY ../settings.json .
+# COPY /settings.json .
 RUN npm install
 COPY . .
 EXPOSE 5000

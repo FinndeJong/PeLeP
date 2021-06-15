@@ -1,7 +1,8 @@
-FROM python:alpine3.7
-COPY . /app
-WORKDIR /app
+FROM python:alpine3.9
+COPY / txt
+WORKDIR /txt
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-EXPOSE 5001
+EXPOSE 5000
 ENTRYPOINT [ "python" ]
 CMD [ "API.py" ]
