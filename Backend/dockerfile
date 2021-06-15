@@ -1,8 +1,6 @@
 FROM python:alpine3.9
-COPY / txt
-WORKDIR /txt
+COPY . .
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r ./txt/requirements.txt
 EXPOSE 5000
-ENTRYPOINT [ "python" ]
-CMD [ "API.py" ]
+CMD [ "./py/API.py" ]
