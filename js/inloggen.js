@@ -88,15 +88,31 @@ login.addEventListener("click", function(){
     };
 
     let xa = document.getElementById("inlogerror");
-
+    // Kijken of alles is ingevuld en de correcte errors geven!!
     if (validateinput(inputemail, inputpassword) == 1) {
         invalidmail.style.display = "none";
         invalidpsw.style.display = "none";
 
-        // HIER MOET DE TIJDLIJN LINK KOMEN MET DE USER TOKEN ERIN,
-        // nu staat er een tijdelijke html link in!!
+        // API call om wachtwoord te veriefieren!!
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-        window.location.href = "../html/index.html"
+        var raw = JSON.stringify({
+        "email": inputemail,
+        "wachtwoord": inputpassword
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://127.0.0.1:5000/api/login", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
     }
     else {
