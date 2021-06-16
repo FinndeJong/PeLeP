@@ -97,10 +97,7 @@ login.addEventListener("click", function(){
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
-        "email": inputemail,
-        "wachtwoord": inputpassword
-        });
+        var raw = JSON.stringify({"email":inputemail.value,"wachtwoord":inputpassword.value});
 
         var requestOptions = {
         method: 'POST',
@@ -111,10 +108,16 @@ login.addEventListener("click", function(){
 
         fetch("http://127.0.0.1:5000/api/login", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        .then(result => {
+        console.log(result);
+        
+        })
 
+
+        .catch(error => console.log('error', error));
     }
+
+
     else {
         if (inputemail.value == "" && inputpassword.value == "") {
             invalidmail.style.display = "none"

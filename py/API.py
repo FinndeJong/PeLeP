@@ -6,7 +6,7 @@ from passlib.hash import sha256_crypt
 import json
 
 #establish the connection
-with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
+with open(r'C:\Users\vosse\Documents\HBO OPEN-ICT OPDRACHTEN\PeLeP\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -117,7 +117,7 @@ def validatepassword(length, email, password, dbemail, dbpassword, active):
         if active == 'geactiveerd':
             if email == dbemail:
                 if sha256_crypt.verify(password, dbpassword) == True:
-                    return "200"
+                    return "Correct"
                 else:
                     return "incorrect password"
             else:

@@ -6,6 +6,7 @@ function refreshPage(){
     window.location.reload()
 }
 
+
 // Hier wordt gekeken welke emoji word gekozen
 let emoji = ""
 let emoji_op = document.getElementById("op");
@@ -550,7 +551,7 @@ fetch('http://127.0.0.1:5000/pulse', {
         })
     })
 
-// Hier word de reactie gepost naar database!!
+    // Hier word de reactie gepost naar database!!
             //test verander de variabele!!
 function send_reaction(id){
     console.log("clicked")
