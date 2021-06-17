@@ -1,31 +1,3 @@
-function pulse() {
-  var link = window.location.href
-  console.log(link)
-  var token = link.replace("http://localhost/PeLeP/html/anuleren.html?token=", "")
-  console.log(token)
-
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({"gebruiker_token":token});
-  console.log(raw)
-  
-  //Hier staan de fetch option
-  var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-  };
-
-  //Hier word gefetch en gekeken of er error zijn en de response word omgezet naar text en vervolgens word dat geconsole logged
-  fetch("http://127.0.0.1:5000/bevestigen", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-}
-
-
 /* JS voor validatie op PAGINA1 */
 function login() {
   var name = document.getElementById("validationDefaul").value;
@@ -42,8 +14,24 @@ function login() {
     })
         .then(response => response.json())
         .then(json => {
+          json.reverse();
+        console.log(json)
+        tabelbody = document.getElementById("timeline")
+        var i = json;
+        var pulse = 0;
+
+        var link = window.location.href
+        console.log(link)
+        var token = link.replace("http://localhost/PeLeP/html/reactgast.html?token=", "")
+        console.log("url-token:")
+        console.log(token)
+
+        i.forEach(function() {
+          console.log("pulse token:")
+          console.log(pulse)
+          console.log(json[pulse].p.pulse_token)
+          if(token == json[pulse].p.pulse_token){
             tabelbody = document.getElementById("timeline")
-            var pulse = 0;
             var id = pulse
             // Hier word de informatie uit de database gehaald
             var g = json[pulse].p.titel;
@@ -148,52 +136,6 @@ function login() {
                     <img src="../img/sad (1).png" id="emoji`+id+`" class="emoji">
                 </div>`
             }
-
-            // Hier word gekeken of er een reactie is op de checkpoint!!
-            // var reactions_hvl = Object.keys(json[pulse].p.comments).length
-            // var reaction_array = []
-            // var reaction_html = []
-
-            // Variabelen hoeveel reacties!!
-            // var r1 = 0;
-            // var r2 = 1;
-            // var r3 = 2;
-            // var r4 = 3;
-            // var r5 = 4;
-            // var r6 = 5;
-            // var r7 = 6;
-            // var r8 = 7;
-            // var r9 = 8;
-            // var r10 = 9;
-
-            // if (reactions_hvl > 0){
-            //     for (let i = 0; i < reactions_hvl; i++) {
-            //         // console.log(json[pulse].p.comments[i]["reactie"])
-            //         reaction_array.push(json[pulse].p.comments[i]["reactie"])
-            //     }
-
-            //     reaction_array.forEach(function(reactions){
-            //         rtest = `
-            //         <div class="row mt-4 mb-4 ps-5">
-            //             <div class="col-sm-3 text-center">
-            //               <img src="../img/pf.png" class="picture-react">
-            //             </div>
-            //             <div class="col-sm-8 pl-4">
-            //               <h5 class="fw-bold">Finn de Jong 28-04-2021</h5>
-            //               <p class="fs-pulse preserve-breaks">`+reactions+`</p>
-            //             </div>
-            //         </div>
-                    
-            //         <hr class="style1">`
-            //         reaction_html.push(rtest)
-            //     })
-
-            //     console.log(reaction_html.join(""))
-            //     var r = reaction_html.join("")
-            // }
-            // else{
-                var r = "";
-            // }
             console.log("token:")
             console.log(pulse_token) 
             var link = "http://localhost/PeLeP/html/reactgast.html?token=" + pulse_token
@@ -208,35 +150,87 @@ function login() {
               </div>
               `+e+`
             </div>
-          <!-- competenties & Emoji -->
-          <div class="row ps-3 pe-3" id="comp`+id+`">
-          `+c1+``+c2+``+c3+``+c4+``+c5+``+c6+`
-          </div>
-          
-          <!-- Pulse met naam + datum -->
-          <div class="row mt-4 mb-4 ps-5">
-            <div class="col-sm-3 text-center">
-                <img src="../img/pf.png" class="picture-react">
-            </div>
-            <div class="col-sm-8 pl-4">
-              <h4 class="fw-bold">Lieke Crum `+datum+`</h4>
-              <p class="preserve-breaks" id="tekst`+id+`">`+t+`</p>
-            </div>
-          </div>
-          <hr class="style1">
-          `+r+`
-          <!-- Hier kan de gast zijn review schrijven + Verstuur button -->
-          <div class="row">
-            <div class="col-sm-9 pb-3">
-              <textarea class="form-control" id="exampleFormControlTextarea2" name="react" placeholder="Type hier uw tekst in..." required></textarea>
-            </div>
-            <div class="col-sm-1 text-start p-0 pb-3">
-              <img src="../img/success (1).png" class="icon" id="`+id+`" onclick="send_reaction(this.id)">
-            </div>
-            </div>
-          </div>
-        </div>`
-        })
-      }
+              <!-- competenties & Emoji -->
+              <div class="row ps-3 pe-3" id="comp`+id+`">
+              `+c1+``+c2+``+c3+``+c4+``+c5+``+c6+`
+              </div>
+              <hr class="style1">
+              
+              <!-- Pulse met naam + datum -->
+              <div class="row mt-4 mb-4 ps-5">
+                <div class="col-sm-3 text-center">
+                    <img src="../img/pf.png" class="picture-react">
+                </div>
+                <div class="col-sm-8 pl-4">
+                  <h4 class="fw-bold">Lieke Crum `+datum+`</h4>
+                  <p class="preserve-breaks" id="tekst`+id+`">`+t+`</p>
+                </div>
+              </div>
+              <hr class="style1">
+              <!-- Hier kan de gast zijn review schrijven + Verstuur button -->
+              <div class="row">
+                <div class="col-sm-9 pb-3">
+                  <textarea class="form-control" id="react-area`+id+`" name="react" placeholder="Type hier uw tekst in..." required></textarea>
+                </div>
+                <div class="col-sm-1 text-start p-0 pb-3">
+                  <img src="../img/success (1).png" class="icon" id="`+id+`" onclick="send_reaction(this.id)">
+                </div>
+                <div id="pulse_token`+id+`" style="display: none;">`+pulse_token+`</div>
+                </div>
+              </div>
+            </div>`
+
+        }
+        pulse = pulse + 1
+      })
+    })
+  }
 }
 
+// Hier word de reactie gepost naar database!!
+//test verander de variabele!!
+function send_reaction(id){
+  console.log("clicked")
+  console.log(id)
+  var pulse_id = "react-area"+id
+  var react_text = document.getElementById(pulse_id).value;
+  token_id = "pulse_token" + id
+  var token = document.getElementById(token_id).innerHTML;
+  console.log(token)
+  console.log(react_text);
+  var persoon = document.getElementById("validationDefaul").value
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+      "reactie": react_text,
+      "pulse_token": token,
+      "commenter": persoon
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch("http://127.0.0.1:5000/api/react", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+function get_reacties(){
+    console.log("reacties!!!!")
+    fetch('http://127.0.0.1:5000/reacties', {
+    method: "GET",
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json)
+        json.reverse();
+        console.log(json)
+    })
+}

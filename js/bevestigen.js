@@ -1,7 +1,7 @@
 function bevestigen() {
     var link = window.location.href
     console.log(link)
-    var token = link.replace("http://localhost/PeLeP/html/anuleren.html?token=", "")
+    var token = link.replace("http://localhost/PeLeP/html/annuleren.html?token=", "")
     console.log(token)
 
     var myHeaders = new Headers();
