@@ -6,6 +6,7 @@ function refreshPage(){
     window.location.reload()
 }
 
+
 // Hier wordt gekeken welke emoji word gekozen
 let emoji = ""
 let emoji_op = document.getElementById("op");
@@ -467,23 +468,14 @@ fetch('http://127.0.0.1:5000/pulse', {
             var reaction_array = []
             var reaction_html = []
 
-            // Variabelen hoeveel reacties!!
-            // var r1 = 0;
-            // var r2 = 1;
-            // var r3 = 2;
-            // var r4 = 3;
-            // var r5 = 4;
-            // var r6 = 5;
-            // var r7 = 6;
-            // var r8 = 7;
-            // var r9 = 8;
-            // var r10 = 9;
-
-            if (reactions_hvl > 0){
+            // Hier word gekeken of er uberhaupt reacties zijn!!
+            if (reactions_hvl > 0) {
                 for (let i = 0; i < reactions_hvl; i++) {
                     // console.log(json[pulse].p.comments[i]["reactie"])
                     reaction_array.push(json[pulse].p.comments[i]["reactie"])
                 }
+
+                // Voor elke reactie word hier een stukje html aangemaakt!!
                 reaction_array.reverse();
                 reaction_array.forEach(function(reactions){
                     rtest = `
@@ -504,7 +496,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 console.log(reaction_html.join(""))
                 var r = reaction_html.join("")
             }
-            else{
+            else {
                 var r = "";
             }
             console.log("token:")
@@ -562,7 +554,7 @@ fetch('http://127.0.0.1:5000/pulse', {
         return new bootstrap.Popover( popoverTrigger );
         } );
     })
-    
+
 // Hier word de reactie gepost naar database!!
 //test verander de variabele!!
 function send_reaction(id){
