@@ -147,7 +147,7 @@ def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
     token = req_data['pulse_token']
-    commenter = req_data[`commenter`]
+    commenter = req_data['commenter']
     
     print(reactie)
     print(token)
