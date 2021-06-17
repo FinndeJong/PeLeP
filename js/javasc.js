@@ -136,40 +136,6 @@ function login() {
                     <img src="../img/sad (1).png" id="emoji`+id+`" class="emoji">
                 </div>`
             }
-
-            // Hier word gekeken of er een reactie is op de checkpoint!!
-            var reactions_hvl = Object.keys(json[pulse].p.comments).length
-            var reaction_array = []
-            var reaction_html = []
-
-            if (reactions_hvl > 0){
-                for (let i = 0; i < reactions_hvl; i++) {
-                    // console.log(json[pulse].p.comments[i]["reactie"])
-                    reaction_array.push(json[pulse].p.comments[i]["reactie"])
-                }
-
-                reaction_array.forEach(function(reactions){
-                    rtest = `
-                    <div class="row mt-4 mb-4 ps-5">
-                        <div class="col-sm-3 text-center">
-                          <img src="../img/pf.png" class="picture-react">
-                        </div>
-                        <div class="col-sm-8 pl-4">
-                          <h5 class="fw-bold">Finn de Jong 28-04-2021</h5>
-                          <p class="fs-pulse preserve-breaks">`+reactions+`</p>
-                        </div>
-                    </div>
-                    
-                    <hr class="style1">`
-                    reaction_html.push(rtest)
-                })
-
-                console.log(reaction_html.join(""))
-                var r = reaction_html.join("")
-            }
-            else{
-                var r = "";
-            }
             console.log("token:")
             console.log(pulse_token) 
             var link = "http://localhost/PeLeP/html/reactgast.html?token=" + pulse_token
@@ -201,7 +167,6 @@ function login() {
                 </div>
               </div>
               <hr class="style1">
-              `+r+`
               <!-- Hier kan de gast zijn review schrijven + Verstuur button -->
               <div class="row">
                 <div class="col-sm-9 pb-3">

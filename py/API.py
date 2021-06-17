@@ -147,14 +147,15 @@ def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
     token = req_data['pulse_token']
+    commenter = req_data[`commenter`]
     
     print(reactie)
     print(token)
     q2="""
     MATCH (p:Pulse{pulse_token:$token})
-    CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
+    CREATE (c:Comment {reactie:$reactie, commenter:$commenter})-[r:gereageerd]->(p)
     """
-    map = {"reactie":reactie, "token":token}
+    map = {"reactie":reactie, "commenter":commenter, "token":token}
     try:
         session.run(q2, map)
         return "succesfull"
