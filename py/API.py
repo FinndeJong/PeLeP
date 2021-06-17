@@ -9,7 +9,7 @@ from werkzeug.utils import html
 import secrets
 
 #establish the connection
-with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
+with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -35,13 +35,14 @@ def create_node():
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
     tijd = req_data['datum-tijd']
+    auteur = req_data['author']
     token = secrets.token_urlsafe()
     # Hier wordt de data naar de be gestuurd
     q1 = """
-    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd, pulse_token:$token})
+    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd, pulse_token:$token, auteur:$auteur})
     """
     map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "datum":tijd, "pulse_token":token}
+            "comp5": comp5, "comp6": comp6, "datum":tijd, "pulse_token":token, "auteur": auteur}
     try:
         session.run(q1, map, tijd = tijd, token = token)
         return "succesfull"
@@ -51,15 +52,15 @@ def create_node():
         return (str(e))
 
 # API voor het ophealen van de pulses
-@api.route("/pulse",methods=["GET"])
-def display_node():
-
+@api.route("/pulse/<gebruikerstoken>",methods=["GET"])
+def display_node(gebruikerstoken):
     q1="""
-    MATCH (p:Pulse)
+    MATCH (p:Pulse{auteur:$token})
     OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
     RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
     """
-    results = session.run(q1)
+    map = {"token": gebruikerstoken}
+    results = session.run(q1, map)
     data = results.data()
     print(data)
     return(jsonify(data))
@@ -68,15 +69,35 @@ def display_node():
 @api.route("/gebruiker",methods=["GET"])
 def gebruiker_ophalen():
     q1="""
-    MATCH (p:Pulse)
-    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
-    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
+    MATCH (g:Gebruiker)
+    RETURN g
     """
     results = session.run(q1)
     data = results.data()
     print(data)
     return(jsonify(data))
 
+# API voor het ophealen van de pulses
+@api.route("/api/speciafiekegebruiker",methods=["POST"])
+def speciafiekegebruiker_ophalen():
+    req_data = request.get_json()
+    gebruiker_token = req_data['gebruikerstoken']
+
+    q1="""
+    MATCH (g:Gebruiker{gebruiker_token:$gebruiker_tokens})
+    RETURN g.gebruikersnaam
+    """
+    map = {"gebruiker_tokens": gebruiker_token}
+    try:
+        results = session.run(q1, map)
+        print(results)
+        data = results.data()
+        print(data)
+        
+        return json.dumps(data)
+    
+    except Exception as e:
+        return (str(e))
 
 
 @api.route("/nieuwe_gebruiker", methods=["POST"])
