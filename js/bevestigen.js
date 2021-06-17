@@ -24,3 +24,8 @@ function bevestigen() {
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
+
+
+function nextpage() {
+    location.replace("http://localhost/PeLeP/html/inloggen.html")
+}
