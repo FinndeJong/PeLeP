@@ -26,14 +26,15 @@
     <!-- Link Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   </head>
-  <body onload="pulse()">
+  <body>
 
   <!-- PAGINA 1: Gast gebruiken vult Gebruikersnaam in + button naar log-in-->
     <!-- Logo -->
     <div name="RegForm">
       <div class="container2">
-          <img src="../img/edit.png" class="logo "alt="">
-
+        <div class="col logo mb-1">
+          <img class="pelep_logo" src="../img/logo.png" alt="logo pelep">
+      </div>
     <!-- input gebruikersnaam + validatie -->
         <div class="mb-3 txt2">
           <label for="validationDefault01" class="form-label">Tijdelijke Gebruikersnaam</label>
@@ -61,108 +62,6 @@
       <div id="timeline">
   
       </div>
-
-    <!-- PAGINA 2: Pulse en waarop gereageerd kan worden -->
-      <!-- Container met titel -->
-      <div class="container mb-4 mt-2" id="pulse-page">
-      <div class="row">
-        <div class="col p-3 ms-2 mb-0 pb-0">
-          <h3>Pulse 1</h3>
-        </div>
-
-    <!-- competenties & Emoji -->
-        <div class="col p-3 me-2 pb-0 text-end">
-          <img src="../img/sad (1).png" class="emoji">
-        </div>
-      </div>
-      <div class="row ps-3 pe-3">
-        <div class="col p-3 pb-0">
-          <div>
-            <div class="chip">
-              <div class="color-samenwerken"></div>
-              Samenwerken
-            </div>
-          </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div>
-            <div class="chip">
-              <div class="color-reflecteren"></div>
-              Reflecteren
-            </div>
-          </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div>
-            <div class="chip">
-              <div class="color-plannen"></div>
-              Plannen
-            </div>
-          </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div>
-            <div class="chip-boo">
-              <div class="color-boodschap"></div>
-              Boodschap overbrengen
-            </div>
-          </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div >
-            <div class="chip">
-              <div class="color-pro-actief"></div>
-              Pro-actief
-            </div>
-          </div>
-        </div>
-        <div class="col p-3 pb-0">
-          <div >
-            <div class="chip-aan">
-              <div class="color-aanpassingsvermogen"></div>
-              Aanpassingsvermogen
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr class="style1">
-      <div class="row mt-4 mb-4">
-        <div class="col-sm-3 text-center">
-          <img src="../img/pf.png" class="picture">
-        </div>
-
-      <!-- Pulse met naam + datum -->
-      <div class="col-sm-8 pl-4">
-        <h4 class="fw-bold">Lieke Crum 26-04-2021</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, maxime! Minus ipsum qui repudiandae error quia ipsam voluptas reiciendis laudantium nobis suscipit facere modi corporis eos ducimus, fugit doloribus expedita? </p>
-      </div>
-    </div>
-    <hr class="style1">
-    <div class="row mt-4 mb-4 ps-5">
-      <div class="col-sm-3 text-center">
-        <img src="../img/pf.png" class="picture-react">
-      </div>
-
-      <!-- Reactie met naam + datum -->
-      <div class="col-sm-8 pl-4">
-        <h5 class="fw-bold">Finn de Jong 27-04-2021<span id="demo"></span></h5>
-        <p class="fs-pulse">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, maxime! Minus ipsum qui repudiandae error quia ipsam voluptas reiciendis laudantium nobis suscipit facere modi corporis eos ducimus, fugit doloribus expedita?</p>
-      </div>
-    </div>
-    <hr class="style1">
-
-    <!-- Hier kan de gast zijn review schrijven + Verstuur button -->
-    <div class="row">
-      <div class="col-sm-9 pb-3">
-        <textarea class="form-control" id="exampleFormControlTextarea2" name="react" placeholder="Type hier uw tekst in..." required></textarea>
-      </div>
-      <div class="col-sm-1 text-start p-0 pb-3">
-        <img src="../img/success (1).png" class="icon" onclick="react()">
-        </div>
-      </div>
-    </div>
-  </div>
-
 
 
     <!-- JavaScript Bundle with Popper -->

@@ -538,7 +538,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
-                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="`+link+`" data-original-title="" title="">  
+                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="`+link+`">  
                     </div>
                     <div class="col-sm-1 text-center pb-3">
                         <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
@@ -553,17 +553,16 @@ fetch('http://127.0.0.1:5000/pulse', {
                 </div>
             </div>`
             pulse = pulse + 1
-            console.log(emoji)
-
-            var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
-            var popoverList = popoverTriggerList.map( function( popoverTrigger )
-            {
-            console.log("yeh")
-            return new bootstrap.Popover( popoverTrigger );
-            } );
+            console.log(emoji);
         })
+        var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
+        var popoverList = popoverTriggerList.map( function( popoverTrigger )
+        {
+        console.log("yeh");
+        return new bootstrap.Popover( popoverTrigger );
+        } );
     })
-
+    
 // Hier word de reactie gepost naar database!!
             //test verander de variabele!!
 function send_reaction(id){
@@ -571,8 +570,9 @@ function send_reaction(id){
     console.log(id)
     var pulse_id = "react-area"+id
     var react_text = document.getElementById(pulse_id).value;
-    var delink = "gegroet";
-
+    token_id = "pulse_token" + id
+    var token = document.getElementById(token_id).innerHTML;
+    console.log(token)
     console.log(react_text);
 
     var myHeaders = new Headers();
@@ -580,7 +580,7 @@ function send_reaction(id){
 
     var raw = JSON.stringify({
         "reactie": react_text,
-        "link": delink
+        "pulse_token": token
     });
 
     var requestOptions = {

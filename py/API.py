@@ -146,15 +146,15 @@ def bevestig_gebruiker():
 def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
-    link = req_data['link']
+    token = req_data['pulse_token']
     
     print(reactie)
-    print(link)
+    print(token)
     q2="""
-    MATCH (p:Pulse{link:$link})
+    MATCH (p:Pulse{pulse_token:$token})
     CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
     """
-    map = {"reactie":reactie, "link":link}
+    map = {"reactie":reactie, "token":token}
     try:
         session.run(q2, map)
         return "succesfull"
@@ -190,20 +190,19 @@ def bewerken_node():
     except Exception as e:
         return (str(e))
 
-
-@api.route("/delen", methods=["GET"])
-def gedeelde_pulse():
-    req_data = request.get_json()
-    token = req_data['Pulse_token']
-    print(token)
-    q1="""
-    MATCH (p:Pulse{Pulse_token:$token})
-    RETURN p
-    """
-    results = session.run(q1)
-    data = results.data()
-    print(data)
-    return(jsonify(data))
+# @api.route("/delen", methods=["GET", "PUT"])
+# def gedeelde_pulse():
+#     req_data = request.get_json()
+#     token = req_data['Pulse_token']
+#     print(token)
+#     q1="""
+#     MATCH (p:Pulse{Pulse_token:$token})
+#     RETURN p
+#     """
+#     results = session.run(q1)
+#     data = results.data()
+#     print(data)
+#     return(jsonify(data))
 
 
 if __name__=="__main__":

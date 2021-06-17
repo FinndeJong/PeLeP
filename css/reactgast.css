@@ -1,7 +1,7 @@
 /* Box sizing en opmaak */
 .container2 {
   width: 600px;
-  height: 480px;
+  height: 540px;
   padding: 50px;
   margin: auto;
   margin-top: 10rem;
@@ -23,12 +23,21 @@ hr {
 }
 
 /* Logo opmaak */
-.logo {
-  width: 30vh;
+/* .logo { */
+  /* width: 30vh;
   height: 145px;
   margin: auto;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 30px; */
+  /* width: 80%;
+} */
+
+.pelep_logo{
+  width: 80%;
+}
+
+.logo{
+  text-align: center;
 }
 
 /* Ga verder button */
