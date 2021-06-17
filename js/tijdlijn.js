@@ -566,13 +566,14 @@ function send_reaction(id){
     var token = document.getElementById(token_id).innerHTML;
     console.log(token)
     console.log(react_text);
-
+    var commenter = "Lieke Crum"
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
         "reactie": react_text,
-        "pulse_token": token
+        "pulse_token": token,
+        "commenter": commenter
     });
 
     var requestOptions = {
