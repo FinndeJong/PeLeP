@@ -93,7 +93,7 @@ login.addEventListener("click", function(){
         invalidmail.style.display = "none";
         invalidpsw.style.display = "none";
 
-        // API call om wachtwoord te veriefieren!!
+        // POST API call om wachtwoord te veriefieren!!
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -107,27 +107,45 @@ login.addEventListener("click", function(){
         };
 
         fetch("http://127.0.0.1:5000/api/login", requestOptions)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
-        console.log(result);
-        
-        })
+            console.log(result);
+            // Gebruik result om of door te sturen of foutmeldingen te geven!!
+            if (result["validation"] == "correct") {
+                location.replace("http://127.0.0.1:5500/html/index.html?user=" + result["token"])
+            }
+            else {
+                if (result["error"] == "incorrect password") {
+                    // error password!!
+                    invalidmail.style.display = "none";
+                    invalidpsw.style.display = "block";
+                }
+                else {
+                    // error email!!
+                    invalidmail.style.display = "block";
+                    invalidpsw.style.display = "none";
+                }
+            }
 
+        })
 
         .catch(error => console.log('error', error));
     }
 
 
     else {
+        // Lege input velden niks laten zien!!
         if (inputemail.value == "" && inputpassword.value == "") {
             invalidmail.style.display = "none"
             invalidpsw.style.display = "none"
         }
         else {
+            // Wachtwoord error!!
             if (validateinput(inputemail, inputpassword) == 2) {
                 invalidpsw.style.display = "block"
                 invalidmail.style.display = "none"
             }
+            // E-mail error
             else if (validateinput(inputemail, inputpassword) == 3 || validateinput(inputemail, inputpassword) == 0) {
                 invalidmail.style.display = "block"
                 invalidpsw.style.display = "none"

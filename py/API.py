@@ -6,7 +6,7 @@ from passlib.hash import sha256_crypt
 import json
 
 #establish the connection
-with open(r'C:\Users\vosse\Documents\HBO OPEN-ICT OPDRACHTEN\PeLeP\PeLeP\txt\neo4j.txt') as f1:
+with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
@@ -112,27 +112,32 @@ def bewerken_node():
 # TEST
 # TEST
 # Functie om wachtwoord te valideren
-def validatepassword(length, email, password, dbemail, dbpassword, active):
+def validatepassword(length, email, password, dbemail, dbpassword, active, token):
+    print("activated")
     if length == 1:
         if active == 'geactiveerd':
             if email == dbemail:
                 if sha256_crypt.verify(password, dbpassword) == True:
-                    return "Correct"
+                    returnvalue = {"validation": "correct","token": token}
+                    print("passed")
+                    print(returnvalue)
+                    return returnvalue
                 else:
-                    return "incorrect password"
+                    return {"error": "incorrect password"}
             else:
-                return "invalid email"
+                return {"error": "invalid email"}
         else:
-            return "account not activated"
+            return {"error": "account not activated"}
     else:
-        print("nope")
-        return 'Invalid email'
+        return {"error": "Invalid email"}
 
 @api.route("/api/login", methods=["POST"])
 def validatelogin():
     req_data = request.get_json()
     email = req_data['email']
+    print(email)
     wachtwoord = req_data['wachtwoord']
+    print(wachtwoord)
 
     q1 = """
     MATCH (g:Gebruiker{email:$email})
@@ -142,20 +147,19 @@ def validatelogin():
     try:
         results = session.run(q1, map)
         data = results.data()
-        # output = jsonify(data)
 
         length = len(data)
-
         if length != 1:
             print(email + " Bestaat niet!")
-            raise Exception("Email bestaat niet")
+            return ({"error": "Email bestaat niet"})
+        else:
+            dbemail = data[0]['g']['email']
+            dbpassword = data[0]['g']['wachtwoord']
+            active = data[0]['g']['status']
+            user_token = data[0]['g']['gebruiker_token']
 
-        dbemail = data[0]['g']['email']
-        dbpassword = data[0]['g']['wachtwoord']
-        active = data[0]['g']['status']
-
-        print(validatepassword(length, email, wachtwoord, dbemail, dbpassword, active))
-        return validatepassword(length, email, wachtwoord, dbemail, dbpassword, active)
+            print(validatepassword(length, email, wachtwoord, dbemail, dbpassword, active, user_token))
+            return validatepassword(length, email, wachtwoord, dbemail, dbpassword, active, user_token)
 
     except Exception as e:
         return (str(e))
