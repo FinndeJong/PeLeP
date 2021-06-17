@@ -4,18 +4,21 @@ import csv
 from datetime import datetime
 from passlib.hash import sha256_crypt
 import json
+from flask_mail import Mail, Message
+from werkzeug.utils import html
+import secrets
 
 #establish the connection
-with open(r'C:\Users\Gebruiker\Documents\HBO OPEN-ICT\Sprint-3\PeLeP\txt\neo4j.txt') as f1:
+with open(r'C:\Users\LIEKE\OneDrive\Documenten\GitHub\PeLeP\txt\neo4j.txt') as f1:
     data = csv.reader(f1,delimiter=",")
     for row in data:
         username = row[0]
         pwd = row[1]
         uri = row[2]
 print(username, pwd, uri)
-driver = GraphDatabase.driver(uri=uri,auth=(username,pwd))
+driver = GraphDatabase.driver(uri = uri,auth = (username,pwd))
 session = driver.session()
-api = Flask(__name__)
+api = Flask(__name__, template_folder='../templates')
 
 # aanmaken van een Pulse API
 @api.route("/create", methods=["GET", "POST"])
@@ -32,17 +35,19 @@ def create_node():
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
     tijd = req_data['datum-tijd']
-
+    token = secrets.token_urlsafe()
     # Hier wordt de data naar de be gestuurd
     q1 = """
-    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
+    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd, pulse_token:$token})
     """
     map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
-            "comp5": comp5, "comp6": comp6, "datum":tijd}
+            "comp5": comp5, "comp6": comp6, "datum":tijd, "pulse_token":token}
     try:
-        session.run(q1, map, tijd = tijd)
-        return 'succesfull'
+        session.run(q1, map, tijd = tijd, token = token)
+        return "succesfull"
     except Exception as e:
+        token = secrets.token_urlsafe()
+        session.run(q1, map, tijd = tijd, token = token)
         return (str(e))
 
 # API voor het ophealen van de pulses
@@ -59,23 +64,101 @@ def display_node():
     print(data)
     return(jsonify(data))
 
+# API voor het ophealen van de pulses
+@api.route("/gebruiker",methods=["GET"])
+def gebruiker_ophalen():
+    q1="""
+    MATCH (p:Pulse)
+    OPTIONAL MATCH (p)-[g:gereageerd]-(c:Comment)
+    RETURN p{.*, comments: collect(c{.*, gereageerd: g{.*}})}
+    """
+    results = session.run(q1)
+    data = results.data()
+    print(data)
+    return(jsonify(data))
+
+
+
+@api.route("/nieuwe_gebruiker", methods=["POST"])
+def nieuwe_gebruiker():
+    req_data = request.get_json()
+    email = req_data["email"]
+    gebruikersnaam = req_data["gebruikersnaam"]
+    wachtwoord = req_data["wachtwoord"]
+    print("mail")
+    print(email)
+    print("naam")
+    print(gebruikersnaam)
+    encrypt_wachtwoord = sha256_crypt.hash(wachtwoord)
+    print("wachtwoord")
+    print(encrypt_wachtwoord)
+    status = "niet Geactiveerd"
+    user_token = secrets.token_urlsafe()
+        
+    api.config['MAIL_SERVER']='smtp.gmail.com'
+    api.config['MAIL_PORT'] = 465
+    api.config['MAIL_USERNAME'] = 'personal.learning.pulse@gmail.com'
+    api.config['MAIL_PASSWORD'] = 'up4BCcZJ'
+    api.config['MAIL_USE_TLS'] = False
+    api.config['MAIL_USE_SSL'] = True
+    mail = Mail(api)
+
+    msg = Message('Bevestiging registratie pelep', sender = 'personal.learning.pulse@gmail.com', recipients = [email])
+    msg.html = render_template("email.html", content = gebruikersnaam, token = user_token)
+
+
+    q1="""
+    CREATE (g:Gebruiker {gebruikersnaam:$gebruikersnaam, email:$email, wachtwoord:$encrypt_wachtwoord, status:$status, gebruiker_token:$user_token})
+    """
+    map = {"gebruikersnaam":gebruikersnaam, "email":email, "wachtwoord":encrypt_wachtwoord, "status":status, "gebruiker_token":user_token}
+    try:
+        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord, user_token = user_token)
+        mail.send(msg)
+        print("Sent")
+        return "succesfull"
+    except:
+        session.run(q1, map, encrypt_wachtwoord = encrypt_wachtwoord, user_token = user_token)
+        user_token = secrets.token_urlsafe()
+        mail.send(msg)
+        print("Sent")
+        return "new succesfull"
+
+@api.route("/bevestigen", methods=["PUT"])
+def bevestig_gebruiker():
+    req_data = request.get_json()
+    token = req_data['gebruiker_token']
+    print(token)
+    status = "geactiveerd"
+    q1="""
+    MATCH (g:Gebruiker{gebruiker_token:$token})
+    SET g.status = $status
+    """
+    map = {"status": status, "gebruiker_token": token}
+    try:
+        session.run(q1,map, token = token)
+        return "succesfull"
+    except Exception as e:
+        return (str(e))
+
+
 #Make POST request for reageren
 @api.route("/api/react", methods=["POST"])
 def reageer_post():
     req_data = request.get_json()
     reactie = req_data['reactie']
-    link = req_data['link']
+    token = req_data['pulse_token']
+    commenter = req_data['commenter']
     
     print(reactie)
-    print(link)
+    print(token)
     q2="""
-    MATCH (p:Pulse{link:$link})
-    CREATE (c:Comment {reactie:$reactie})-[r:gereageerd]->(p)
+    MATCH (p:Pulse{pulse_token:$token})
+    CREATE (c:Comment {reactie:$reactie, commenter:$commenter})-[r:gereageerd]->(p)
     """
-    map = {"reactie":reactie, "link":link}
+    map = {"reactie":reactie, "commenter":commenter, "token":token}
     try:
         session.run(q2, map)
-        return 'succesfull'
+        return "succesfull"
     except Exception as e:
         return (str(e))
 
@@ -104,14 +187,13 @@ def bewerken_node():
         "comp5": comp5, "comp6": comp6, "bewerkdatum":tijd, "pulse_token":pulse_token}
     try:
         session.run(q1, map, tijd = tijd)
-        return 'succesfull'
+        return "succesfull"
     except Exception as e:
         return (str(e))
 
-# API voor inlog validatie (test)!!
-# TEST
-# TEST
-# Functie om wachtwoord te valideren
+
+# API voor inlog validatie!!
+# Functie om wachtwoord te valideren!!
 def validatepassword(length, email, password, dbemail, dbpassword, active, token):
     print("activated")
     if length == 1:
@@ -163,6 +245,7 @@ def validatelogin():
 
     except Exception as e:
         return (str(e))
+
 
 if __name__=="__main__":
     api.run(debug=True)

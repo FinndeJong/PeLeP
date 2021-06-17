@@ -370,13 +370,7 @@ fetch('http://127.0.0.1:5000/pulse', {
             var comp6 = json[pulse].p.comp6;
             var t = json[pulse].p.tekst;
             var datum = json[pulse].p.datum;
-            var pulse_token = "JHbfjew&"
-            console.log(comp1)
-            console.log(comp2)
-            console.log(comp3)
-            console.log(comp4)
-            console.log(comp5)
-            console.log(comp6)
+            var pulse_token = json[pulse].p.pulse_token
             // Hier wordt gekeken of competentie 1 in het checkpoint staat als dit zo is wordt dit aan de pulse toe gevoegd
             if (comp1 == undefined || comp1 == ""){
                 var c1 = ""
@@ -482,6 +476,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 }
 
                 // Voor elke reactie word hier een stukje html aangemaakt!!
+                reaction_array.reverse();
                 reaction_array.forEach(function(reactions){
                     rtest = `
                     <div class="row mt-4 mb-4 ps-5">
@@ -504,7 +499,10 @@ fetch('http://127.0.0.1:5000/pulse', {
             else {
                 var r = "";
             }
-
+            console.log("token:")
+            console.log(pulse_token) 
+            var link = "http://localhost/PeLeP/html/reactgast.html?token=" + pulse_token
+            console.log(link)
             // hier word voor het id een 
             x = document.getElementById(id)
             x.innerHTML = `             
@@ -532,7 +530,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                 `+r+`
                 <div class="row">
                     <div class="col-sm-1 text-end p-0 pb-3">
-                        <img src="../img/share.png" class="icon">
+                        <img src="../img/share.png" class="icon" data-toggle="popover" html = "true" data-content="`+link+`">  
                     </div>
                     <div class="col-sm-1 text-center pb-3">
                         <img src="../img/edit (2).png" id="`+id+`" class="icon" data-bs-toggle="modal" data-bs-target="#bewerk-popup" onclick="bewerk_display(this.id)">
@@ -547,19 +545,26 @@ fetch('http://127.0.0.1:5000/pulse', {
                 </div>
             </div>`
             pulse = pulse + 1
-            console.log(emoji)
+            console.log(emoji);
         })
+        var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
+        var popoverList = popoverTriggerList.map( function( popoverTrigger )
+        {
+        console.log("yeh");
+        return new bootstrap.Popover( popoverTrigger );
+        } );
     })
 
-    // Hier word de reactie gepost naar database!!
-            //test verander de variabele!!
+// Hier word de reactie gepost naar database!!
+//test verander de variabele!!
 function send_reaction(id){
     console.log("clicked")
     console.log(id)
     var pulse_id = "react-area"+id
     var react_text = document.getElementById(pulse_id).value;
-    var delink = "gegroet";
-
+    token_id = "pulse_token" + id
+    var token = document.getElementById(token_id).innerHTML;
+    console.log(token)
     console.log(react_text);
 
     var myHeaders = new Headers();
@@ -567,7 +572,7 @@ function send_reaction(id){
 
     var raw = JSON.stringify({
         "reactie": react_text,
-        "link": delink
+        "pulse_token": token
     });
 
     var requestOptions = {
@@ -600,14 +605,8 @@ function get_reacties(){
 
 // Functie voor de bewerk popup
 function bewerk_display(clicked_id){
-    // console.log("id:");
-    // console.log(clicked_id);
     var titelid = "titel" + clicked_id;
-    // console.log(titelid)
     var titel = document.getElementById(titelid).innerHTML;
-    // console.log(document.getElementById(titelid))
-    // console.log("titel:")
-    // console.log(titel)
     var compid = "comp" + clicked_id;
 
     var pulse_tokenid = "pulse_token" + clicked_id;
