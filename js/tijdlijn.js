@@ -484,7 +484,7 @@ fetch('http://127.0.0.1:5000/pulse', {
                     // console.log(json[pulse].p.comments[i]["reactie"])
                     reaction_array.push(json[pulse].p.comments[i]["reactie"])
                 }
-
+                reaction_array.reverse();
                 reaction_array.forEach(function(reactions){
                     rtest = `
                     <div class="row mt-4 mb-4 ps-5">
@@ -564,7 +564,7 @@ fetch('http://127.0.0.1:5000/pulse', {
     })
     
 // Hier word de reactie gepost naar database!!
-            //test verander de variabele!!
+//test verander de variabele!!
 function send_reaction(id){
     console.log("clicked")
     console.log(id)
