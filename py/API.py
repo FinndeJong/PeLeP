@@ -35,7 +35,7 @@ def create_node():
     comp5 = req_data['comp5']
     comp6 = req_data['comp6']
     tijd = req_data['datum-tijd']
-    auteur = req_data['author']
+    auteur = req_data['auteur']
     token = secrets.token_urlsafe()
     # Hier wordt de data naar de be gestuurd
     q1 = """
