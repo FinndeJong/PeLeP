@@ -38,7 +38,7 @@ def create_node():
 
     # Hier wordt de data naar de be gestuurd
     q1 = """
-    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})
+    CREATE (p:Pulse {titel:$titel,tekst:$tekst,emoji:$emoji,comp1:$comp1,comp2:$comp2,comp3:$comp3,comp4:$comp4,comp5:$comp5,comp6:$comp6, datum:$tijd})-[rel:gemaakt_door]->(:Persoon{naam:$naam,...})
     """
     map = {"titel": titel, "tekst": tekst, "emoji": emoji, "comp1": comp1, "comp2": comp2, "comp3": comp3, "comp4": comp4,
             "comp5": comp5, "comp6": comp6, "datum":tijd}

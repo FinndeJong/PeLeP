@@ -1,7 +1,20 @@
-FROM node:12.8.0-alpine
-WORKDIR /server
-# COPY /settings.json .
-RUN npm install
-COPY . .
-EXPOSE 5000
-CMD npm start
+# FROM node:12.8.0-alpine
+# WORKDIR /server
+# # COPY /settings.json .
+# RUN npm install
+# RUN docker pull ehames/docker-bootstrap
+# COPY . .
+# EXPOSE 5000
+# CMD npm start
+
+# ADD ./start-node /opt/docker-boot/
+# ADD ./conf.d /etc/docker-boot/conf.d/
+# ENTRYPOINT [ "/opt/docker-boot/start-node" ]
+
+ # syntax=docker/dockerfile:1
+ FROM node:12-alpine
+ RUN apk add --no-cache python g++ make
+ WORKDIR /Frontend
+ COPY . .
+ RUN yarn install --production
+ CMD ["node", "../index.html"]
