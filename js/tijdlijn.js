@@ -361,7 +361,7 @@ function nieuw(){
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        raw = JSON.stringify({"titel":titel,"tekst":tekst, "emoji":emoji, "datum-tijd":tijd, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6, "author": gebruikerstoken});
+        raw = JSON.stringify({"titel":titel,"tekst":tekst, "emoji":emoji, "datum-tijd":tijd, "comp1":comp1, "comp2":comp2, "comp3":comp3, "comp4":comp4, "comp5":comp5, "comp6":comp6, "auteur": gebruikerstoken});
         
         //Hier staan de fetch option
         var requestOptions = {
