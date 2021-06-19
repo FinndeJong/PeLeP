@@ -217,9 +217,13 @@ def bewerken_node():
 # Functie om wachtwoord te valideren!!
 def validatepassword(length, email, password, dbemail, dbpassword, active, token):
     print("activated")
+    # Controlleer de email bestaat
     if length == 1:
+        # Controlleer of het account is geactiveerd
         if active == 'geactiveerd':
+            # Kijk of het email overeenkomt met email in DB
             if email == dbemail:
+                # Verify of wachtwoord correct is
                 if sha256_crypt.verify(password, dbpassword) == True:
                     returnvalue = {"validation": "correct","token": token}
                     print("passed")
@@ -241,7 +245,7 @@ def validatelogin():
     print(email)
     wachtwoord = req_data['wachtwoord']
     print(wachtwoord)
-
+    # Neo4J Query
     q1 = """
     MATCH (g:Gebruiker{email:$email})
     RETURN g
@@ -252,10 +256,12 @@ def validatelogin():
         data = results.data()
 
         length = len(data)
+        # Error handling, zodat als Email niet bestaat de API niet crashed
         if length != 1:
             print(email + " Bestaat niet!")
             return ({"error": "Email bestaat niet"})
         else:
+            # Zet data in variabelen om naar validate functie te sturen
             dbemail = data[0]['g']['email']
             dbpassword = data[0]['g']['wachtwoord']
             active = data[0]['g']['status']

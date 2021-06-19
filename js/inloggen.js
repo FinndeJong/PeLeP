@@ -8,7 +8,7 @@ function DisplayPassword(){
         input.type = "password";
     }
 }
-
+// Eventlistener om te wachtwoord te tonen
 document.getElementById("showpassword").addEventListener('click', function(){
     DisplayPassword();
 })
@@ -87,7 +87,6 @@ login.addEventListener("click", function(){
         return inputfields
     };
 
-    let xa = document.getElementById("inlogerror");
     // Kijken of alles is ingevuld en de correcte errors geven!!
     if (validateinput(inputemail, inputpassword) == 1) {
         invalidmail.style.display = "none";
